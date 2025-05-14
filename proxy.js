@@ -1,3 +1,4 @@
+
 const MDX_COMPONENTS = [
     {
         page: '/introduction',
@@ -6,6 +7,7 @@ const MDX_COMPONENTS = [
             "Get Started",
             "👋 Welcome"
         ],
+        link:'home',
         description: [
             "👋 Welcome",
             "Autopilot aims to break down the barriers between creativity and technical programming, providing equal, simple, and implementable ways for all ideas. Based on AutoCoder self-developed PLE model, we can turn software ideas into truly usable software products through natural language interaction.",
@@ -13,6 +15,7 @@ const MDX_COMPONENTS = [
     },
 
     {
+        link:'home',
         breadcrumbs: [
             "Get Started",
             "👋 Welcome"
@@ -24,6 +27,7 @@ const MDX_COMPONENTS = [
         ]
     },
     {
+        link:'home',
         breadcrumbs: [
             "Get Started",
             "👋 Welcome"
@@ -35,6 +39,7 @@ const MDX_COMPONENTS = [
         ]
     },
     {
+        link:'home',
         breadcrumbs: [
             "Get Started",
             "👋 Welcome"
@@ -46,6 +51,7 @@ const MDX_COMPONENTS = [
         ]
     },
     {
+        link:'faq',
         title: "📕 FAQ",
         breadcrumbs: [
             "Get Started",
@@ -60,7 +66,8 @@ const MDX_COMPONENTS = [
             'Refund Policy',
         ]
     },
-    {
+    {        link:'faq',
+
         title: "Get Started",
         breadcrumbs: [
             "Get Started",
@@ -82,13 +89,15 @@ const MDX_COMPONENTS = [
             `Step 5  Chat with AutoCoder if you want any updates.  Fantastic! You're now equipped with the essential tools to navigate AutoCoder effortlessly. Keep the conversation flowing and let AI bring your visions to life.`,
         ]
     },
-    {
+    {        link:'faq',
+
         title: "Account & Security",
         breadcrumbs: [
             "Get Started",
             "📕 FAQ"
         ],
         page: '/quickstart',
+        link:'faq',
         content: [
             `What should I do if I am unable to login?`,
             `Make sure your email address is correct and that Caps Lock is off.`,
@@ -104,7 +113,8 @@ const MDX_COMPONENTS = [
             `We comply with our Privacy Policy and Terms of Service to ensure that your data is securely handled and protected.`,
         ]
     },
-    {
+    {        link:'faq',
+
         title: "Error & Solution",
         breadcrumbs: [
             "Get Started",
@@ -121,7 +131,8 @@ const MDX_COMPONENTS = [
             `Autocoder supports multi-language. You may input your preferred language and will get corresponding reply.`,
         ]
     },
-    {
+    {        link:'faq',
+
         title: "Pricing & Payment",
         breadcrumbs: [
             "Get Started",
@@ -139,7 +150,8 @@ const MDX_COMPONENTS = [
             ` At this time, downgrading is not supported. We recommend carefully considering your usage requirements prior to upgrading.`
         ]
     },
-    {
+    {        link:'faq',
+
         title: "Refund Policy",
         breadcrumbs: [
             "Get Started",
@@ -308,7 +320,8 @@ class MDX_CLASS {
                     page: component.page,
                     title: component.title,
                     breadcrumbs: component.breadcrumbs,
-                    description: bestMatch
+                    description: bestMatch,
+                    link:component.link
                 });
             }
         }
@@ -363,7 +376,7 @@ function processResults(results) {
                 Number(`0.${generateSecure99DigitNumber(16)}`),
             highlights: [v.description],
             metadata: [{
-                "link": v.page.slice(1),
+                "link": v.link,
                 id: generateUUID(),
                 chunk_html: `${v.title}\n${v.description}`,
                 dataset_id: "592bca4c-7f00-4cc2-93c5-62339712a05f",
