@@ -1,0 +1,52 @@
+.eyebrow{
+  opacity:0;
+  display:none;
+}
+  h1{
+    font-size: 48px!important;
+    line-height: 40px!important;
+    padding-bottom:20px;
+  }
+h2{
+  font-weight:bold!important;
+}
+
+html[lg:[--scroll-mt:9.5rem]]{
+  .bg-primary\/10 {
+  background:#50505014!important;
+}
+.bg-primary{
+  background:#50505014!important;
+}
+.group:hover{
+  background:#5050500d!important;
+}
+}
+#topbar-cta-button{
+  .bg-primary-dark{
+    background:#02160F!important;
+        border-radius: 8px!important;
+  }
+  svg{
+    opacity:0!important;
+    display:none;
+  }
+}
+.dark{
+  --primary-dark:#fff;
+  
+#topbar-cta-button{
+  .bg-primary-dark{
+    background:#fff!important;
+        border-radius: 8px!important;
+  }
+  .text-white{
+    color:#02160F!important;
+  }
+  svg{
+    opacity:0!important;
+    display:none;
+    
+  }
+}
+}
