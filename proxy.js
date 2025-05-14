@@ -263,7 +263,7 @@ function generateUUID() {
 
 class MDX_CLASS {
     constructor() {
-        this.search = throttle(this._searchCore.bind(this), 50)
+        this.search = throttle(this._searchCore.bind(this), 500)
 
     }
     _searchCore(query) {
