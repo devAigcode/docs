@@ -50,3 +50,9 @@ html[lg:[--scroll-mt:9.5rem]]{
   }
 }
 }
+
+ th,
+    td {
+        border: 1px solid rgb(var(--gray-200));
+        text-align: center;
+    }
