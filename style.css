@@ -55,4 +55,5 @@ html[lg:[--scroll-mt:9.5rem]]{
     td {
         border: 1px solid rgb(var(--gray-200));
         text-align: center;
+        padding-inline-end: .5714286em!important;
     }
