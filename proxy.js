@@ -1,4 +1,3 @@
-
 const MDX_COMPONENTS = [
     {
         page: '/introduction',
@@ -10,7 +9,7 @@ const MDX_COMPONENTS = [
         link:'home',
         description: [
             "👋 Welcome",
-            "Autopilot aims to break down the barriers between creativity and technical programming, providing equal, simple, and implementable ways for all ideas. Based on AutoCoder self-developed PLE model, we can turn software ideas into truly usable software products through natural language interaction.",
+            "AutoCoder – Your AI-Powered, End-to-End Software Development Platform.As the world's first truly end-to-end AI-powered development platform, AutoCoder transforms conceptual ideas into production-grade websites through natural language interaction. Whether building high-availability backend systems, developing dynamic websites, or implementing complex business logic, AutoCoder autonomously delivers frontend interfaces, backend services, and database architectures.",
         ]
     },
 
@@ -23,7 +22,7 @@ const MDX_COMPONENTS = [
         title: "Product Capabilities",
         page: '/introduction',
         content: [
-            "The platform provides all the tools you need to create amazing websites, front-end applications as well as full-stack web applications from one browser tab - in installation required. Lovable includes AI coding tools, real-time collaboration (beta test), and project sharing to give you a head start on your app creation journey."
+         "AotuCoder is an all-in-one web development platform that lets you build and deploy production-grade websites, backend system, and full-stack applications directly from your browser — no installation needed. Built-in AI Agent, project collaboration, and one-click deployment streamline your workflow and boost productivity."
         ]
     },
     {
@@ -35,7 +34,7 @@ const MDX_COMPONENTS = [
         title: "Quick Start ",
         page: '/introduction',
         content: [
-            "TGetting Started Get your docs set up locally for easy development"
+            "Capability	Frontend / UI Data Persistence User Authentication	Backend Endpoints App Deployment Real-time Sync	Support database construction Publish and deploy application Synchronize data across users in real time"
         ]
     },
     {
@@ -47,7 +46,7 @@ const MDX_COMPONENTS = [
         title: "Quick Start ",
         page: '/introduction',
         content: [
-            "Tutorial Preview your changes before you push to make sure they’re perfect"
+            "Build user interfaces and frontend Store and retrieve data Manage user login and account access"
         ]
     },
     {
@@ -147,7 +146,10 @@ const MDX_COMPONENTS = [
             `Must I subscribe to a Sub plan before purchasing a Pro plan?`,
             `Yes, Pro plans require an active subscription to a Sub plan. We offer enhanced benefits for subscribers, including additional perks when token usage is low.`,
             `Can I downgrade after upgrading?`,
-            ` At this time, downgrading is not supported. We recommend carefully considering your usage requirements prior to upgrading.`
+            ` Yes you can. We recommend carefully considering your usage requirements prior to downgrading.`
+            `C5. Do unused credits roll over? `,
+            `Monthly credits expire at the end of each billing cycle and do not roll over. Additional credit packages are available for your choice. This policy encourages continuous development while providing flexibility for larger projects.`,
+
         ]
     },
     {        link:'faq',
