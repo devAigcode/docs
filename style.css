@@ -22,6 +22,13 @@ html[lg:[--scroll-mt:9.5rem]]{
   background:#5050500d!important;
 }
 }
+.bg-primary\/10{
+  color:#0DAF76!important;
+  background-color:transparent!important;
+}
+.dark\:text-primary-light:is(.dark *){
+  background-color:transparent!important;
+}
 #topbar-cta-button{
   .bg-primary-dark{
     background:#02160F!important;
@@ -50,10 +57,14 @@ html[lg:[--scroll-mt:9.5rem]]{
   }
 }
 }
-
+table{
+      display: table!important;
+}
  th,
     td {
-        border: 1px solid rgb(var(--gray-200));
-        text-align: center;
+        text-align: left!important;
         padding-inline-end: .5714286em!important;
     }
+td{
+  padding-top:12px!important;
+}
