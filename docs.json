@@ -12,17 +12,27 @@
 		"dark": "/favicon.ico"
 	},
 	"navigation": {
-		"tabs": [{
-			"tab": "Guides",
-			"groups": [{
-				"group": "Get Started",
-				"pages": [
-					"home",
-					"faq"
-				]
-			}]
-		}]
-	},
+    "tabs": [
+      {
+        "tab": "Introduction",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "home",
+              "faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Features",
+        "pages": [
+          "Export-page"
+        ]
+      }
+    ]
+  },
 	"logo": {
 		"light": "/logo2_light.svg",
 		"dark": "/logo2_dark.svg"
