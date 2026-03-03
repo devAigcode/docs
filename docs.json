@@ -39,9 +39,9 @@
             "pages": [
               "blog/latest",
               "blog/announcements",
-              "blog/reports",
               "blog/tutorials",
-              "blog/stories"
+              "blog/stories",
+              "blog/reports"
             ]
           }
         ]
