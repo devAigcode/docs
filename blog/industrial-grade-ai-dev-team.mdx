@@ -8,13 +8,13 @@ description: >
 
 ## Trinity: 3 Pillars
 
-### 1. The Pre-training Pillar: AIGCoder & Architectural Intelligence
+### 1. The Pre-training Pillar: AIGCoder and Architectural Intelligence
 
 At the heart of the "AI Factory" is **AIGCoder**, a proprietary model that moves beyond the limitations of general-purpose LLMs like GPT-4o.
 
 - **TPE (Tree Position Embedding):** Standard models struggle with structural depth. AIGCoder utilizes TPE to encode the hierarchical relationship of code nodes. This allows for **linear extrapolation** of performance; while RoPE-based models see search performance collapse to nearly 0% after 8x context expansion, AIGCoder maintains **66% search performance even at 128x extrapolation**.
 
-- **LogN Complexity & PLE Integration:** By implementing a **LogN (logarithmic) complexity attention mechanism**, AutoCoder.cc handles massive codebases without the exponential slowdown of traditional Transformers. Furthermore, it integrates **Progressive Layered Extraction (PLE)**—a technique borrowed from high-end recommendation systems—to decouple "Expert Knowledge." This allows the model to specialize in frontend, backend, and security logic simultaneously without cross-contamination.
+- **LogN Complexity and PLE Integration:** By implementing a **LogN (logarithmic) complexity attention mechanism**, AutoCoder.cc handles massive codebases without the exponential slowdown of traditional Transformers. Furthermore, it integrates **Progressive Layered Extraction (PLE)**—a technique borrowed from high-end recommendation systems—to decouple "Expert Knowledge." This allows the model to specialize in frontend, backend, and security logic simultaneously without cross-contamination.
 
 - **AIEV-INSTRUCT:** Unlike models trained on static GitHub crawls, AIGCoder was trained using **Execution-Verified** traces. It didn't just learn what code looks like; it learned what code does when it runs, resulting in a **90.9% Pass@1 on HumanEval**.
 
@@ -65,7 +65,7 @@ Unlike the "Sandbox" limits of **Replit Agent** or the "Pilot" dependency of **C
 - **The "Walled Garden":** Base44 (backed by Wix) is excellent for business operators who need strict data rules and internal tools, but it keeps you locked within the Wix ecosystem.
 - **AutoCoder Edge:** AutoCoder uses its **Trinity of Models** to handle complex logic without the "closed infrastructure" limitations. It provides the same "manager-level" logic handling but outputs professional, portable code.
 
-### Vs. Cursor & Windsurf: "Building vs. Editing"
+### Vs. Cursor and Windsurf: "Building vs. Editing"
 
 - **The "Pilot" Problem:** Cursor is a power tool for people who already know how to fly. If the AI hallucinates a breaking change in a React Hook, a non-coder is stuck.
 - **AutoCoder Edge:** AutoCoder operates as the "**Auto-Pilot**." Its **Autonomous Execution Loop** catches and fixes bugs in a sandbox before showing you the result. It doesn't just suggest code; it delivers a working feature.
