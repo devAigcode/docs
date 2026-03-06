@@ -30,6 +30,20 @@
         "pages": [
           "Export-page"
         ]
+      },
+	  {
+        "tab": "Resources",
+        "menu": [
+          {
+            "item": "Blog",
+            "pages": [
+              "blog/latest",
+              "blog/tutorials",
+              "blog/stories",
+              "blog/reports"
+            ]
+          }
+        ]
       }
     ]
   },
