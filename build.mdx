@@ -1,0 +1,195 @@
+---
+title: "Build"
+description: "Rapidly generate application prototypes using natural language"
+icon: "hammer"
+---
+
+**Build** is the core capability module of AutoCoder, helping you quickly generate application prototypes through natural language. You only need to describe the product requirements you want to build, and AutoCoder will automatically understand your ideas and generate the corresponding application structure and Demo page.
+
+In AutoCoder, a complete build process typically includes the following stages:
+
+<Steps>
+  <Step title="Requirement Input">
+    
+  </Step>
+  <Step title="Requirement List">
+    
+  </Step>
+  <Step title="Demo Generation">
+    
+  </Step>
+  <Step title="Demo Update">
+    
+  </Step>
+</Steps>
+
+Through this approach, you can start with a simple idea, gradually build and optimize your application, without needing to write code manually.
+
+---
+
+## Requirement Input
+
+Requirement input is the first step in building an application with AutoCoder. You simply describe the product you want to create using natural language, and the system will automatically understand your needs and generate the corresponding project structure.
+
+### Prompt Optimization
+
+When inputting requirements, AutoCoder helps you optimize your Prompt, making your requirement expression clearer and thereby improving the accuracy of the generated results.
+
+<Frame>
+  ![Image](/images/image-1.png)
+</Frame>
+
+For example, when you input a simple product idea, the system automatically helps you supplement a more complete description:
+
+**User Original Input:**
+
+> Create a restaurant introduction website
+
+**System Optimized Prompt:**
+
+> Design a restaurant introduction website with the following detailed requirements:
+>
+> 1. **Functional requirements:** The website should provide an overview of the restaurant, including its history, cuisine features, chef introduction, and contact information. It should also display the menu with images and prices, offer reservation instructions, and include customer testimonials to enhance credibility.
+> 2. **Page design:** The main pages include a homepage highlighting the restaurant's unique selling points, an about us page, a menu page with categorized dishes, a chef introduction page, a reservation guide page, a customer testimonials section, and a contact page with location and business hours.
+
+**Benefits of Prompt Optimization:**
+
+- Express product requirements more clearly
+- Improve the accuracy of generated content
+- Reduce the number of subsequent modifications
+
+### Query Suggestion Auto-Fill
+
+To help you start your project quickly, AutoCoder provides recommended Query examples. The system automatically recommends common application scenarios, such as:
+
+- Restaurant Website
+- Personal Portfolio
+- SaaS Dashboard
+- E-commerce Landing Page
+
+You can directly press `Enter` to select the recommended content, or modify it based on the suggestion.
+
+### <u>Homepage Showcase</u>
+
+On the homepage, you can see some sample project Showcases. These examples help you understand the types of applications AutoCoder can generate and provide inspiration for your project.
+
+<Frame>
+  <img
+    className="hidden dark:block"
+    src="/images/image-1.png"
+    alt="Image"
+  />
+  <img
+    className="dark:hidden"
+    src="/images/showcase.png"
+    alt="Image"
+  />
+</Frame>
+
+<CardGroup cols={2}>
+  <Card icon="play" title="Try Demo">
+    When you click `Preview`, you can directly experience the Demo page of the sample project, viewing the project structure and page effects.
+  </Card>
+  <Card icon="code-branch" title="Remix">
+    If you wish to create a new application based on a sample project, use the Remix feature. The system will generate a new project based on the sample for you to modify.
+  </Card>
+</CardGroup>
+
+---
+
+## Requirement List
+
+After submitting your requirements, AutoCoder automatically converts your input into a structured **Requirement List**. This helps you confirm the application structure before generating the Demo and continue to optimize product requirements.
+
+The Requirement List interface mainly consists of two parts:
+
+1. **Display Area**: Shows the application structure parsed by AutoCoder, including pages and functional modules.
+
+   <Frame>
+     ![Image](/images/image-4.png)
+   </Frame>
+2. **Chat Area**: You can continue to modify requirements through chat (e.g., adding new functional modules, adjusting page structures, modifying product logic).
+
+   <Frame>
+     ![Image](/images/image-5.png)
+   </Frame>
+
+### Platform Support
+
+AutoCoder supports generating different types of application projects, catering to diverse product development needs:
+
+- 🌐 **Website**
+- 📱 **Mobile App**
+- ⚙️ **Backend**
+
+---
+
+## View & Structure Management
+
+### View Switching
+
+On the Demo page, you can switch between different views to intuitively inspect the application's structure and layout across various platforms, including: **Web View**, **App View**, and **Backend View**.
+
+### Controller
+
+The Controller displays the current project's page structure and synchronously updates when the page structure changes (such as adding or deleting pages). Through the Controller, you can quickly locate pages you need to view or edit from a single place, flexibly managing the entire application structure.
+
+<Frame>
+  ![Image](/images/image-6.png)
+</Frame>
+
+---
+
+## Modification & Iteration
+
+After generating the Demo, AutoCoder provides two ways for you to continue refining the application content.
+
+### 1. Chat Modification
+
+You only need to describe the content you want to adjust using natural language. AutoCoder will automatically update the page structure or component content, enabling rapid iteration without regenerating the entire project.
+
+**Supported Modifications:** Add new pages / Delete pages / Modify page layout / Add new functional modules.
+
+**Example Command:**
+
+> "Add an 'Our Story' page to the website."
+
+<Frame>
+  ![Image](/images/image-7.png)
+</Frame>
+
+### 2. Visual Editing
+
+Visual Editing allows you to make visual modifications directly within the generated Demo page. After clicking the `Edit` button to enter edit mode, simply click on a page component to open the corresponding editing panel.
+
+<Frame>
+  ![Image](/images/image-9.png)
+</Frame>
+
+<CardGroup cols={2}>
+  <Card icon="font" title="Text Content">
+    Click any text element to directly modify text content, typography, and color via the floating panel.
+  </Card>
+  <Card icon="image" title="Image Replacement">
+    Select an image to replace it. Supports drag-and-drop or local file upload (JPEG/PNG only, under 10MB).
+  </Card>
+  <Card icon="icons" title="Icon Styles">
+    Click an icon to open the built-in icon library. Search, replace, and adjust colors or border radii to match your brand style.
+  </Card>
+  <Card icon="square" title="Buttons & Blocks">
+    Adjust button colors and border radii using the color picker; click blocks (or div containers) to modify background properties, margins, and padding.
+  </Card>
+</CardGroup>
+
+<Note>
+  **Saving Modifications Note:** Clicking `Save` only saves the current modifications without generating a new version record. If you wish to save the current changes as a **new version**, you must **exit edit mode** after saving. The system will automatically create a new version record at that point.
+</Note>
+
+---
+
+## Version History
+
+During the application building process, AutoCoder automatically records the project's version history. Version management helps you retain important versions during the modification process.
+
+- **Revert to Previous Version**: If a modification result is unsatisfactory, you can quickly revert to a previous state, avoiding repetitive operations and allowing you to confidently try different solutions.
+- **Mark/Favorite Version**: When the project reaches a crucial stage, you can manually mark or favorite the current version for easier tracking and management later.
