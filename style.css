@@ -68,11 +68,14 @@ table{
 td{
   padding-top:12px!important;
 }
-/* Remove focus outline on nav dropdown triggers (Resources, etc.) */
-nav button:focus,
-nav button:focus-visible,
-nav a:focus,
-nav a:focus-visible {
+/* Fix: dropdown trigger border stuck after hover/close */
+.nav-tabs button[aria-haspopup="menu"],
+.nav-tabs button[aria-haspopup="menu"]:focus,
+.nav-tabs button[aria-haspopup="menu"]:active,
+.nav-tabs button[aria-haspopup="menu"][data-state="open"],
+.nav-tabs button[aria-haspopup="menu"][data-state="closed"] {
   outline: none!important;
+  outline-width: 0!important;
+  border: none!important;
   box-shadow: none!important;
 }
