@@ -15,14 +15,10 @@
     "tabs": [
       {
         "tab": "Introduction",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "home",
-              "faq"
-            ]
-          }
+        "pages": [
+          "overview",
+          "getting",
+          "plan"
         ]
       },
       {
