@@ -68,3 +68,14 @@ table{
 td{
   padding-top:12px!important;
 }
+
+.nav-tabs button[aria-haspopup="menu"],
+.nav-tabs button[aria-haspopup="menu"]:focus,
+.nav-tabs button[aria-haspopup="menu"]:active,
+.nav-tabs button[aria-haspopup="menu"][data-state="open"],
+.nav-tabs button[aria-haspopup="menu"][data-state="closed"] {
+  outline: none!important;
+  outline-width: 0!important;
+  border: none!important;
+box-shadow: non! important;
+}
