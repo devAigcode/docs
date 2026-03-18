@@ -15,6 +15,7 @@
     "tabs": [
       {
         "tab": "FAQ",
+        "icon": "book-bookmark",
         "pages": [
           "faq"
         ]
