@@ -14,6 +14,12 @@
 	"navigation": {
     "tabs": [
       {
+        "tab": "FAQ",
+        "pages": [
+          "faq"
+        ]
+      },
+      {
         "tab": "Introduction",
         "pages": [
           "overview",
@@ -46,9 +52,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "FAQ"
       }
     ]
   },
