@@ -16,9 +16,9 @@
       {
         "tab": "Introduction",
         "pages": [
-          "Welcome",
-          "getting",
-          "plan",
+          "welcome",
+          "getting-started",
+          "plans-and-credits",
           "faq"
         ]
       },
@@ -26,10 +26,10 @@
         "tab": "Features",
         "pages": [
           "build",
-          "untitled-page",
+          "sparkvibe",
           "workspace",
           "deploy-and-hosting",
-          "activity",
+          "",
           "profile",
           "security-and-privacy"
         ]
@@ -39,6 +39,7 @@
         "menu": [
           {
             "item": "Blog",
+            "description": "blog",
             "pages": [
               "blog/latest",
               "blog/tutorials",
