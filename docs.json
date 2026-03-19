@@ -14,18 +14,12 @@
 	"navigation": {
     "tabs": [
       {
-        "tab": "FAQ",
-        "icon": "book-bookmark",
-        "pages": [
-          "faq"
-        ]
-      },
-      {
         "tab": "Introduction",
         "pages": [
-          "overview",
+          "Welcome",
           "getting",
-          "plan"
+          "plan",
+          "faq"
         ]
       },
       {
