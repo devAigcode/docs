@@ -39,7 +39,6 @@
         "menu": [
           {
             "item": "Blog",
-            "description": "",
             "pages": [
               "blog/latest",
               "blog/tutorials",
