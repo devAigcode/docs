@@ -8,34 +8,38 @@
 		"dark": "#15803D"
 	},
 	"favicon": {
-		"light": "/favicon.ico",
-		"dark": "/favicon.ico"
+		"light": "/logo2.jpg",
+		"dark": "/logo2.jpg"
 	},
 	"navigation": {
     "tabs": [
       {
         "tab": "Introduction",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "home",
-              "faq"
-            ]
-          }
+        "pages": [
+          "welcome",
+          "getting-started",
+          "plans-and-credits",
+          "faq"
         ]
       },
       {
         "tab": "Features",
         "pages": [
-          "Export-page"
+          "build",
+          "sparkvibe",
+          "workspace",
+          "deploy-and-hosting",
+          "earn-credits",
+          "profile",
+          "security-and-privacy"
         ]
       },
-	  {
+      {
         "tab": "Resources",
         "menu": [
           {
             "item": "Blog",
+            "description": "blog",
             "pages": [
               "blog/latest",
               "blog/tutorials",
@@ -59,7 +63,7 @@
 		"primary": {
 			"type": "button",
 			"label": "Home",
-			"href": "https://www.autocoder.cc/"
+			"href": "https://koudingvip.com/"
 		}
 	},
    "search": {
