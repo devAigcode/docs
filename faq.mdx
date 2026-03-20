@@ -1,143 +1,159 @@
 ---
-title: "📕 FAQ"
-description: "Frequently asked questions about AutoCoder"
+title: "FAQ"
+description: "Find answers to common questions about AutoCoder.cc"
+icon: "circle-question"
 ---
 
-## **Get Started**
+Here are the answers to the most frequently asked questions about AutoCoder.cc. For more detailed guides and step-by-step tutorials, please explore the [Features](/build) section in the left navigation menu. If you still cannot find what you are looking for, feel free to contact our support team at [support@autocoder.cc](mailto:support@autocoder.cc).
+
+---
+
+## General & onboarding
 
 <AccordionGroup>
-  <Accordion title="What is AutoCoder?">
-    AutoCoder is the world's first truly end-to-end AI product that automatically generates both the front-end and back-end of applications through AI conversations.
+  <Accordion title="Is AutoCoder.cc suitable for users with no coding experience?">
+    Yes. AutoCoder.cc is specially built for users without programming or technical expertise. Just describe your requirements in natural language, and the platform will automatically generate complete full-stack applications, including the user interface, backend logic, and databases.
   </Accordion>
-  <Accordion title="How is this different from other solutions?">
-    - Express your needs through AI conversations, and AutoCoder will generate a detailed requirements list based on your input.
-    - Once the project is generated, you can manually edit and adjust it through multiple rounds of AI conversation, with no coding required. Simply use natural language to optimize your project.
-    - Completed projects support collaboration and can be easily deployed.
-  </Accordion>
-  <Accordion title="How can I create a project from the beginning?">
-    <Steps>
-      <Step title="Step 1">
-        Click on the <u>Sign In</u> button to access your AutoCoder account.
-      </Step>
-      <Step title="Step 2">
-        Click on the dialogue box and enter a brief description of the project idea.
-      </Step>
-      <Step title="Step 3">
-        Edit manually or send your request to AutoCoder directly.
-      </Step>
-      <Step title="Step 4">
-        Confirm your requirements and workflow, then start generating.
-      </Step>
-      <Step title="Step 5">
-        Chat with AutoCoder if you want any updates.
 
-        Fantastic! You're now equipped with the essential tools to navigate AutoCoder effortlessly. Keep the conversation flowing and let AI bring your visions to life.
-      </Step>
-    </Steps>
+  <Accordion title="Which devices are supported?">
+    AutoCoder.cc is a cloud-based web tool that requires no local installation. For an optimal building experience, we recommend using a desktop browser on Windows, macOS, or Linux. You may also use tablets or smartphones for lightweight editing and quick adjustments.
+  </Accordion>
+
+  <Accordion title="Can I input prompts in non-English languages?">
+    Absolutely. AutoCoder.cc supports multilingual input. You can describe your project needs or chat with the AI in your preferred language, and the system will accurately understand and fulfill your requests.
+  </Accordion>
+
+  <Accordion title="What should I do if the generation gets stuck or takes too long?">
+    This may be caused by network instability or high AI computing load. You can try refreshing the page or regenerating the project. If the problem persists, please contact our support team at [support@autocoder.cc](mailto:support@autocoder.cc) with your registered email and a screenshot of the error.
   </Accordion>
 </AccordionGroup>
 
-## **Error & Solution**
+---
+
+## Building & editing
 
 <AccordionGroup>
-  <Accordion title="What should I do if it takes a little bit longer to generate?">
-    You may try **Refresh** or **Regenerate**. If the issue persists, feel free to contact us at [support@autocoder.cc](mailto:support@autocoder.cc)
+  <Accordion title="What if the initially generated page doesn't meet my expectations?">
+    You can refine it in two ways:
+
+    1. **Chat Modification**: Use natural language to tell the AI to add pages or adjust the structure.
+    2. **Visual Editor**: Click the **Edit** button to enter editing mode, where you can directly edit text, replace images, or adjust colors on the page.
+
+    For more details, refer to the [Build](/build) guide.
   </Accordion>
-  <Accordion title="What should I do if I want to revert to the previous version?">
-    AutoCoder offers version rollback functionality, enabling you to revert to any prior version.
+
+  <Accordion title="Can I undo a mistake or revert to the previous version?">
+    Yes. AutoCoder.cc supports version rollback. Every save will be recorded in **Version History**, allowing you to revert your project to any earlier version at any time.
   </Accordion>
-  <Accordion title="On which devices is AutoCoder supported?">
-    We suggest you can try it on your personal computer with Windows, MacOS, and Linux systems. Alternatively, you can try it on a tablet or smartphone with a browser.
-  </Accordion>
-  <Accordion title="Which language is supported?">
-    Autocoder supports multi-language. You may input your preferred language and will get corresponding reply.
+
+  <Accordion title="Can I re‑import exported code back into AutoCoder.cc after editing it locally?">
+    Currently not supported. The platform only supports one‑way code export: you can download cloud‑generated code to your local device, but you cannot import manually modified local code back into the platform.
   </Accordion>
 </AccordionGroup>
 
-## **Account & Security**
+---
+
+## Deployment & hosting
 
 <AccordionGroup>
-  <Accordion title="What should I do if I am unable to login?">
-    - Make sure your email address is correct and that Caps Lock is off.
-    - Ensure you have a stable internet connection. Try clearing your browser cache or switching to a different browser.
-    - If the issue persists, feel free to contact us at [support@autocoder.cc](mailto:support@autocoder.cc) with the following details.
+  <Accordion title="Can I publish projects on the Free plan?">
+    Yes. All users, including Free plan users, will automatically receive an `*.autocoder.cc` **Subdomain** for public access when publishing a project.
+  </Accordion>
 
-    1. Your registered email address
-    2. A screenshot of the error message
+  <Accordion title="How do I bind my project to a Custom Domain?">
+    After upgrading to the **Standard** or **Pro** plan, select **Custom Domain** in the publish dialog, enter your domain name, and configure a CNAME record pointing to AutoCoder.cc through your domain registrar. Once DNS verification is complete, upload your SSL certificate to finish the setup.
+
+    For more details, refer to the [Deploy & Hosting](/deploy-and-hosting) guide.
   </Accordion>
-  <Accordion title="What should I do if I want to delete my personal data?">
-    - We respect your privacy and offer the option to delete your personal data. Simply follow these steps.
-    - Go to the **Account Settings** or **Privacy Settings** page.
-    - Select the **Delete My Account** option.
+
+  <Accordion title="Will I lose my project data if I click Unpublish?">
+    No. Unpublishing only disables public access to your project. All project drafts and data are securely stored in the **In Progress** tab of your **Workspace**.
+
+    For more details, refer to the [Workspace](/workspace) guide.
   </Accordion>
-  <Accordion title="How do you manage my data?">
-    We comply with our Privacy Policy and Terms of Service to ensure that your data is securely handled and protected.
+
+  <Accordion title="Can I directly publish the generated app to the App Store or Google Play?">
+    Currently, direct publishing to app stores is not supported. The platform only generates and allows you to download Android APK packages for local installation and testing. You will need to independently handle iOS .ipa package generation, as well as all compliance review and submission processes for official release on app stores.
   </Accordion>
 </AccordionGroup>
 
-## **Pricing & Payment**
+---
+
+## Billing, credits & refunds
+
+<Warning>
+  If you have any questions regarding this section, please contact [**support@autocoder.cc**](mailto:support@autocoder.cc)!
+</Warning>
+
+**Plan Comparison**
+
+- **Free (\$0/month)**: Ideal for getting started with Vibe Coding. Includes 10 credits (approx. 1 small project), unlimited temporary subdomains, and community support.
+- **Standard (\$25/month)**: Designed for creators and personal brands. Includes 45 credits (approx. 3–5 complete projects), **Source Code Export**, unlimited temporary subdomains, and email support.
+- **Pro (\$60/month – Most popular)**: Built for power users and startup teams. Includes 180 credits (approx. 8–12 large‑scale projects), early access to new AI models, **Source Code Export**, unlimited temporary subdomains, and priority email support.
+
+<Note>
+  **Tip**: You can earn extra free credits by completing missions in the top right corner. For more details, refer to the [Earn credits](/earn-credits) guide.
+</Note>
 
 <AccordionGroup>
-  <Accordion title="What payment methods are supported?">
-    All payments are processed via Stripe. You may use a credit or debit card for payment. Further details are provided on the checkout page.
+  <Accordion title="Do unused plan credits roll over to the next month?">
+    No. Plan credits are valid for one calendar month from the date of purchase. Unused credits will expire at the end of each billing cycle to support sustainable platform operation and encourage consistent creation. To keep using credits, you may renew or purchase your desired plan again.
   </Accordion>
-  <Accordion title="Can I continue using my previous plan after upgrading?">
-    Upon upgrading, the tokens from your new plan will be prioritized for use. If the upgraded plan's tokens are exhausted, and your previous plan remains active with unused tokens, you may continue to utilize those.
+
+  <Accordion title="How are my existing credits handled if I purchase or upgrade to a new plan?">
+    After upgrading, the system will use credits from your new plan first. Once your new plan credits are used up, you may continue to apply any remaining valid credits from your previous plan, provided they are still within their 30‑day validity period.
   </Accordion>
-  <Accordion title="Must I subscribe to a Sub plan before purchasing a Pro plan?">
-    Yes, Pro plans require an active subscription to a Sub plan. We offer enhanced benefits for subscribers, including additional perks when token usage is low.
+
+  <Accordion title="Do you support refunds? What should I do if the generation fails?">
+    The platform applies the following refund and compensation policy:
+
+    1. **Refunds**: Full or partial refunds are available only if you purchased directly through AutoCoder.cc, submitted your request within **7 days** of purchase, and **have not used any credits or paid services**. Used services and credits are not eligible for monetary refunds.
+    2. **Credit compensation**: If project generation fails entirely due to system bugs or platform errors, monetary refunds will not be issued. However, you may contact `support@autocoder.cc` with error screenshots and usage details. After verification, we will fully refund the credits consumed due to the error.
   </Accordion>
-  <Accordion title="Can I downgrade after upgrading?">
-    Yes you can. We recommend carefully considering your usage requirements prior to downgrading.
-  </Accordion>
-  <Accordion title="Do unused credits roll over?">
-    Monthly credits expire at the end of each billing cycle and do not roll over. Additional credit packages are available for your choice. This policy encourages continuous development while providing flexibility for larger projects.
+
+  <Accordion title="How do I cancel auto‑renewal?">
+    Our platform currently operates on a "one-time payment (monthly quota)" model. There is no auto‑renewal function, so no recurring charges will be made without your authorization. You do not need to manually cancel any subscription.
   </Accordion>
 </AccordionGroup>
 
-## **Export Project**
+---
+
+## Source code export & ownership
 
 <AccordionGroup>
-  <Accordion title="What is the quality of the exported code? Can I run it immediately?">
-    Yes. The export includes a complete project structure with all necessary environment configurations. Simply follow the included `README.md` and run `npm install` to get your project running locally in minutes.
+  <Accordion title="What is included in the exported source code? What about its quality?">
+    The exported package contains a complete full‑stack project (including frontend, backend, and database schema files) for both web and app applications. The code features a clean, standardized structure and includes all required environmental configurations. Simply follow the included `README.md` instructions and run `npm install` to get your project running locally in minutes.
   </Accordion>
-  <Accordion title="Can I re-import the code back into the platform after editing it locally?">
-    Currently, we only support one-way export. You can download the source code for local development or hosting, but we do not support importing manual code changes back into the platform at this time.
-  </Accordion>
+
   <Accordion title="Can I sync my project directly to GitHub?">
-    Currently, projects are exported as a ZIP file which you can manually push to GitHub. Native GitHub integration is under active development—stay tuned for future updates.
+    Projects are currently exported as a ZIP file, which you can manually upload to your GitHub repository. Native one‑click GitHub synchronization is under active development and will be available soon.
   </Accordion>
-  <Accordion title="Does the export only include the frontend? What about Web and App projects?">
-    The export is a full-stack package including the **frontend, backend, and database schemas**. It supports both Web and App projects. You will just need a local IDE and the appropriate database environment to run it.
-  </Accordion>
-  <Accordion title="Are there any restrictions on the exported code or its features?">
-    Code Export is available to our **Standard and Pro** monthly subscribers. Once subscribed, there are no limits on the number of times you can export your project code.
+
+  <Accordion title="Do I retain 100% copyright? Are there any limits on export times?">
+    Yes. You own 100% of the copyright for all generated code, which you may use freely for commercial use or further development. **Source Code Export** is an exclusive feature for **Standard** and **Pro** plans, with unlimited exports during your subscription period.
   </Accordion>
 </AccordionGroup>
 
-## **Refund Policy**
+---
+
+## Data privacy & security
 
 <AccordionGroup>
-  <Accordion title="Refund Eligibility">
-    Refunds are available under the following conditions:
+  <Accordion title="Can I recover my data after deleting my account?">
+    No. We fully respect your privacy and allow you to delete your account directly in account settings. Please be aware that account deletion is immediate and irreversible. All your projects, remaining credits, and related data will be permanently deleted and cannot be restored.
 
-    - The service must be purchased directly through our website.
-    - Refund requests must be submitted within 7 days of the service purchase date.
+    For more details, refer to the [Profile](/profile) guide.
   </Accordion>
-  <Accordion title="Non-Refundable Services">
-    No refunds are available for services that have already been used.
+
+  <Accordion title="What should I do if I forget my password or cannot log in?">
+    Please follow these troubleshooting steps:
+
+    1. Double-check that your email is entered correctly and that Caps Lock is disabled.
+    2. Ensure you have a stable network connection. You may also try clearing your browser cache or using a different browser.
+    3. If the issue persists, send your registered email address and a screenshot of the error page to [support@autocoder.cc](mailto:support@autocoder.cc), and we will assist you promptly.
   </Accordion>
-  <Accordion title="Refund Amount">
-    Refunds may incur a processing fee, depending on the applicable charge standards.
-  </Accordion>
-  <Accordion title="Refund Delays or Issues">
-    - Refunds will be issued to the original payment method.
-    - For expired or canceled cards, the refund will be processed by your card issuer. If you haven't received your refund, please check your bank account, then contact your credit card company or bank. Refunds may take some time to process. If you've done this and still haven't received your refund, please contact us at [support@autocoder.cc](mailto:support@autocoder.cc).
-  </Accordion>
-  <Accordion title="Changes to This Policy">
-    We reserve the right to update or modify this refund and return policy at any time. Any changes will be posted on this page and will take effect immediately.
-  </Accordion>
-  <Accordion title="Contact Us">
-    If you have any questions about our refund policy, please contact us via email at [support@autocoder.cc](mailto:support@autocoder.cc).
+
+  <Accordion title="How does the platform manage my data?">
+    AutoCoder.cc strictly adheres to applicable data privacy laws and regulations. All your data is stored and protected securely under our [Security & Privacy Policy](/security-and-privacy).
   </Accordion>
 </AccordionGroup>

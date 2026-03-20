@@ -15,27 +15,31 @@
     "tabs": [
       {
         "tab": "Introduction",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "home",
-              "faq"
-            ]
-          }
+        "pages": [
+          "welcome",
+          "getting-started",
+          "plans-and-credits",
+          "faq"
         ]
       },
       {
         "tab": "Features",
         "pages": [
-          "Export-page"
+          "build",
+          "sparkvibe",
+          "workspace",
+          "deploy-and-hosting",
+          "earn-credits",
+          "profile",
+          "security-and-privacy"
         ]
       },
-	  {
+      {
         "tab": "Resources",
         "menu": [
           {
             "item": "Blog",
+            "description": "blog",
             "pages": [
               "blog/latest",
               "blog/tutorials",
