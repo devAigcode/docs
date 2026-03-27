@@ -1,86 +1,107 @@
 ---
 title: "Workspace"
-description: "Manage your projects, published applications, and liked projects."
+description: "Manage your projects, published applications, domains, and liked projects."
 icon: "briefcase"
 ---
 
-## Personal project management
-
-In the **In Progress** tab of your **Workspace**, you can centrally manage all your project drafts and deployed applications. You can perform the following actions on a single project:
-
-<Frame>
-  ![Image](/images/image-37.png)
-</Frame>
-
-<CardGroup cols={2}>
-  <Card title="Edit" icon="pen">
-    Click **Edit** to open the AutoCoder.cc editor. You can continue modifying your project's code or UI using natural language.
-  </Card>
-
-  <Card title="Preview" icon="eye">
-    Click **Preview** to view a full-screen interface. Use the quick access button on the right to instantly jump back into edit mode.
-  </Card>
-
-  <Card title="Remix" icon="clone">
-    Select **Remix** from the `...` menu to clone the project. This creates a new draft for safe testing or derivative development.
-  </Card>
-
-  <Card title="Delete" icon="trash">
-    Select **Delete** from the `...` menu to permanently remove the project. _(Note: Ensure the project is unpublished or backed up first)._
-  </Card>
-</CardGroup>
+The **Workspace** is your central hub in AutoCoder.cc. It is divided into four main sections: **Projects**, **Publish**, **Domains**, and **Likes**.
 
 ---
 
-## Published project management
+## 1. Projects
 
-Manage publication settings and status for online projects in the **Published** tab of the **Workspace** (or the **Publish** pop-up within the editor):
-
-<Frame>
-  ![Image](/images/image-38.png)
-</Frame>
-
-### Domain settings
-
-Manage your project's access address in the **Domain Setup** module:
-
-- **Subdomain**: View or modify the system-assigned `.autocoder.cc` suffix domain.
-- **Custom Domain**: Bind a domain you have purchased on a third-party platform to the current project. This requires configuring a CNAME and uploading an SSL certificate.
-
-### Project sharing and public visibility
-
-Toggle the **Share to SparkVibe** switch to control whether the project is publicly displayed in the **SparkVibe** community. Once enabled, other users can **Like** or **Remix** your work.
+The **Projects** tab displays all your creative drafts and completed projects.
 
 <Frame>
-  ![Image](/images/image-39.png)
+  ![Image 68](/images/image-68.png)
 </Frame>
 
-### External link redirection
-
-After successful deployment, the system provides a fixed **Website URL** (frontend link) and **Backend URL** (management backend link). Anyone can directly access your web application through these public links without an AutoCoder.cc account.
-
-### Unpublish
-
-To take the project offline, click the **AutoCoder.cc Subdomain** button at the top of the interface to interrupt external access.
+Clicking on any project card will take you back into the AutoCoder.cc editor, where you can continue building and refining your application using natural language.
 
 ---
 
-## Liked project management
+## 2. Publish
 
-### Likes tab
-
-Projects you **Like** in the **SparkVibe** community are automatically saved here.
+The **Publish** tab provides a comprehensive overview of all your live applications and their current health status.
 
 <Frame>
-  ![Image](/images/image-40.png)
+  ![Image 69](/images/image-69.png)
 </Frame>
 
-**One-click reuse**: View your inspiration library at any time and **Remix** a project directly. Convert it into a new draft in your **In Progress** tab to continue developing based on the original author's work.
+From the overview page, you can view your project's live status, quickly copy your public Website URLs, access your Backend Dashboard.
+
+Clicking on any specific project card will open the **Project Publish** detail page, which is split into two configurations:
+
+### Website Publish
+
+Publish your project to your own web address and SparkVibe.
+
+**1. Project basic information**
+
+- **Project details**: View your project name, cover image, and current deployment status (e.g., Live). You can click **Unpublish** in the top right to temporarily take the project offline.
+- **Share to SparkVibe**: Toggle this switch to make your project publicly visible in the SparkVibe community, allowing others to view and remix your work.
+
+**2. Domain management**
+
+- **Domain Setup**: Manage your access addresses. You can configure your free platform **Subdomain**, **Purchase a Domain**, or bind a **Custom Domain**.
+- **Access URLs**: Quickly copy your generated frontend **Website URL** and the management **Backend URL**.
+- **Republish**: Click this button to instantly push your latest code updates to the live website.
+
+<Frame>
+  ![Image 72](/images/image-72.png)
+</Frame>
+
+### Mobile App
+
+Publish your project to App stores.
+
+**1. Project basic information**
+
+- **Project details**: View your project name, cover image, and current status. Click **Unpublish** in the top right to temporarily take the project offline.
+- **Share to SparkVibe**: Toggle this switch to make your project publicly visible in the SparkVibe community.
+
+**2. App download**
+
+- **Android Test Download**: In the **Android** tab, click the **Pack** button (this consumes credits) to generate your installation package. Once packed, you can download the APK or scan the QR code to install and test the app directly on your phone.
+- **iOS & App Store**: iOS test versions and direct native submissions to official app stores (Apple App Store, Google Play, Microsoft Store) are currently under development (Stay Tuned).
+
+<Frame>
+  ![Image 73](/images/image-73.png)
+</Frame>
 
 ---
 
-## Domain
+## 3. Domains
 
-<Note>
-  \[Feature to be launched, content to be added\]
-</Note>
+The **Domains** tab allows you to centrally monitor and manage all URLs bound to your projects.
+
+<Frame>
+  ![Image 70](/images/image-70.png)
+</Frame>
+
+### Domain Status
+
+The top overview cards display the real-time health of your domains based on four categories:
+
+- **🟢 Live**: The domain is active and functioning normally.
+- **🟠 Warning**:  The domain or SSL certificate is expiring soon.
+- **🔵 Unpublish**: The domain is not bound to a project.
+- **⚫️ Expired**: The domain subscription or SSL certificate has expired.
+
+### Management & Primary Domain (Pro feature)
+
+If you bind multiple domains to a single project, you can designate one as the **Primary Domain** in the Publish Project settings. All traffic from other alias domains will automatically redirect to your Primary Domain.
+
+Click the **Setting (Gear)** icon next to any domain to manage renewals, update SSL certificates, or unbind the domain from its current project.
+
+---
+
+## 4. Likes
+
+The **Likes** tab acts as your personal inspiration library. Any project you have liked in the **SparkVibe** community is automatically saved here.
+
+<Frame>
+  ![Image 71](/images/image-71.png)
+</Frame>
+
+You can revisit these projects at any time. If you want to use a liked project as a template, simply open it and select **Remix** to clone it directly into your own **Projects** tab for further development.
