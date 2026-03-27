@@ -1,0 +1,23 @@
+name: Mirror dev branch to dev repo                                                                                                                                                                                                             
+# pushes the dev branch to the dev repo                                                                                                                                                                                                                                                  
+
+on:                                
+  push:
+    branches: [dev]                                                                                                                                                                                                                             
+                                        
+jobs:                                                                                                                                                                                                                                           
+  mirror:                          
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+          persist-credentials: false
+                                                                                                                                                                                                                                                
+      - name: Push to dev repo         
+        run: |                                                                                                                                                                                                                                  
+          git remote add dev-mirror https://x-access-token:${{ secrets.DEV_REPO_TOKEN }}@github.com/aigcode666/docs.git
+          git push dev-mirror dev:main --force
+
