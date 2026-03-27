@@ -1,5 +1,6 @@
 name: Mirror dev branch to dev repo                                                                                                                                                                                                             
 # pushes the dev branch to the dev repo                                                                                                                                                                                                                                                  
+
 on:                                
   push:
     branches: [dev]                                                                                                                                                                                                                             
@@ -13,6 +14,7 @@ jobs:
         with:
           ref: dev
           fetch-depth: 0
+          persist-credentials: false
                                                                                                                                                                                                                                                 
       - name: Push to dev repo         
         run: |                                                                                                                                                                                                                                  
