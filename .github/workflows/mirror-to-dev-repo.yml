@@ -1,5 +1,5 @@
 name: Mirror dev branch to dev repo                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                  
+# pushes the dev branch to the dev repo                                                                                                                                                                                                                                                  
 on:                                
   push:
     branches: [dev]                                                                                                                                                                                                                             
