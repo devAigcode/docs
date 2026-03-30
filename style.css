@@ -69,6 +69,60 @@ td{
   padding-top:12px!important;
 }
 
+/* Blog listing pages only — scoped to latest, tutorials, stories, reports */
+#content-area:has([data-page-href*="blog/latest"]) #header,
+#content-area:has([data-page-href*="blog/tutorials"]) #header,
+#content-area:has([data-page-href*="blog/stories"]) #header,
+#content-area:has([data-page-href*="blog/reports"]) #header {
+  width: 130% !important;
+  max-width: none !important;
+  margin-left: -10% !important;
+}
+
+[data-page-href*="blog/latest"] .card-group,
+[data-page-href*="blog/tutorials"] .card-group,
+[data-page-href*="blog/stories"] .card-group,
+[data-page-href*="blog/reports"] .card-group {
+  width: 130% !important;
+  max-width: none !important;
+  margin-left: -10% !important;
+  margin-right: -20% !important;
+  gap: 48px !important;
+}
+
+[data-page-href*="blog/latest"] .card-group img,
+[data-page-href*="blog/tutorials"] .card-group img,
+[data-page-href*="blog/stories"] .card-group img,
+[data-page-href*="blog/reports"] .card-group img {
+  aspect-ratio: 488 / 274 !important;
+  object-fit: cover !important;
+  width: 100% !important;
+}
+
+[data-page-href*="blog/latest"] .card-group h3,
+[data-page-href*="blog/tutorials"] .card-group h3,
+[data-page-href*="blog/stories"] .card-group h3,
+[data-page-href*="blog/reports"] .card-group h3 {
+  font-size: 24px !important;
+  line-height: 1.3 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+[data-page-href*="blog/latest"] [data-component-part="card-content"],
+[data-page-href*="blog/tutorials"] [data-component-part="card-content"],
+[data-page-href*="blog/stories"] [data-component-part="card-content"],
+[data-page-href*="blog/reports"] [data-component-part="card-content"] {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
 .nav-tabs button[aria-haspopup="menu"],
 .nav-tabs button[aria-haspopup="menu"]:focus,
 .nav-tabs button[aria-haspopup="menu"]:active,
