@@ -70,6 +70,15 @@ td{
 }
 
 /* Blog listing pages only — scoped to latest, tutorials, stories, reports */
+
+/* Prevent page-level horizontal scrollbar from the 130% overhang */
+html:has([data-page-href*="blog/latest"]),
+html:has([data-page-href*="blog/tutorials"]),
+html:has([data-page-href*="blog/stories"]),
+html:has([data-page-href*="blog/reports"]) {
+  overflow-x: clip !important;
+}
+
 #content-area:has([data-page-href*="blog/latest"]) #header,
 #content-area:has([data-page-href*="blog/tutorials"]) #header,
 #content-area:has([data-page-href*="blog/stories"]) #header,
@@ -88,6 +97,45 @@ td{
   margin-left: -10% !important;
   margin-right: -20% !important;
   gap: 48px !important;
+}
+
+/* Blog responsive — contain the expanded layout at medium widths */
+@media (max-width: 1280px) {
+  #content-area:has([data-page-href*="blog/latest"]) #header,
+  #content-area:has([data-page-href*="blog/tutorials"]) #header,
+  #content-area:has([data-page-href*="blog/stories"]) #header,
+  #content-area:has([data-page-href*="blog/reports"]) #header {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  [data-page-href*="blog/latest"] .card-group,
+  [data-page-href*="blog/tutorials"] .card-group,
+  [data-page-href*="blog/stories"] .card-group,
+  [data-page-href*="blog/reports"] .card-group {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    gap: 32px !important;
+  }
+}
+
+/* Blog responsive — single column on small screens */
+@media (max-width: 768px) {
+  [data-page-href*="blog/latest"] .card-group,
+  [data-page-href*="blog/tutorials"] .card-group,
+  [data-page-href*="blog/stories"] .card-group,
+  [data-page-href*="blog/reports"] .card-group {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  [data-page-href*="blog/latest"] .card-group h3,
+  [data-page-href*="blog/tutorials"] .card-group h3,
+  [data-page-href*="blog/stories"] .card-group h3,
+  [data-page-href*="blog/reports"] .card-group h3 {
+    font-size: 20px !important;
+  }
 }
 
 [data-page-href*="blog/latest"] .card-group img,
