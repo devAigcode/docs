@@ -35,17 +35,12 @@
         ]
       },
       {
-        "tab": "Resources",
-        "menu": [
-          {
-            "item": "Blog",
-            "pages": [
-              "blog/latest",
-              "blog/tutorials",
-              "blog/stories",
-              "blog/reports"
-            ]
-          }
+        "tab": "Blog",
+        "pages": [
+          "blog/latest",
+          "blog/tutorials",
+          "blog/stories",
+          "blog/reports"
         ]
       }
     ]
