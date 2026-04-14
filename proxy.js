@@ -140,7 +140,7 @@ const MDX_COMPONENTS = [
         page: '/quickstart',
         content: [
             `What payment methods are supported?`,
-            `All payments are processed via Stripe. You may use a credit or debit card for payment. Further details are provided on the checkout page.`,
+            `All payments are processed via Secure Payment Gateway. You may use a credit or debit card for payment. Further details are provided on the checkout page.`,
             `Can I continue using my previous plan after upgrading?`,
             `Upon upgrading, the tokens from your new plan will be prioritized for use. If the upgraded plan's tokens are exhausted, and your previous plan remains active with unused tokens, you may continue to utilize those.`,
             `Must I subscribe to a Sub plan before purchasing a Pro plan?`,
