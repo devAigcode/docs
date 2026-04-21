@@ -132,6 +132,31 @@ const FOOTER_ICON_REPLACEMENT = {
     attributeFilter: [...REPLACE_CONFIG.attributes, 'style']
   });
 
+  // 9. 首页路由修正 & canonical 设置
+  const fixHomepageRoute = () => {
+    if (window.location.pathname === '/welcome') {
+      history.replaceState(null, '', '/');
+    }
+
+    // 修正 link[rel="canonical"]
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://www.autocoder.cc/');
+    } else {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('href', 'https://www.autocoder.cc/');
+      document.head.appendChild(canonical);
+    }
+
+    // 修正 meta[name="canonical"]
+    const metaCanonical = document.querySelector('meta[name="canonical"]');
+    if (metaCanonical) {
+      metaCanonical.setAttribute('content', 'https://www.autocoder.cc/');
+    }
+  };
+  fixHomepageRoute();
+
   // 初始扫描
   REPLACE_CONFIG.attributes.forEach(attr => {
     document.querySelectorAll(`[${attr}*="${REPLACE_CONFIG.targetString}"]`).forEach(el => {
@@ -154,6 +179,7 @@ const FOOTER_ICON_REPLACEMENT = {
       processDOMSubtree(document.body);
       checkFooterSVGs();
       handleHashUpdate();
+      fixHomepageRoute();
     }
     requestAnimationFrame(checkUrlChange);
   };

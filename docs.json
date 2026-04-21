@@ -64,6 +64,13 @@
     "excludeStopwords": false,
     "minTermLength": 1
     },
+	"seo": {
+		"metatags": {
+			"og:site_name": "AutoCoder",
+			"og:url": "https://www.autocoder.cc",
+			"canonical": "https://www.autocoder.cc"
+		}
+	},
 	"footer": {
 		"socials": {
 			"x": "https://x.com/autocoder_cc",
