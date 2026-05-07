@@ -66,14 +66,12 @@
     },
 	"seo": {
 		"metatags": {
-			"og:site_name": "AutoCoder",
-			"og:url": "https://www.autocoder.cc",
-			"canonical": "https://www.autocoder.cc"
+			"og:site_name": "AutoCoder"
 		}
 	},
 	"footer": {
 		"socials": {
-			"x": "https://x.com/autocoder_cc",
+			"x": "https://x.com/autocoder_cc;",
 			"discord": "https://discord.gg/dswYXGaWan",
       "instagram": "https://www.instagram.com/autocoder.cc?igsh=MWJqNnEyY2MzaXB5MQ%3D%3D&utm_source=qr"
 		}
