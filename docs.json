@@ -48,7 +48,7 @@
 	"logo": {
 		"light": "/logo2_light.svg",
 		"dark": "/logo2_dark.svg",
-		"href": "/docs/welcome"
+		"href": "/welcome"
 	},
 	"navbar": {
 		"links": [{
