@@ -171,6 +171,33 @@ html:has([data-page-href*="blog/reports"]) {
   overflow: hidden !important;
 }
 
+/* Video tutorial cards — play button overlay (top-right of cover) */
+.card-group > a[href*="/blog/build-your-first-app"],
+.card-group > a[href*="/blog/get-free-credits"],
+.card-group > a[href*="/blog/easy-editing-and-updates"],
+.card-group > a[href*="/blog/sparkvibe-community-hub"],
+.card-group > a[href*="/blog/multi-role-systems"] {
+  position: relative;
+}
+
+.card-group > a[href*="/blog/build-your-first-app"]::after,
+.card-group > a[href*="/blog/get-free-credits"]::after,
+.card-group > a[href*="/blog/easy-editing-and-updates"]::after,
+.card-group > a[href*="/blog/sparkvibe-community-hub"]::after,
+.card-group > a[href*="/blog/multi-role-systems"]::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 22px;
+  height: 22px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'><rect width='22' height='22' rx='4' fill='black' fill-opacity='0.2'/><path fill-rule='evenodd' clip-rule='evenodd' d='M9.17952 6.15169C8.43307 5.72072 7.50001 6.25937 7.5 7.1213V14.8787C7.50001 15.7406 8.43307 16.2793 9.17952 15.8483L15.8976 11.9696C16.644 11.5386 16.644 10.4614 15.8976 10.0304L9.17952 6.15169Z' fill='white'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .nav-tabs button[aria-haspopup="menu"],
 .nav-tabs button[aria-haspopup="menu"]:focus,
 .nav-tabs button[aria-haspopup="menu"]:active,
