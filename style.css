@@ -172,19 +172,11 @@ html:has([data-page-href*="blog/reports"]) {
 }
 
 /* Video tutorial cards — play button overlay (top-right of cover) */
-.card-group > a[href*="/blog/build-your-first-app"],
-.card-group > a[href*="/blog/get-free-credits"],
-.card-group > a[href*="/blog/easy-editing-and-updates"],
-.card-group > a[href*="/blog/sparkvibe-community-hub"],
-.card-group > a[href*="/blog/multi-role-systems"] {
-  position: relative;
-}
-
-.card-group > a[href*="/blog/build-your-first-app"]::after,
-.card-group > a[href*="/blog/get-free-credits"]::after,
-.card-group > a[href*="/blog/easy-editing-and-updates"]::after,
-.card-group > a[href*="/blog/sparkvibe-community-hub"]::after,
-.card-group > a[href*="/blog/multi-role-systems"]::after {
+.card:has(img[src*="/blog/build-your-first-app/"])::after,
+.card:has(img[src*="/blog/get-free-credits/"])::after,
+.card:has(img[src*="/blog/easy-editing-and-updates/"])::after,
+.card:has(img[src*="/blog/sparkvibe-community-hub/"])::after,
+.card:has(img[src*="/blog/multi-role-systems/"])::after {
   content: "";
   position: absolute;
   top: 12px;
