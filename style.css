@@ -157,6 +157,9 @@ html:has([data-page-href*="blog/reports"]) {
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
+  /* Reserve 2 lines so 1-line titles don't shorten the card and leave a
+     gap below the cover image when stretched to a taller row neighbor. */
+  min-height: 2.6em !important;
 }
 
 [data-page-href*="blog/latest"] [data-component-part="card-content"],
@@ -169,6 +172,9 @@ html:has([data-page-href*="blog/reports"]) {
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
+  /* Reserve 2 lines so cards with shorter descriptions stay the same
+     height as their row neighbors and images align. */
+  min-height: 3em !important;
 }
 
 /* Video tutorial cards — play button overlay (top-right of cover) */
