@@ -1,0 +1,166 @@
+---
+title: "Building a Fine-Dining CRM for Food Trucks with Autocoder"
+description: "How I built a Next.js and FastAPI CRM for food trucks with Autocoder — and what a public 500 error taught me about building with AI agents."
+---
+
+*How I used AI-assisted development to turn neighborhood hospitality into a Next.js + FastAPI product, and what a very public 500 error taught me about building with agents.*
+
+TL;DR: I built a full-stack CRM for food trucks because most small-business POS systems remember transactions, not people. Autocoder helped me move quickly across Next.js, FastAPI, Twilio, OpenAI-powered feedback extraction, and a clean analytics pipeline. It also helped me recover after I pushed too much at once and triggered a 500 Internal Server Error.
+
+Live mobile preview: [Jacket Potato Food Truck POS & CRM](https://www.autocoder.cc/en/platform/preview/2442750108?e=p&tab=app&mobile=1&roleIndex=0)
+
+---
+
+## The Moment That Made the Project Obvious
+
+There is a food truck in my neighborhood that people do not just visit for the menu. They go back because the owner remembers them. If you are a regular, you can be three people back in line and still get the nod: spicy bowl, no cilantro, extra napkins. It is a tiny interaction, but it feels like hospitality in its purest form.
+
+Then the flow breaks. The owner turns to a POS terminal and has to tap through modifiers, notes, and payment screens for an order he already knows by heart. That is when the product idea clicked for me: the software was treating loyal regulars like anonymous tickets.
+
+Most POS products are excellent at recording payments. They are much weaker at remembering relationships. I wanted to see whether I could bring a fine-dining guest ledger into a high-volume food-truck workflow: dietary notes, favorite orders, loyalty state, order history, feedback, and revenue intelligence in one operational surface.
+
+---
+
+## What I Built
+
+The result is Jacket Potato Food Truck POS & CRM, a hyper-local CRM for food trucks and small food vendors. It is not trying to replace every part of Square or Toast. The thesis is narrower: help a small team recognize regulars faster, reduce repeated order friction, and learn from lightweight customer feedback without adding enterprise complexity.
+
+- A mobile-first staff app with live queue management, out-of-stock alerts, revenue snapshots, and quick order creation.
+- A front-of-house customer profile with dietary tags, loyalty status, order history, and a one-click reorder flow.
+- A direct SMS feedback loop that asks for post-order feedback and extracts structured preferences.
+- A business-intelligence layer that connects sales data with location and weather context.
+- A project blueprint view so future contributors can understand the app structure and backend logic.
+
+<Frame caption="Dashboard overview: revenue, top items, reorder signals, and action-required alerts.">
+  ![Jacket Potato food truck CRM dashboard showing revenue, bestselling toppings, order counts, and stock alerts](/images/blog/food-truck-crm-autocoder/01.PNG)
+</Frame>
+
+---
+
+## Architecture
+
+I used Autocoder less like a boilerplate generator and more like an implementation partner. The project touched UI state, backend APIs, webhook flows, database models, and external services, so the real test was whether the tool could keep context across layers without flattening the architecture into a mess.
+
+| Layer | Technology | Role in the product |
+| --- | --- | --- |
+| Frontend | Next.js, React, Tailwind CSS, shadcn/ui | A fast front-of-house interface for customer lookup, reorder flows, loyalty cards, and operational dashboards. |
+| Backend | FastAPI | Webhook handling, order lifecycle APIs, background feedback jobs, and clean service boundaries. |
+| Data | PostgreSQL with ORM-managed models | Customer profiles, order history, location context, loyalty state, and analytics-ready revenue records. |
+| Integrations | Twilio, OpenAI, OpenWeather | SMS feedback, structured preference extraction, and weather-aware business intelligence. |
+
+---
+
+## Module 1: The Front-of-House Guest Profile
+
+The front-of-house screen is built around speed. The mobile preview opens with the information a food-truck operator needs during service: out-of-stock items, revenue, order count, average ticket, top topping, and the live queue. In a lunch rush, saving 15 seconds on a regular's order is not a design nicety; it can mean a shorter line and more completed tickets. The customer detail page puts the important information where staff can act on it immediately: allergy notes, dietary preferences, loyalty status, recent orders, and the customer's usual order.
+
+The key interaction is the one-click reorder. Instead of opening a menu, re-selecting modifiers, and retyping notes, staff can send a known custom order straight into the order flow. That is where the CRM becomes more than a database: it makes recognition operational.
+
+<CardGroup cols={2}>
+  <Frame caption="Mobile customer profile: dietary notes, loyalty card, and visit history.">
+    ![Mobile customer profile for Oliver Smith showing dietary notes, allergy tags, and a loyalty stamp card](/images/blog/food-truck-crm-autocoder/02.PNG)
+  </Frame>
+  <Frame caption="The Usual and recent-orders flow: recognition turns into action quickly.">
+    ![The Usual screen with one-tap reorder buttons and a list of recent completed orders](/images/blog/food-truck-crm-autocoder/03.png)
+  </Frame>
+</CardGroup>
+
+<Frame caption="Customer management view for browsing regulars, tags, spending, and loyalty signals.">
+  ![Customer management table listing regulars with contact details, dietary profiles, payment preferences, and engagement](/images/blog/food-truck-crm-autocoder/04.png)
+</Frame>
+
+<Frame caption="New customer profile modal with structured fields instead of free-form notes.">
+  ![New customer profile modal with structured fields for contact info, dietary tags, and payment preference](/images/blog/food-truck-crm-autocoder/05.png)
+</Frame>
+
+---
+
+## Module 2: SMS Feedback That Becomes Usable Data
+
+Email surveys are easy to ignore, especially for quick-service meals. I wanted a feedback loop that felt closer to a text from the owner than a corporate NPS form. After an order is completed, FastAPI can trigger a background job that sends a short Twilio SMS asking how the meal was.
+
+The important part is what happens next. The reply is not only stored as raw text. It is passed through a lightweight OpenAI extraction step that converts casual feedback into structured fields the business can use the next time that customer visits.
+
+```python
+def extract_actionable_need(sms_body: str) -> dict:
+    prompt = (
+        "Extract sentiment from 1-5 and one specific future preference. "
+        "If there is no actionable preference, return null."
+    )
+    return openai_extract_json(prompt=prompt, user_text=sms_body)
+
+# Example reply:
+# "Loved it, but extra spicy mayo next time."
+# -> {"sentiment_score": 5, "actionable_need": "extra spicy mayo"}
+```
+
+That one extracted preference can then be pinned to the customer's profile. The next time they walk up, the team does not need to remember a private detail from memory or dig through past receipts. The system makes the human hospitality easier to deliver.
+
+---
+
+## Module 3: Revenue ETL for Real Operating Questions
+
+My background includes analytics work, so I did not want the app's data to die inside nested JSON blobs. Food-truck revenue depends on context: location, daypart, weather, event traffic, menu availability, and repeat customers. If that data is modeled cleanly, a small vendor can ask practical questions without hiring a data team.
+
+The Revenue ETL module flattens orders, customer state, menu items, loyalty activity, location context, and weather data into an analytics-ready payload. Instead of exporting a pile of nested objects, the owner can drop the output into SQL, Pandas, or Power BI and answer questions like:
+
+- Which item sells best at the Downtown Square location?
+- Do rainy days reduce average ticket size, or do they shift demand toward hot items?
+- Which toppings create operational bottlenecks during peak hours?
+- Are loyalty customers ordering more often, or simply redeeming more discounts?
+
+<Frame caption="Menu and toppings management: a clean operational source for item-level analytics.">
+  ![Menu and toppings management table with categories, prices, stock state, and usage counts](/images/blog/food-truck-crm-autocoder/06.png)
+</Frame>
+
+<Frame caption="Order management view designed around active tickets and fulfillment status.">
+  ![Order management view showing the live order queue, workflow status filters, and order details panel](/images/blog/food-truck-crm-autocoder/07.png)
+</Frame>
+
+<Frame caption="Loyalty program dashboard for customer point balances, tiers, and rewards.">
+  ![Loyalty program dashboard with configurable program rules and a customer directory of point balances and tiers](/images/blog/food-truck-crm-autocoder/08.png)
+</Frame>
+
+---
+
+## The 500 Error That Changed the Workflow
+
+The most useful lesson came from the part that failed. Autocoder was moving quickly, and I got overconfident. I gave it one large master prompt asking for a full system rollout: inventory, ETL views, fleet shifts, new dashboard modules, chart components, migrations, and external API hooks all at once.
+
+The static checks looked fine. Then I opened localhost and got a 500 Internal Server Error. The failure was not mysterious in hindsight: I had introduced server-rendered chart components, new backend routes, database changes, and integrations that expected Twilio and OpenWeather environment variables before the runtime was ready for them.
+
+This is where Autocoder became most valuable. I gave it the error logs, asked it to unwind the rollout, and moved into a safer iteration strategy.
+
+1. Scaffold static Next.js UI with mock data first.
+2. Verify that every new route renders without touching external services.
+3. Introduce FastAPI endpoints one module at a time.
+4. Run database migrations only when the corresponding UI and service contracts are clear.
+5. Add environment-variable checks and graceful fallback states before enabling integrations.
+
+<Frame caption="Project blueprint view: useful for keeping generated architecture understandable.">
+  ![Project initialization blueprint showing architecture overview, directory structure, and an initialization checklist](/images/blog/food-truck-crm-autocoder/09.png)
+</Frame>
+
+---
+
+## What Autocoder Did Well
+
+The strongest part of the workflow was not raw code generation. It was context switching. I could describe a product-level behavior, then ask for the UI, API contract, database model, and integration logic without re-explaining the entire system each time. That made the project feel much closer to working with an implementation team than prompting a snippet generator.
+
+The failure also made the limit clear. AI can accelerate implementation, but it does not remove the need for architecture. Someone still has to decide release boundaries, data contracts, environment assumptions, migration order, and what should be mocked before it becomes real.
+
+| Lesson | What changed in the workflow |
+| --- | --- |
+| Do not ship a master prompt as one giant deployment. | Use the AI agent to create small, reviewable slices with a visible acceptance test for each slice. |
+| Mock the UI before wiring external services. | Static components expose design and state issues without letting API keys, schemas, or migrations derail the review. |
+| Treat AI output like a junior team with infinite energy. | It can move fast and reason across files, but the human still owns architecture, boundaries, and release strategy. |
+
+---
+
+## Where the Project Goes Next
+
+I am keeping the core backend private while I refine the product into a small-vendor micro-SaaS. I am more open with the UI shell, architecture notes, and prompts because the most interesting part of the project is not one food-truck CRM; it is the workflow for building useful local-business software with AI assistance.
+
+The larger takeaway is that AI coding tools do not replace software architects. They make architecture more important. When the product idea is grounded, the data model is clear, and the iteration loop is disciplined, an individual builder can create systems that used to require a much larger team.
+
+I would love to hear from other builders: have you used Autocoder or another coding agent for webhook-heavy products, ETL pipelines, or operational dashboards? Where did it accelerate you, and where did you have to slow it down?
