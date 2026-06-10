@@ -38,6 +38,7 @@
         "tab": "Blog",
         "pages": [
           "blog/latest",
+          "blog/updates",
           "blog/tutorials",
           "blog/stories",
           "blog/reports"
