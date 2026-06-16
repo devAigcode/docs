@@ -192,7 +192,8 @@ html:has([data-page-href*="blog/reports"]) {
 .card:has(img[src*="/blog/get-free-credits/"])::after,
 .card:has(img[src*="/blog/easy-editing-and-updates/"])::after,
 .card:has(img[src*="/blog/sparkvibe-community-hub/"])::after,
-.card:has(img[src*="/blog/multi-role-systems/"])::after {
+.card:has(img[src*="/blog/multi-role-systems/"])::after,
+.card:has(img[src*="/blog/better-prompts-better-products/"])::after {
   content: "";
   position: absolute;
   top: 12px;
