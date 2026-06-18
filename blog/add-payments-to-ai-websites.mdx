@@ -1,0 +1,315 @@
+---
+title: "Add Payments and Orders to AI Websites"
+description: "See how AutoCoder.cc adds login, Stripe and Clink payments, and order management to an AI-generated jewelry site — from checkout to tracked transactions."
+---
+
+For a luxury jewelry brand, a polished website is only the starting point. Customers may browse collections and develop purchase intent, but the key business question is whether they can log in, enter checkout, complete payment, and leave a manageable order record.
+
+Without this transaction loop, the site remains a refined brand showcase rather than a real commerce system.
+
+---
+
+## AutoCoder.cc Solution: Activating the Business Layer
+
+We used [AutoCoder.cc](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=AddPayments "Build full-stack apps with AutoCoder.cc") to extend the luxury jewelry brand site beyond display-only browsing and connect it with the core business functions needed for online sales: user authentication, payment gateway integration, and order management.
+
+<Frame caption="The luxury jewelry homepage generated in AutoCoder.cc, before the business layer was added.">
+  ![AutoCoder.cc editor showing a luxury jewelry brand homepage with a hero image and collection navigation](/images/blog/add-payments-to-ai-websites/01.png "Luxury jewelry homepage in AutoCoder.cc")
+</Frame>
+
+Here's what we added:
+
+- **User Authentication:** Secure customer sign-up and login.
+- **Payment Gateway Integration:** Seamless connection to popular payment providers, enabling users to move from product interest to checkout.
+- **Order Management System:** A backend to view, manage, and update order statuses.
+
+The "After" State: **Maison de L'Étoile** transformed from a portfolio-style brand website into a self-service e-commerce platform. The **Explore Collections** entry can now lead users into a purchasable product flow. The **Bespoke Inquiry** experience can also be connected to a quote-and-pay workflow. In other words, the site no longer functions as just a refined storefront — it begins to close the loop between visitor interest and real business transactions.
+
+---
+
+## From Static Pages to Business Systems
+
+After the project was generated, AutoCoder.cc provided a separate integration entry. On the Overview page, two modules can be seen: **Google signup** and **Payment**. At the beginning, both were in the Unlinked state.
+
+<Frame caption="The integration Overview page, with Google signup and Payment modules still in the Unlinked state.">
+  ![AutoCoder.cc Overview page listing Google signup and Payment integration modules marked as Unlinked](/images/blog/add-payments-to-ai-websites/02.png "Google signup and Payment modules, unlinked")
+</Frame>
+
+This step matters because payment is not just a button. In a real business, every payment needs a user identity, an order owner, a status, and a record the team can manage. Without this logic, the site may show products, but the business cannot reliably track who paid, what they bought, or what should happen next.
+
+This is where AutoCoder.cc differs from a simple page generator — it introduces business logic step by step. By separating **Google signup** and **Payment** into configurable modules, the site can first establish user identity, then connect checkout and order management according to actual business needs.
+
+---
+
+## Why Login Comes Before Payment
+
+In a real business, payment usually needs to be tied to user identity. Who owns the order, who can enter the backend, and which accounts have permission to manage the project all require support from an identity system.
+
+So I configured Google signup first. After opening Google sign-in, the system provided two options: one was to let AutoCoder manage the OAuth configuration, and the other was to use my own Google Cloud OAuth credentials.
+
+<Frame caption="Configuring Google sign-in: let AutoCoder manage OAuth, or use your own Google Cloud credentials.">
+  ![Google signup configuration screen offering managed OAuth or custom Google Cloud OAuth credentials](/images/blog/add-payments-to-ai-websites/03.png "Google sign-in OAuth configuration options")
+</Frame>
+
+After the configuration was completed, AutoCoder returned a specific result: the backend login page now had a Sign in with Google button, the Google callback would be handled on the login page, and only linked administrator emails could log in to the backend.
+
+<Frame caption="AutoCoder confirms Google sign-in is live on the admin login, with callbacks and access control handled.">
+  ![Confirmation panel showing Google email sign-in added to the admin login page with access control notes](/images/blog/add-payments-to-ai-websites/04.png "Google admin sign-in enabled confirmation")
+</Frame>
+
+This shows that it handled more than just a frontend button. It also involved login callbacks, access control, and backend redirection. For the later payment setup, this was equivalent to adding the identity foundation first.
+
+---
+
+## Adding Payments: Country and Channel First
+
+Next, I typed in the chat box: **Add payment functionality.**
+
+AutoCoder did not directly generate a fake Pay Now button. Instead, it entered a guided configuration process. The system first asked me to select a country and then choose a payment channel. From the screenshot, the available payment options included **Stripe** and **Clink**.
+
+<Frame caption="Typing 'Add payment functionality' in the chat box on the redesigned jewelry storefront.">
+  ![AutoCoder.cc editor with the prompt Add payment functionality typed into the chat box beside a jewelry homepage](/images/blog/add-payments-to-ai-websites/05.png "Adding payment functionality via chat")
+</Frame>
+
+<Frame caption="Before generating checkout, AutoCoder asks for a country and a payment channel — Stripe or Clink.">
+  ![Two configuration dialogs prompting selection of a country and a payment option between Stripe and Clink](/images/blog/add-payments-to-ai-websites/06.png "Country and payment channel selection")
+</Frame>
+
+This process reveals an important product logic: payment is not just a button, but a complete business flow.
+
+Different countries, different payment channels, different product prices, and different deployment environments all affect how payment functionality should be configured. Without this information, directly generating a checkout page would not be reliable.
+
+---
+
+## The Stripe Payment Foundation Has Been Set Up, but Checkout Still Needs Business Pricing
+
+In this test, I chose Stripe. AutoCoder then returned the result: Stripe payment setup has been started.
+
+It had already completed several things: setting Stripe as the payment provider, adding a purchase order structure, and confirming that the existing storefront already had products that could be used for a future checkout flow.
+
+<Frame caption="AutoCoder reports that Stripe payment setup has started and a purchase order structure was added.">
+  ![Status panel stating Stripe payment setup has been started, listing completed, blocked, and ready items](/images/blog/add-payments-to-ai-websites/07.png "Stripe payment setup started status")
+</Frame>
+
+At the same time, the system also explained the foundational capabilities that were now prepared: the purchase order layer supports statuses such as pending, paid, canceled, and failed, and Stripe session tracking had been added.
+
+But the most important point here is that AutoCoder did not directly claim that payment had been fully completed. It clearly pointed out that one key piece of business information was still missing: the products did not yet have a confirmed online pricing model.
+
+<Frame caption="The pricing decision AutoCoder surfaces before a checkout flow can be finalized safely.">
+  ![Panel showing blocked items, ready items, and a business decision asking which pricing model the site should use](/images/blog/add-payments-to-ai-websites/08.png "Pricing model business decision prompt")
+</Frame>
+
+For a jewelry website, this judgment is very realistic. High-end jewelry may have fixed prices, may use price on request, or may only allow certain products to be purchased online. Without confirmed pricing, the system cannot safely generate the final checkout flow.
+
+This step does not represent failure. Instead, it is closer to how real business development works: payment functionality requires both technical configuration and business rules.
+
+---
+
+## Test Environment and Publishing Configuration
+
+On the Payment settings page, AutoCoder also provided explanations for the test environment and live environment, including test cards, live environment, API Key, and revenue management.
+
+<Frame caption="The Payment settings page explaining test and live environments, API keys, and revenue management.">
+  ![AutoCoder.cc Payment settings page detailing test and live environments, test cards, API key, and revenue management](/images/blog/add-payments-to-ai-websites/09.png "Payment settings and environment guidance")
+</Frame>
+
+During the preview stage, users can use Stripe test cards to verify successful payments, 3D Secure authentication, and failed payments. After the project is officially published, a live API key needs to be configured before real transactions can be processed.
+
+At this point, the jewelry website is no longer just a visual showcase page. It has started to include login, payment provider selection, order structure, payment status, and test environment guidance.
+
+However, it has not yet reached the final checkout stage, because the next step is to confirm the product pricing method.
+
+This also leads directly to the core point of this AutoCoder.cc product update: it is not only generating a good-looking page, but helping users continue pushing a website toward a business system that can be logged into, configured, tested, and launched.
+
+---
+
+## Product Page Goes Live: Add to Cart and Buy Now
+
+After the payment provider and basic configuration were completed, real purchasable product paths began to appear on the website frontend.
+
+In this test project, the product page displayed an **18K Crown Diamond Ring**. On the right side of the page, there were the product name, stock status, price, size selection, quantity selection, and two key buttons: **Add to Cart** and **Buy Now**.
+
+<Frame caption="The product page for the 18K Crown Diamond Ring, now with Add to Cart and Buy Now buttons.">
+  ![Aura Jewelry product page for an 18K Crown Diamond Ring with price, ring size options, Add to Cart and Buy Now buttons](/images/blog/add-payments-to-ai-websites/10.png "18K Crown Diamond Ring product page")
+</Frame>
+
+This step shows that the payment capability was no longer limited to backend configuration. It had entered a purchasing scenario that users could directly access.
+
+For an e-commerce website, the product detail page is the starting point of the payment flow. Users need to confirm the product, specifications, quantity, and price before entering checkout. Here, AutoCoder.cc continued pushing the original display-oriented jewelry page into a product page with real purchase actions.
+
+This is also where the payment feature starts to create real business value:
+
+users are not only "seeing the product" anymore. They can start buying it.
+
+---
+
+## Hosted Checkout: Payment Information Is Completed in a Secure Window
+
+After clicking purchase, the page enters the payment confirmation flow. In the screenshot, the right side of the website keeps the order summary, including the product name, size, quantity, price, shipping fee, and total amount.
+
+At the same time, the system opens a hosted checkout window provided by Clink. Users need to fill in their email, card information, cardholder name, and billing address in this window.
+
+<Frame caption="The Clink hosted checkout window opens beside the live order summary for a secure payment.">
+  ![Clink hosted checkout window collecting email, card details, and billing address next to an order summary totaling 8,600](/images/blog/add-payments-to-ai-websites/11.png "Clink hosted checkout window")
+</Frame>
+
+The key point here is that payment information is not casually embedded into a normal page. Instead, it is handled through hosted checkout. For payment scenarios, this method is better suited to reducing the security burden on both users and website developers.
+
+At the bottom of the page, the system also displays the following prompt:
+
+> Hosted payment checkout will open in a secure window.
+>
+> Payment confirmation is in progress. Please keep this page available.
+
+This shows that the payment flow is not a static form. It is a complete chain that includes the payment window, payment confirmation, and status return.
+
+---
+
+## Test Environment: Use Test Cards to Verify the Payment Flow
+
+In the preview environment, AutoCoder.cc clearly states: **All payments in preview are in test mode.**
+
+In other words, no real charge will be made here. Users need to use test card numbers to verify whether the payment flow can run successfully.
+
+The prompt on the left provides test card information, for example:
+
+- **4242 4242 4242 4242** is used to simulate a successful payment;
+- **4000 0000 0000 3220** is used to simulate 3D Secure authentication;
+- **4000 0000 0000 0002** is used to simulate a failed payment.
+
+<Frame caption="The checkout page with shipping and payment methods, and Stripe test cards listed in the project sidebar.">
+  ![Aura Jewelry checkout showing shipping address and payment method options with test cards displayed in the sidebar](/images/blog/add-payments-to-ai-websites/12.png "Checkout page with test card guidance")
+</Frame>
+
+This step is very important for a real business.
+
+A payment feature cannot only verify the "successful payment" scenario. It also needs to test different states such as 3D Secure, payment failure, payment cancellation, and confirmation callbacks. Only when these states can all be handled correctly does the website have the foundation for launching payment functionality.
+
+Here, AutoCoder.cc directly displays the test cards in the project sidebar. Users can follow the prompt and enter the test card number into the payment window to complete verification.
+
+---
+
+## After Entering the Test Card, the Payment Flow Can Continue
+
+After entering the card information into the Clink payment window according to the test card number provided on the left, the system recognizes the test card type and displays the corresponding payment method.
+
+In the screenshot, the user has already entered the test card number, expiration date, CVV, and cardholder name. The lower part of the payment window also displays optional payment methods such as Apple Pay, Cash App Pay, PayPal, Google Pay, and Alipay.
+
+<Frame caption="The test card entered into the Clink window, with Apple Pay, PayPal, Google Pay, and more available.">
+  ![Clink payment window with a Visa test card filled in and payment methods including Apple Pay, Cash App Pay, PayPal, Google Pay, and Alipay](/images/blog/add-payments-to-ai-websites/13.png "Clink window with test card entered")
+</Frame>
+
+This step shows that the payment flow has entered the actual verification stage.
+
+For users, this process is more intuitive than simply looking at backend configuration:
+
+- the product page can enter checkout;
+- checkout can open the payment window;
+- the test card can be recognized;
+- payment methods can be displayed;
+- and the later payment result can enter the record system.
+
+This turns the payment feature from "configured" into "testable."
+
+---
+
+## Viewing Payment Records in Workspace
+
+After the payment test is completed, users can return to the AutoCoder.cc homepage, enter the corresponding project's Publish page in Workspace, and view payment records from the test environment.
+
+In the screenshot, the Payment section in the Publish / Analytics page displays transaction records, including Transaction ID, Amount, Currency, Buyer ID, Status, and Order Creation Time.
+
+In the example, several transaction records all show the status **Paid**.
+
+<Frame caption="Payment records in the Workspace Publish page, each transaction showing a Paid status.">
+  ![Workspace Analytics page listing payment transactions with Transaction ID, amount, currency, buyer ID, and Paid status](/images/blog/add-payments-to-ai-websites/14.png "Workspace payment transaction records")
+</Frame>
+
+This step is critical.
+
+A payment feature should not only allow users to complete payment. It should also allow project owners to see the transaction results. Otherwise, even if the frontend shows that payment was successful, it would still be difficult to manage orders and revenue in the backend.
+
+AutoCoder.cc provides an entry point for viewing payment records in Workspace, which connects checkout behavior with project management. In the test environment, users can confirm whether the order was generated, whether the amount is correct, whether the status was returned, and whether the payment time was recorded.
+
+This means payment is no longer just part of the frontend page. It has entered the project operations backend.
+
+---
+
+## Payment Data and Traffic Data Enter Project Analytics Together
+
+In addition to payment records, Workspace also allows users to view project traffic data.
+
+In another website example, the Analytics page displays Daily active users. At the same time, the Payment section is retained below to show payment records from the test environment.
+
+<Frame caption="The Analytics page combining daily active users with test-environment payment records.">
+  ![Workspace Analytics page showing a daily active users chart above a table of test-mode payment transactions](/images/blog/add-payments-to-ai-websites/15.png "Analytics traffic and payment data")
+</Frame>
+
+This shows that the direction of AutoCoder.cc's update is not merely to "add a payment button." Instead, it places payment capability inside a more complete project operations perspective.
+
+After a real business website goes live, project owners care about more than whether the page can open. They also care about:
+
+- How many users visited?
+- Did any users enter the purchase flow?
+- Was the payment successful?
+- What was the order amount?
+- Which transactions have been completed?
+- Can revenue data be tracked?
+
+When both traffic data and payment data can be viewed in Workspace, users can move from "I generated a website" to "I can manage this business."
+
+---
+
+## What This Update Really Changed
+
+From this jewelry website test, the value of [AutoCoder.cc](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=AddPayments "Add payments to your AI website with AutoCoder.cc") newly added payment capability is not just that the page now has a Buy Now button.
+
+What it actually completes is a more complete business chain:
+
+- the product page displays the price and purchase entry point;
+- the user clicks purchase and enters checkout;
+- the payment provider opens a secure payment window;
+- the test environment supports test card verification;
+- a transaction status is generated after successful payment;
+- payment records can be viewed in Workspace;
+- and Analytics can combine traffic data to observe project performance.
+
+<Frame caption="A recap of the full purchase flow — product page, hosted checkout, test cards, and Workspace records.">
+  ![Six-screenshot collage recapping the jewelry purchase flow from product page and checkout to analytics and payment records](/images/blog/add-payments-to-ai-websites/16.png "Full payment flow recap collage")
+</Frame>
+
+This means AutoCoder.cc is pushing AI website building from "page generation" toward "business system generation."
+
+For small brands, independent entrepreneurs, course sellers, event organizers, or e-commerce projects, the real value of a website is not only whether it looks polished, but whether it can handle real business actions.
+
+This payment feature update gives websites more critical commercial capabilities: **purchasable, testable, trackable, and manageable.** In the test environment, users can first use test cards to verify the payment flow. Before the official launch, they can then configure the live environment, real payment credentials, domain, and webhook. In this way, the project can continue moving from a beautiful demo toward a truly operable online business.
+
+---
+
+## FAQs
+
+### Can AutoCoder.cc add payment functionality to an already generated website?
+
+Yes. Payment integration is not limited to the initial generation phase. After your site is built, you can configure Google login and payment providers (Stripe or Clink) through the workspace dashboard. The system treats identity and payment as independent business layers that you enable when your project is ready for transactions.
+
+### What payment providers does AutoCoder.cc support?
+
+Currently, AutoCoder.cc supports Stripe and Clink as payment channels. During setup, you first select your country, then choose a provider. Stripe is used for payment processing and session tracking, while Clink provides the hosted checkout window for secure card information collection.
+
+### How do I test payments before going live?
+
+AutoCoder.cc includes a full test environment. In preview mode, all payments run in test mode — no real charges are made. You can use Stripe test cards to simulate different scenarios:
+
+- 4242 4242 4242 4242 — successful payment
+- 4000 0000 0000 3220 — 3D Secure authentication
+- 4000 0000 0000 0002 — failed payment
+
+Transaction records are viewable in the workspace dashboard.
+
+### Why does AutoCoder.cc require login (Google OAuth) before payment setup?
+
+Payment systems need user identity to function properly — who owns the order, who can access the backend, and which accounts have admin permissions. Google sign-in handles OAuth configuration, login callbacks, access control, and backend redirection. Without an identity layer, payment data would have no user context, making order management impossible.
+
+### Does AutoCoder.cc support hosted checkout for secure payments?
+
+Yes. After a user clicks "Buy Now," the system opens a hosted checkout window provided by Clink. Payment information (card number, billing address, etc.) is collected inside this secure window rather than embedded directly into the website page. This reduces PCI compliance burden and security risk for both the site owner and the customer.
