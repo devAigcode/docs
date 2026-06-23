@@ -1,0 +1,81 @@
+---
+title: "API Hub"
+icon: "code-branch"
+---
+
+AutoCoder supports integrating your project with third-party APIs. It currently includes Google Signup and third-party payment platforms, allowing you to quickly integrate these features into your project and manage them through the API Hub.
+
+---
+
+## Google Signup
+
+Add Google Sign-In to your AutoCoder app and let users securely authenticate using their Google accounts.
+
+AutoCoder supports Google Authentication out of the box, making it easy to add a trusted and familiar login experience without building your own authentication flow.
+
+Google Authentication in API Hub can be configured in two ways:
+
+**Managed by AutoCoder:** AutoCoder manages the OAuth client, credentials, redirect handling, and ongoing security updates for you. This is the default and easiest way to get started.
+
+**Your own credentials:** Connect OAuth credentials from your own Google Cloud project, giving you full control over credential management, security policies, and key rotation.
+
+<Frame>
+  ![Image](/images/image-75.png)
+</Frame>
+
+---
+
+## Payment
+
+Enable payment in your AutoCoder app using built-in payment integrations. AutoCoder supports subscriptions, one-time payments, and usage-based billing through Stripe or Clink.
+
+AutoCoder handles the full payment lifecycle, including checkout Ul, webhook processing, entitlement management, and environment separation for testing and production.
+
+AutoCoder supports two payment providers:
+
+#### Stripe
+
+A flexible payment infrastructure for global businesses.
+
+- Supports subscriptions, one-time payments, and usage-based billing
+- Extensive APIs and developer tools for custom integrations
+- Supports 100\+ payment methods worldwide
+- Suitable for SaaS, marketplaces, e-commerce, and enterprise applications
+- Pay-as-you-go pricing model
+- Merchants are responsible for tax, compliance, and billing management unless additional Stripe products are used
+
+#### Clink
+
+A modern payment and billing platform built for AI-native and SaaS businesses.
+
+- Supports subscriptions, usage-based billing, and recurring payments
+- Built-in tax handling and compliance management
+- Supports 135\+ currencies and 100\+ local payment methods
+- Intelligent payment routing and automatic retry mechanisms improve payment success rates
+- Unified platform for payments, billing, subscription management, and customer portals
+- Ideal for SaaS founders and global digital businesses seeking lower operational complexity
+
+<Frame>
+  ![Image](/images/image-79.png)
+</Frame>
+
+Payment function supports test and live environments.
+
+In the preview, all transactions are made using test cards and no real money is charged. After the project is published, users will generate real transactions in the live environment.
+
+### **Testing**
+
+AutoCoder provides a sandbox environment to test your payment flow before going live.
+
+1. Purchasing goods in your project
+2. Use the following test card for payment, with any CVV and an expiration date that does not expire.
+   - 4242 4242 4242 4242 — Successful payment
+   - 4000 0000 0000 3220 — 3D Secure authentication
+   - 4000 0000 0000 0002 — Declined payment
+3. Check transaction records
+
+### Go Live
+
+1. Add payment logic and complete the test
+2. Fill in the API Key for the Live environment
+3. Publish your project
