@@ -288,28 +288,30 @@ This payment feature update gives websites more critical commercial capabilities
 
 ## FAQs
 
-### Can AutoCoder.cc add payment functionality to an already generated website?
+<AccordionGroup>
+  <Accordion title="Can AutoCoder.cc add payment functionality to an already generated website?">
+    Yes. Payment integration is not limited to the initial generation phase. After your site is built, you can configure Google login and payment providers (Stripe or Clink) through the workspace dashboard. The system treats identity and payment as independent business layers that you enable when your project is ready for transactions.
+  </Accordion>
 
-Yes. Payment integration is not limited to the initial generation phase. After your site is built, you can configure Google login and payment providers (Stripe or Clink) through the workspace dashboard. The system treats identity and payment as independent business layers that you enable when your project is ready for transactions.
+  <Accordion title="What payment providers does AutoCoder.cc support?">
+    Currently, AutoCoder.cc supports Stripe and Clink as payment channels. During setup, you first select your country, then choose a provider. Stripe is used for payment processing and session tracking, while Clink provides the hosted checkout window for secure card information collection.
+  </Accordion>
 
-### What payment providers does AutoCoder.cc support?
+  <Accordion title="How do I test payments before going live?">
+    AutoCoder.cc includes a full test environment. In preview mode, all payments run in test mode — no real charges are made. You can use Stripe test cards to simulate different scenarios:
 
-Currently, AutoCoder.cc supports Stripe and Clink as payment channels. During setup, you first select your country, then choose a provider. Stripe is used for payment processing and session tracking, while Clink provides the hosted checkout window for secure card information collection.
+    - 4242 4242 4242 4242 — successful payment
+    - 4000 0000 0000 3220 — 3D Secure authentication
+    - 4000 0000 0000 0002 — failed payment
 
-### How do I test payments before going live?
+    Transaction records are viewable in the workspace dashboard.
+  </Accordion>
 
-AutoCoder.cc includes a full test environment. In preview mode, all payments run in test mode — no real charges are made. You can use Stripe test cards to simulate different scenarios:
+  <Accordion title="Why does AutoCoder.cc require login (Google OAuth) before payment setup?">
+    Payment systems need user identity to function properly — who owns the order, who can access the backend, and which accounts have admin permissions. Google sign-in handles OAuth configuration, login callbacks, access control, and backend redirection. Without an identity layer, payment data would have no user context, making order management impossible.
+  </Accordion>
 
-- 4242 4242 4242 4242 — successful payment
-- 4000 0000 0000 3220 — 3D Secure authentication
-- 4000 0000 0000 0002 — failed payment
-
-Transaction records are viewable in the workspace dashboard.
-
-### Why does AutoCoder.cc require login (Google OAuth) before payment setup?
-
-Payment systems need user identity to function properly — who owns the order, who can access the backend, and which accounts have admin permissions. Google sign-in handles OAuth configuration, login callbacks, access control, and backend redirection. Without an identity layer, payment data would have no user context, making order management impossible.
-
-### Does AutoCoder.cc support hosted checkout for secure payments?
-
-Yes. After a user clicks "Buy Now," the system opens a hosted checkout window provided by Clink. Payment information (card number, billing address, etc.) is collected inside this secure window rather than embedded directly into the website page. This reduces PCI compliance burden and security risk for both the site owner and the customer.
+  <Accordion title="Does AutoCoder.cc support hosted checkout for secure payments?">
+    Yes. After a user clicks "Buy Now," the system opens a hosted checkout window provided by Clink. Payment information (card number, billing address, etc.) is collected inside this secure window rather than embedded directly into the website page. This reduces PCI compliance burden and security risk for both the site owner and the customer.
+  </Accordion>
+</AccordionGroup>
