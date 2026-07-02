@@ -38,8 +38,11 @@
   const isBlogPath = (path) => /\/blog(\/|$)/.test(path || location.pathname);
   const now = () => Date.now();
 
-  let _paq;
-  const trackEvent = (name, en) => _paq.push(['trackEvent', 'front_event', name, en, 1]);
+  // ALWAYS resolve window._paq at call time — matomo.js REPLACES window._paq with a
+  // tracker-proxy object once it loads, so a cached array reference silently eats every
+  // later push. (Root cause of SPA pageviews/events never firing while init worked.)
+  const paq = (...cmd) => (window._paq = window._paq || []).push(cmd);
+  const trackEvent = (name, en) => paq('trackEvent', 'front_event', name, en, 1);
 
   // Arrival mode, computed once per browsing session (spec enum: official_redirect | direct).
   // Prod main-site -> /docs is same-origin, so document.referrer keeps the full path.
@@ -120,11 +123,11 @@
     const MAX_WAIT = 500;
     (function waitForTitle() {
       if (document.title !== titleAtNav || waited >= MAX_WAIT) {
-        _paq.push(['setReferrerUrl', prev]);
-        _paq.push(['setCustomUrl', current]);
-        _paq.push(['setDocumentTitle', document.title]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']); // re-scan links in newly rendered content
+        paq('setReferrerUrl', prev);
+        paq('setCustomUrl', current);
+        paq('setDocumentTitle', document.title);
+        paq('trackPageView');
+        paq('enableLinkTracking'); // re-scan links in newly rendered content
         beginPage(); // start timing the new page
       } else {
         waited += STEP;
@@ -141,14 +144,13 @@
     const isProd = host === 'www.autocoder.cc' || host === 'autocoder.cc';
     const SITE_ID = isProd ? '18' : '17'; // 18 = prod blog, 17 = test blog + any unknown host
 
-    _paq = window._paq = window._paq || [];
-    _paq.push(['setTrackerUrl', 'https://track.koudingvip.com/matomo.php']);
-    _paq.push(['setSiteId', SITE_ID]);
-    _paq.push(['enableHeartBeatTimer', 30]); // Matomo-UI sanity; platform read-time comes from ViewBlogPage
-    _paq.push(['enableLinkTracking']);
-    _paq.push(['setRequestMethod', 'POST']);
-    _paq.push(['alwaysUseSendBeacon']); // exit-time ViewBlogPage must survive tab close/navigation
-    _paq.push(['trackPageView']); // initial load; SPA navigations handled by S2
+    paq('setTrackerUrl', 'https://track.koudingvip.com/matomo.php');
+    paq('setSiteId', SITE_ID);
+    paq('enableHeartBeatTimer', 30); // Matomo-UI sanity; platform read-time comes from ViewBlogPage
+    paq('enableLinkTracking');
+    paq('setRequestMethod', 'POST');
+    paq('alwaysUseSendBeacon'); // exit-time ViewBlogPage must survive tab close/navigation
+    paq('trackPageView'); // initial load; SPA navigations handled by S2
 
     (function loadMatomo(src, fallback) {
       const s = document.createElement('script');
