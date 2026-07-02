@@ -173,6 +173,14 @@
     };
   })(window.history);
 
+  // Fallback: the framework captures history.pushState at hydration (before custom
+  // scripts run) and calls that reference directly, bypassing wrappers — the reason
+  // win.js polls for URL changes instead. Poll as the catch-all; the URL dedupe in
+  // onRouteChange makes overlap with the listeners above harmless.
+  setInterval(() => {
+    if (location.href !== lastUrl) onRouteChange();
+  }, 300);
+
   // ---------- cta_click (hyperlinks inside blog articles) ----------
   document.addEventListener(
     'click',
@@ -195,11 +203,13 @@
     true // capture phase so the SPA router can't swallow the event first
   );
 
-  // ---------- SearchBlog (Trieve autocomplete) ----------
-  // Endpoint + payload field confirmed from proxy.js: api.mintlifytrieve.com/api/chunk/autocomplete,
-  // body.query. Autocomplete fires per keystroke -> debounce = one event per executed search.
+  // ---------- SearchBlog ----------
+  // Live endpoint (verified in DevTools 2026-07-02): POST leaves.mintlify.com/api/search
+  // with body {query, filters}. Mintlify has migrated backends before (proxy.js targets the
+  // older api.mintlifytrieve.com/api/chunk/autocomplete), so match both; payload field is
+  // `query` in both. Fires per keystroke -> debounce = one event per executed search.
   // proxy.js also wraps window.fetch; both wrappers call through, so load order doesn't matter.
-  const SEARCH_URL = 'api.mintlifytrieve.com/api/chunk/autocomplete';
+  const SEARCH_URL = /leaves\.mintlify\.com\/api\/search|mintlifytrieve\.com/;
   let searchTimer = null;
   function queueSearch(q) {
     q = clean(q);
@@ -211,8 +221,16 @@
   window.fetch = function (input, init) {
     try {
       const url = typeof input === 'string' ? input : (input && input.url) || '';
-      if (url.includes(SEARCH_URL) && init && typeof init.body === 'string') {
-        queueSearch(JSON.parse(init.body).query || '');
+      if (SEARCH_URL.test(url)) {
+        if (init && typeof init.body === 'string') {
+          queueSearch(JSON.parse(init.body).query || '');
+        } else if (input && typeof input.clone === 'function') {
+          // Body shipped inside a Request object: clone (so the original stays readable)
+          // and read asynchronously.
+          input.clone().text()
+            .then((t) => queueSearch(JSON.parse(t).query || ''))
+            .catch(() => {});
+        }
       }
     } catch (err) {
       /* never break the page's own fetch */
