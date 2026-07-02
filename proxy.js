@@ -146,7 +146,7 @@ const MDX_COMPONENTS = [
             `Must I subscribe to a Sub plan before purchasing a Pro plan?`,
             `Yes, Pro plans require an active subscription to a Sub plan. We offer enhanced benefits for subscribers, including additional perks when token usage is low.`,
             `Can I downgrade after upgrading?`,
-            ` Yes you can. We recommend carefully considering your usage requirements prior to downgrading.`
+            ` Yes you can. We recommend carefully considering your usage requirements prior to downgrading.`,
             `C5. Do unused credits roll over? `,
             `Monthly credits expire at the end of each billing cycle and do not roll over. Additional credit packages are available for your choice. This policy encourages continuous development while providing flexibility for larger projects.`,
 
