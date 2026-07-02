@@ -119,6 +119,7 @@
     else resume();
   });
   window.addEventListener('pagehide', flush);
+  beginPage(); // start timing the LANDING page (direct links to posts!); SPA navs re-begin via onRouteChange
 
   // ---------- SPA pageviews ----------
   // title.js already wraps pushState/replaceState and dispatches 'pushstate'/'replacestate'
