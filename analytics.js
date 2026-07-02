@@ -10,7 +10,7 @@
 //   ViewBlogPage  — on EXIT of a blog page: page_name, visit_total_time (ms),
 //                   referrer (official_redirect|direct), scroll_depth (10% buckets)
 //   SearchBlog    — search_content, one event per executed search (debounced)
-//   cta_click     — page_name, link_name, for links inside blog articles
+//   CtaClick     — page_name, link_name, for links inside blog articles
 //
 // Matomo siteIds: prod 18, test 17. Unknown hosts -> 17, NEVER prod.
 // Kill switch: delete this file (or comment out the body) and push.
@@ -199,7 +199,7 @@
     beginPage(); // start timing the LANDING page (direct links to posts!)
   });
 
-  // ---- S4: cta_click (hyperlinks inside blog articles) ----
+  // ---- S4: CtaClick (hyperlinks inside blog articles) ----
   guard('cta', () => {
     document.addEventListener(
       'click',
@@ -216,7 +216,7 @@
 
         const linkName =
           clean(el.textContent).slice(0, 80) || clean(el.getAttribute('aria-label')) || el.hostname;
-        trackEvent('cta_click', `page_name=${pageName()};link_name=${linkName}`);
+        trackEvent('CtaClick', `page_name=${pageName()};link_name=${linkName}`);
       },
       true // capture phase so the SPA router can't swallow the event first
     );
