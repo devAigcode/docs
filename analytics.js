@@ -153,6 +153,36 @@
     paq('enableLinkTracking');
     paq('setRequestMethod', 'POST');
     paq('alwaysUseSendBeacon'); // exit-time ViewBlogPage must survive tab close/navigation
+
+    // Ad/marketing attribution -> Matomo custom dimensions (data team, 2026-07-03).
+    // Mirrors the main site's mapping (MatomoTracker.ts:170-190):
+    //   dim5 = utd_id (falls back to utm_id), dim6 = utm_source, dim7 = utm_medium,
+    //   dim8 = utm_campaign, dim9 = utm_term. Params with no value are omitted.
+    // First-touch values persist for the session: SPA navs strip the query string and
+    // in-docs full-loads land on UTM-less URLs, but the visit keeps its attribution.
+    // Inner try/catch: attribution must never block the pageview below.
+    try {
+      const qs = new URLSearchParams(location.search);
+      let utm = {};
+      try { utm = JSON.parse(sessionStorage.getItem('__acBlogUtm') || '{}'); } catch (e) { /* fresh */ }
+      const dims = {
+        5: qs.get('utd_id') || qs.get('utm_id') || utm[5],
+        6: qs.get('utm_source') || utm[6],
+        7: qs.get('utm_medium') || utm[7],
+        8: qs.get('utm_campaign') || utm[8],
+        9: qs.get('utm_term') || utm[9],
+      };
+      Object.keys(dims).forEach((id) => {
+        if (dims[id]) {
+          utm[id] = dims[id];
+          paq('setCustomDimension', Number(id), dims[id]);
+        }
+      });
+      try { sessionStorage.setItem('__acBlogUtm', JSON.stringify(utm)); } catch (e) { /* private mode */ }
+    } catch (err) {
+      mark('utm:ERR:' + ((err && err.message) || err));
+    }
+
     paq('trackPageView'); // initial load; SPA navigations handled by S2
 
     (function loadMatomo(src, fallback) {
