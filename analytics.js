@@ -66,9 +66,12 @@
   }
 
   // ---------- ViewBlogPage lifecycle state (defs only; wired in a bulkhead below) ----------
-  // Each send is the dwell accumulated since the last send; hide tab -> event, come back
-  // and leave again -> another event. Platform sums visit_total_time per page_name.
-  // Accumulator resets on send, so hidden -> pagehide back-to-back can't double-count.
+  // ONE event per page view, emitted when the user LEAVES the page (SPA nav away, or
+  // pagehide = close/reload/cross-site nav) — per data-team feedback 2026-07-03.
+  // Hiding the tab only PAUSES the clock (hidden time is excluded from visit_total_time);
+  // no mid-view sends. Accepted trade-off: a backgrounded tab killed by the OS without
+  // the user returning never fires pagehide, so that view's event is lost — the price of
+  // single-event-at-leave semantics vs the old segment-on-hide approach.
   let page = null;
   function beginPage() {
     page = {
@@ -192,10 +195,12 @@
   guard('lifecycle', () => {
     window.addEventListener('scroll', updateScroll, true); // capture: catches inner-container scrolls
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') flush();
+      // Tab hidden = pause the clock (NO event); visible again = resume.
+      if (document.visibilityState === 'hidden') pauseTiming();
       else resumeTiming();
     });
-    window.addEventListener('pagehide', flush);
+    window.addEventListener('pagehide', flush); // the real leave: close / reload / cross-site nav
+    window.addEventListener('pageshow', resumeTiming); // bfcache restore: resume timing the same view
     beginPage(); // start timing the LANDING page (direct links to posts!)
   });
 
