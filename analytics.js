@@ -231,6 +231,19 @@
     });
     window.addEventListener('pagehide', flush); // the real leave: close / reload / cross-site nav
     window.addEventListener('pageshow', resumeTiming); // bfcache restore: resume timing the same view
+
+    // page_name single source of truth (data-team bug 2026-07-06: CtaClick vs ViewBlogPage
+    // names diverged). Mintlify sets the title ASYNC after route changes and title.js strips
+    // emoji async, so a name frozen at entry can go stale. Both events now read page.name,
+    // and this observer re-syncs it whenever the <title> settles. (Assumes Mintlify's
+    // observed order: title updates AFTER the route change — verified in recon.)
+    const titleEl = document.querySelector('title');
+    if (titleEl && typeof MutationObserver !== 'undefined') {
+      new MutationObserver(() => {
+        if (page) page.name = pageName();
+      }).observe(titleEl, { childList: true });
+    }
+
     beginPage(); // start timing the LANDING page (direct links to posts!)
   });
 
@@ -251,7 +264,9 @@
 
         const linkName =
           clean(el.textContent).slice(0, 80) || clean(el.getAttribute('aria-label')) || el.hostname;
-        trackEvent('CtaClick', `page_name=${pageName()};link_name=${linkName}`);
+        // page.name (not a live title read) so CtaClick and ViewBlogPage report the
+        // IDENTICAL page_name for a given view — their platform joins on it.
+        trackEvent('CtaClick', `page_name=${(page && page.name) || pageName()};link_name=${linkName}`);
       },
       true // capture phase so the SPA router can't swallow the event first
     );
