@@ -10,7 +10,13 @@
 //   ViewBlogPage  — on EXIT of a blog page: page_name, visit_total_time (ms),
 //                   referrer (official_redirect|direct), scroll_depth (10% buckets)
 //   SearchBlog    — search_content, one event per executed search (debounced)
-//   CtaClick     — page_name, link_name, for links inside blog articles
+//   CtaClick     — page_name, link_name, referrer; ONLY blog-article links whose
+//                   destination is the main site (metric: share of blog readers
+//                   who navigate to the homepage), NOT every article link
+//
+// Session UTM params (utd_id/utm_id/utm_source/utm_medium/utm_campaign/utm_term) are
+// appended to ViewBlogPage + CtaClick e_n when present, and carried over onto outbound
+// main-site links so ad attribution survives the blog -> main-site hop (S6, 2026-07-07).
 //
 // Matomo siteIds: prod 18, test 17. Unknown hosts -> 17, NEVER prod.
 // Kill switch: delete this file (or comment out the body) and push.
@@ -65,6 +71,26 @@
     }
   }
 
+  // Session UTM attribution, keyed by ORIGINAL param name (populated in S1 from the
+  // URL + sessionStorage; SPA navs strip the query string, so the store is what makes
+  // attribution survive past the landing URL). Shared by three consumers: custom
+  // dims 5-9 (S1), e_n packing on ViewBlogPage/CtaClick, and outbound carry-over (S6).
+  const UTM_PARAMS = ['utd_id', 'utm_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term'];
+  let utms = {};
+  const utmSuffix = () =>
+    UTM_PARAMS.filter((p) => utms[p]).map((p) => `;${p}=${clean(utms[p])}`).join('');
+
+  // Main-site destination gate shared by CtaClick (S4) and UTM carry-over (S6):
+  // MAIN_HOSTS hostname with a non-/docs path. Returns a URL object or null
+  // (mailto:, javascript:, in-page anchors, and blog->blog links all fail it).
+  function mainSiteDest(href) {
+    try {
+      const u = new URL(href);
+      if (MAIN_HOSTS.includes(u.hostname) && !u.pathname.startsWith('/docs')) return u;
+    } catch (err) { /* malformed / non-http scheme */ }
+    return null;
+  }
+
   // ---------- ViewBlogPage lifecycle state (defs only; wired in a bulkhead below) ----------
   // ONE event per page view, emitted when the user LEAVES the page (SPA nav away, or
   // pagehide = close/reload/cross-site nav) — per data-team feedback 2026-07-03.
@@ -103,7 +129,8 @@
     if (!page.isBlog || page.accumMs < 100) return; // non-blog pages / nothing meaningful since last send
     trackEvent(
       'ViewBlogPage',
-      `page_name=${page.name};visit_total_time=${page.accumMs};referrer=${arrival()};scroll_depth=${page.maxScroll}%`
+      `page_name=${page.name};visit_total_time=${page.accumMs};referrer=${arrival()};scroll_depth=${page.maxScroll}%` +
+        utmSuffix()
     );
     page.accumMs = 0;
   }
@@ -162,23 +189,26 @@
     // in-docs full-loads land on UTM-less URLs, but the visit keeps its attribution.
     // Inner try/catch: attribution must never block the pageview below.
     try {
+      // Stored by ORIGINAL param name (pre-2026-07-07 it was dim id) so the S6
+      // carry-over can reproduce the exact params on outbound links. URL beats
+      // the store on a fresh full load; the store covers SPA navs (query gone).
+      try { utms = JSON.parse(sessionStorage.getItem('__acBlogUtm') || '{}'); } catch (e) { /* fresh */ }
       const qs = new URLSearchParams(location.search);
-      let utm = {};
-      try { utm = JSON.parse(sessionStorage.getItem('__acBlogUtm') || '{}'); } catch (e) { /* fresh */ }
+      UTM_PARAMS.forEach((p) => {
+        const v = qs.get(p);
+        if (v) utms[p] = v;
+      });
       const dims = {
-        5: qs.get('utd_id') || qs.get('utm_id') || utm[5],
-        6: qs.get('utm_source') || utm[6],
-        7: qs.get('utm_medium') || utm[7],
-        8: qs.get('utm_campaign') || utm[8],
-        9: qs.get('utm_term') || utm[9],
+        5: utms.utd_id || utms.utm_id,
+        6: utms.utm_source,
+        7: utms.utm_medium,
+        8: utms.utm_campaign,
+        9: utms.utm_term,
       };
       Object.keys(dims).forEach((id) => {
-        if (dims[id]) {
-          utm[id] = dims[id];
-          paq('setCustomDimension', Number(id), dims[id]);
-        }
+        if (dims[id]) paq('setCustomDimension', Number(id), dims[id]);
       });
-      try { sessionStorage.setItem('__acBlogUtm', JSON.stringify(utm)); } catch (e) { /* private mode */ }
+      try { sessionStorage.setItem('__acBlogUtm', JSON.stringify(utms)); } catch (e) { /* private mode */ }
     } catch (err) {
       mark('utm:ERR:' + ((err && err.message) || err));
     }
@@ -247,16 +277,26 @@
     beginPage(); // start timing the LANDING page (direct links to posts!)
   });
 
-  // ---- S4: CtaClick (hyperlinks inside blog articles) ----
+  // ---- S4: CtaClick (blog-article links -> main site) ----
+  // Metric (data team, 2026-07-07): proportion of users who navigate from the blog
+  // to the homepage. So the event fires ONLY for clicks on ARTICLE pages (the /blog
+  // index would inflate the denominator with blog->blog card clicks) on links whose
+  // DESTINATION is the main site — same MAIN_HOSTS as arrival(), non-/docs path, so
+  // blog->homepage is measured symmetrically with homepage->blog. Numerator/denominator
+  // join: distinct users with CtaClick / distinct users with ViewBlogPage per page_name.
   guard('cta', () => {
+    const isArticlePath = () => /\/blog\/./.test(location.pathname);
     document.addEventListener(
       'click',
       (e) => {
-        if (!isBlogPath()) return;
+        if (!isArticlePath()) return;
         let el = e.target;
         while (el && el !== document && el.tagName !== 'A') el = el.parentNode;
         if (!el || el === document || !el.href) return;
-        if ((el.getAttribute('href') || '').startsWith('#')) return; // in-page anchor
+
+        // Destination gate: main site only (shared helper; also subsumes the old
+        // '#' in-page-anchor check and blog->blog links).
+        if (!mainSiteDest(el.href)) return;
 
         // "within a blog article": scope to content containers so sidebar/nav chrome
         // doesn't spam TopN CTR. Loosen if real CTAs turn out to live outside.
@@ -266,7 +306,13 @@
           clean(el.textContent).slice(0, 80) || clean(el.getAttribute('aria-label')) || el.hostname;
         // page.name (not a live title read) so CtaClick and ViewBlogPage report the
         // IDENTICAL page_name for a given view — their platform joins on it.
-        trackEvent('CtaClick', `page_name=${(page && page.name) || pageName()};link_name=${linkName}`);
+        // referrer + UTMs added 2026-07-07: the data team ties each blog->main-site
+        // click back to the arrival source and ad attribution of the same visit.
+        trackEvent(
+          'CtaClick',
+          `page_name=${(page && page.name) || pageName()};link_name=${linkName};referrer=${arrival()}` +
+            utmSuffix()
+        );
       },
       true // capture phase so the SPA router can't swallow the event first
     );
@@ -306,6 +352,33 @@
       }
       return origFetch.apply(this, arguments);
     };
+  });
+
+  // ---- S6: UTM carry-over onto outbound main-site links (data team, 2026-07-07) ----
+  // A visitor who landed on the blog with ad attribution must keep it when they
+  // continue to the main site via ANY link — header/footer chrome included, hence
+  // document-wide, NOT article-scoped like S4 (S4 is the metric, S6 is attribution).
+  // By click time the current URL usually has no query left (SPA navs strip it), so
+  // params come from the session store. Rewrite on mousedown AND click, capture
+  // phase: mousedown catches middle-click/open-in-new-tab, click catches keyboard
+  // activation. Idempotent, and never overwrites a param the link author set.
+  guard('utmCarry', () => {
+    const rewrite = (e) => {
+      let el = e.target;
+      while (el && el !== document && el.tagName !== 'A') el = el.parentNode;
+      if (!el || el === document || !el.href) return;
+      const dest = mainSiteDest(el.href);
+      if (!dest) return;
+      let changed = false;
+      UTM_PARAMS.forEach((p) => {
+        if (utms[p] && !dest.searchParams.has(p)) {
+          dest.searchParams.set(p, utms[p]);
+          changed = true;
+        }
+      });
+      if (changed) el.href = dest.href;
+    };
+    ['mousedown', 'click'].forEach((ev) => document.addEventListener(ev, rewrite, true));
   });
 
   mark('done@' + location.pathname);
