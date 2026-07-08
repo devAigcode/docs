@@ -44,6 +44,11 @@
   const pageName = () =>
     clean((document.title || location.pathname).replace(/\s*[-|–—]\s*AutoCoder\s*$/i, ''));
   const isBlogPath = (path) => /\/blog(\/|$)/.test(path || location.pathname);
+  // Mintlify's 404 (served with HTTP 404, title set client-side) keeps the /docs/blog/*
+  // path, so a typo'd or stale blog URL passes the path gates. Detect it by the title
+  // the 404 page sets — the same string that was polluting page_name ("Page Not Found"
+  // rows in the dashboard, 2026-07-08). ViewBlogPage AND CtaClick both skip such views.
+  const isNotFound = (name) => /^page not found$/i.test(name || '');
   const now = () => Date.now();
 
   // ALWAYS resolve window._paq at call time — matomo.js REPLACES window._paq with a
@@ -152,7 +157,7 @@
   function flush() {
     if (!page) return;
     pauseTiming();
-    if (!page.isBlog || page.accumMs < 100) return; // non-blog pages / nothing meaningful since last send
+    if (!page.isBlog || isNotFound(page.name) || page.accumMs < 100) return; // non-blog / 404 / nothing meaningful since last send
     trackEvent(
       'ViewBlogPage',
       `page_name=${page.name};visit_total_time=${page.accumMs};referrer=${arrival()};scroll_depth=${page.maxScroll}%` +
@@ -332,16 +337,18 @@
         // doesn't spam TopN CTR. Loosen if real CTAs turn out to live outside.
         if (!el.closest('article, main, [role="main"]')) return;
 
-        const linkName =
-          clean(el.textContent).slice(0, 80) || clean(el.getAttribute('aria-label')) || el.hostname;
         // page.name (not a live title read) so CtaClick and ViewBlogPage report the
         // IDENTICAL page_name for a given view — their platform joins on it.
+        const pn = (page && page.name) || pageName();
+        if (isNotFound(pn)) return; // 404 page kept a /blog/* path; not an article
+
+        const linkName =
+          clean(el.textContent).slice(0, 80) || clean(el.getAttribute('aria-label')) || el.hostname;
         // referrer + UTMs added 2026-07-07: the data team ties each blog->main-site
         // click back to the arrival source and ad attribution of the same visit.
         trackEvent(
           'CtaClick',
-          `page_name=${(page && page.name) || pageName()};link_name=${linkName};referrer=${arrival()}` +
-            utmSuffix()
+          `page_name=${pn};link_name=${linkName};referrer=${arrival()}` + utmSuffix()
         );
       },
       true // capture phase so the SPA router can't swallow the event first
