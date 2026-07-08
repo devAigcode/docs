@@ -8,7 +8,9 @@
 // Data spec (data team, 2026-07-02): three events, attributes packed into the Matomo
 // event name (e_n) as key=value;key=value, parsed downstream from raw logs:
 //   ViewBlogPage  — on EXIT of a blog page: page_name, visit_total_time (ms),
-//                   referrer (official_redirect|direct), scroll_depth (10% buckets)
+//                   referrer (official_redirect | <utm_source> | <ref hostname> | direct,
+//                   see arrival() — widened from official_redirect|direct 2026-07-08),
+//                   scroll_depth (10% buckets)
 //   SearchBlog    — search_content, one event per executed search (debounced)
 //   CtaClick     — page_name, link_name, referrer; ONLY blog-article links whose
 //                   destination is the main site (metric: share of blog readers
@@ -50,19 +52,35 @@
   const paq = (...cmd) => (window._paq = window._paq || []).push(cmd);
   const trackEvent = (name, en) => paq('trackEvent', 'front_event', name, en, 1);
 
-  // Arrival mode, computed once per browsing session (spec enum: official_redirect | direct).
-  // Prod main-site -> /docs is same-origin, so document.referrer keeps the full path.
+  // Arrival channel, computed once per browsing session (first-touch). Was a two-value
+  // enum (official_redirect | direct), which lumped ads/search/social into "direct"
+  // (data team, 2026-07-08). Now, in priority order:
+  //   official_redirect        — referrer is the main site (non-/docs path; same-origin
+  //                              nav keeps the full path, policy no-referrer-when-downgrade)
+  //   <utm_source>             — tagged landing (e.g. "google" for ?utm_source=google&utm_medium=cpc);
+  //                              utms is populated synchronously in S1 before any event fires
+  //   <referrer hostname>      — untagged external referral (e.g. "www.google.com")
+  //   direct                   — no referrer, no UTM tags
+  // A main-site referrer whose path is under /docs is an internal hop, not an arrival.
   const MAIN_HOSTS = ['www.autocoder.cc', 'autocoder.cc'];
   function arrival() {
     try {
       const stored = sessionStorage.getItem('__acBlogArrival');
       if (stored) return stored;
-      let mode = 'direct';
+      let mode = '';
       if (document.referrer) {
         const ref = new URL(document.referrer);
-        if (MAIN_HOSTS.includes(ref.hostname) && !ref.pathname.startsWith('/docs')) {
-          mode = 'official_redirect';
+        if (MAIN_HOSTS.includes(ref.hostname)) {
+          if (!ref.pathname.startsWith('/docs')) mode = 'official_redirect';
+          // /docs referrer = internal full-load hop: fall through to UTM / direct
+        } else {
+          mode = clean(ref.hostname);
         }
+      }
+      if (!mode || mode !== 'official_redirect') {
+        // Tagged campaigns beat the raw hostname: "google" (cpc) is more useful
+        // downstream than "www.google.com", and matches custom dimension 6.
+        mode = (utms.utm_source && clean(utms.utm_source)) || mode || 'direct';
       }
       sessionStorage.setItem('__acBlogArrival', mode);
       return mode;
@@ -83,10 +101,18 @@
   // Main-site destination gate shared by CtaClick (S4) and UTM carry-over (S6):
   // MAIN_HOSTS hostname with a non-/docs path. Returns a URL object or null
   // (mailto:, javascript:, in-page anchors, and blog->blog links all fail it).
+  // /blog is ALSO internal: Mintlify renders blog-card links from its internal
+  // route tree WITHOUT the /docs basePath (e.g. href="/blog/<slug>"), so a
+  // same-host /blog path is a docs-internal link, not a main-site destination
+  // (bug 2026-07-08: card clicks on listing pages fired CtaClick).
   function mainSiteDest(href) {
     try {
       const u = new URL(href);
-      if (MAIN_HOSTS.includes(u.hostname) && !u.pathname.startsWith('/docs')) return u;
+      if (
+        MAIN_HOSTS.includes(u.hostname) &&
+        !u.pathname.startsWith('/docs') &&
+        !/^\/blog(\/|$)/.test(u.pathname)
+      ) return u;
     } catch (err) { /* malformed / non-http scheme */ }
     return null;
   }
@@ -285,7 +311,11 @@
   // blog->homepage is measured symmetrically with homepage->blog. Numerator/denominator
   // join: distinct users with CtaClick / distinct users with ViewBlogPage per page_name.
   guard('cta', () => {
-    const isArticlePath = () => /\/blog\/./.test(location.pathname);
+    // Listing tabs live UNDER /blog/ (latest/updates/tutorials/stories/reports),
+    // so "has a segment after /blog/" is not enough to mean "article".
+    const BLOG_INDEX = /\/blog\/(latest|updates|tutorials|stories|reports)(\/|$)/;
+    const isArticlePath = () =>
+      /\/blog\/./.test(location.pathname) && !BLOG_INDEX.test(location.pathname);
     document.addEventListener(
       'click',
       (e) => {
