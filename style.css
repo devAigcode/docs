@@ -164,6 +164,21 @@ img[src*="/blog/fashion-ecommerce-website/0"] {
   width: 100% !important;
 }
 
+/* Same fix for real-estate-team-one-platform — image sizes vary, so each
+   file gets its exact ratio. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/real-estate-team-one-platform/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/real-estate-team-one-platform/01"] { aspect-ratio: 1280 / 960 !important; }
+img[src*="/blog/real-estate-team-one-platform/02"] { aspect-ratio: 1280 / 877 !important; }
+img[src*="/blog/real-estate-team-one-platform/03"] { aspect-ratio: 1528 / 704 !important; }
+img[src*="/blog/real-estate-team-one-platform/04"] { aspect-ratio: 1280 / 656 !important; }
+img[src*="/blog/real-estate-team-one-platform/05"] { aspect-ratio: 1280 / 708 !important; }
+img[src*="/blog/real-estate-team-one-platform/06"] { aspect-ratio: 2048 / 1012 !important; }
+img[src*="/blog/real-estate-team-one-platform/07"] { aspect-ratio: 1280 / 834 !important; }
+img[src*="/blog/real-estate-team-one-platform/08"] { aspect-ratio: 1280 / 828 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
