@@ -179,6 +179,21 @@ img[src*="/blog/real-estate-team-one-platform/06"] { aspect-ratio: 2048 / 1012 !
 img[src*="/blog/real-estate-team-one-platform/07"] { aspect-ratio: 1280 / 834 !important; }
 img[src*="/blog/real-estate-team-one-platform/08"] { aspect-ratio: 1280 / 828 !important; }
 
+/* Same fix for 2026-world-cup-fan-hub — image sizes vary, so each file gets
+   its exact ratio. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/2026-world-cup-fan-hub/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/2026-world-cup-fan-hub/01"] { aspect-ratio: 1280 / 746 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/02"] { aspect-ratio: 1280 / 809 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/03"] { aspect-ratio: 1280 / 759 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/04"] { aspect-ratio: 1280 / 759 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/05"] { aspect-ratio: 1280 / 794 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/06"] { aspect-ratio: 1280 / 802 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/07"] { aspect-ratio: 1280 / 802 !important; }
+img[src*="/blog/2026-world-cup-fan-hub/08"] { aspect-ratio: 1280 / 803 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
