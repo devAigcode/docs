@@ -194,6 +194,24 @@ img[src*="/blog/2026-world-cup-fan-hub/06"] { aspect-ratio: 1280 / 802 !importan
 img[src*="/blog/2026-world-cup-fan-hub/07"] { aspect-ratio: 1280 / 802 !important; }
 img[src*="/blog/2026-world-cup-fan-hub/08"] { aspect-ratio: 1280 / 803 !important; }
 
+/* Same fix for what-is-an-ai-app-builder. The "/0" matches 01–03 and
+   excludes cover.png. */
+img[src*="/blog/what-is-an-ai-app-builder/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/what-is-an-ai-app-builder/01"] { aspect-ratio: 1672 / 941 !important; }
+img[src*="/blog/what-is-an-ai-app-builder/02"] { aspect-ratio: 1672 / 941 !important; }
+img[src*="/blog/what-is-an-ai-app-builder/03"] { aspect-ratio: 2880 / 1624 !important; }
+
+/* Same fix for vibe-coding-production-grade-code — both images are 1280x720.
+   The "/0" matches 01–02 and excludes cover.png. */
+img[src*="/blog/vibe-coding-production-grade-code/0"] {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
