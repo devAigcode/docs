@@ -155,6 +155,13 @@ html:has([data-page-href*="blog/reports"]) {
   width: 100% !important;
 }
 
+/* build-app-without-coding cover (3840x1984) is wider than the 488/274 card
+   box, so object-fit: cover cropped its sides. Show the full width and
+   stretch vertically to fill the box (slight distortion, no crop). */
+.card-group img[src*="/blog/build-app-without-coding/cover"] {
+  object-fit: fill !important;
+}
+
 /* Reserve height for blog content images (~1280x660) so lazy-loading them
    after a "On this page" anchor jump doesn't shift the target section.
    The "/0" matches 01–06 and excludes cover.png. */
@@ -225,6 +232,15 @@ img[src*="/blog/google-maps-link-to-website/04"] { aspect-ratio: 966 / 646 !impo
 img[src*="/blog/google-maps-link-to-website/05"] { aspect-ratio: 1956 / 1060 !important; }
 img[src*="/blog/google-maps-link-to-website/06"] { aspect-ratio: 966 / 646 !important; }
 img[src*="/blog/google-maps-link-to-website/07"] { aspect-ratio: 966 / 648 !important; }
+
+/* Same fix for build-app-without-coding — 01 is 1280x720, 02–06 are 1280x661.
+   The "/0" matches 01–06 and excludes cover.png. */
+img[src*="/blog/build-app-without-coding/0"] {
+  aspect-ratio: 1280 / 661 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/build-app-without-coding/01"] { aspect-ratio: 1280 / 720 !important; }
 
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
