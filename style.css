@@ -212,6 +212,20 @@ img[src*="/blog/vibe-coding-production-grade-code/0"] {
   width: 100% !important;
 }
 
+/* Same fix for google-maps-link-to-website — image sizes vary, so each file
+   gets its exact ratio. The "/0" matches 01–07 and excludes cover.png. */
+img[src*="/blog/google-maps-link-to-website/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/google-maps-link-to-website/01"] { aspect-ratio: 1280 / 693 !important; }
+img[src*="/blog/google-maps-link-to-website/02"] { aspect-ratio: 966 / 526 !important; }
+img[src*="/blog/google-maps-link-to-website/03"] { aspect-ratio: 1280 / 509 !important; }
+img[src*="/blog/google-maps-link-to-website/04"] { aspect-ratio: 966 / 646 !important; }
+img[src*="/blog/google-maps-link-to-website/05"] { aspect-ratio: 1956 / 1060 !important; }
+img[src*="/blog/google-maps-link-to-website/06"] { aspect-ratio: 966 / 646 !important; }
+img[src*="/blog/google-maps-link-to-website/07"] { aspect-ratio: 966 / 648 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
