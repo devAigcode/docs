@@ -211,6 +211,14 @@ img[src*="/blog/what-is-an-ai-app-builder/01"] { aspect-ratio: 1672 / 941 !impor
 img[src*="/blog/what-is-an-ai-app-builder/02"] { aspect-ratio: 1672 / 941 !important; }
 img[src*="/blog/what-is-an-ai-app-builder/03"] { aspect-ratio: 2880 / 1624 !important; }
 
+/* Same fix for upload-autocoder-to-github-mac — single 1280x720 hero image.
+   The "/0" matches 01 and excludes cover.png. */
+img[src*="/blog/upload-autocoder-to-github-mac/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/upload-autocoder-to-github-mac/01"] { aspect-ratio: 1280 / 720 !important; }
+
 /* Same fix for vibe-coding-production-grade-code — both images are 1280x720.
    The "/0" matches 01–02 and excludes cover.png. */
 img[src*="/blog/vibe-coding-production-grade-code/0"] {
