@@ -211,6 +211,16 @@ img[src*="/blog/what-is-an-ai-app-builder/01"] { aspect-ratio: 1672 / 941 !impor
 img[src*="/blog/what-is-an-ai-app-builder/02"] { aspect-ratio: 1672 / 941 !important; }
 img[src*="/blog/what-is-an-ai-app-builder/03"] { aspect-ratio: 2880 / 1624 !important; }
 
+/* Same fix for ai-app-builder-vs-model — image sizes vary, so each file gets
+   its exact ratio. The "/0" matches 01–03 and excludes cover.png. */
+img[src*="/blog/ai-app-builder-vs-model/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/ai-app-builder-vs-model/01"] { aspect-ratio: 1280 / 714 !important; }
+img[src*="/blog/ai-app-builder-vs-model/02"] { aspect-ratio: 1280 / 714 !important; }
+img[src*="/blog/ai-app-builder-vs-model/03"] { aspect-ratio: 1280 / 592 !important; }
+
 /* Same fix for upload-autocoder-to-github-mac — single 1280x720 hero image.
    The "/0" matches 01 and excludes cover.png. */
 img[src*="/blog/upload-autocoder-to-github-mac/0"] {
