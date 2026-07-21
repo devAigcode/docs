@@ -260,6 +260,15 @@ img[src*="/blog/build-app-without-coding/0"] {
 }
 img[src*="/blog/build-app-without-coding/01"] { aspect-ratio: 1280 / 720 !important; }
 
+/* Same fix for middle-layer-never-disappears — 01 is the 1280x720 hero card,
+   02–07 are 894x504 figures. The "/0" matches 01–07 and excludes cover.png. */
+img[src*="/blog/middle-layer-never-disappears/0"] {
+  aspect-ratio: 894 / 504 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/middle-layer-never-disappears/01"] { aspect-ratio: 1280 / 720 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
