@@ -237,6 +237,16 @@ img[src*="/blog/vibe-coding-production-grade-code/0"] {
   width: 100% !important;
 }
 
+/* Same fix for kimi-k3-saas-test — hero is 1280x586, the other two are
+   1280x720. The "/0" matches 01–03 and excludes cover.png. */
+img[src*="/blog/kimi-k3-saas-test/0"] {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/kimi-k3-saas-test/01"] { aspect-ratio: 1280 / 586 !important; }
+img[src*="/blog/kimi-k3-saas-test/02"] { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/kimi-k3-saas-test/03"] { aspect-ratio: 1280 / 720 !important; }
+
 /* Same fix for google-maps-link-to-website — image sizes vary, so each file
    gets its exact ratio. The "/0" matches 01–07 and excludes cover.png. */
 img[src*="/blog/google-maps-link-to-website/0"] {
