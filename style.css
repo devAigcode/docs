@@ -309,7 +309,9 @@ img[src*="/blog/middle-layer-never-disappears/01"] { aspect-ratio: 1280 / 720 !i
 .card:has(img[src*="/blog/multi-role-systems/"])::after,
 .card:has(img[src*="/blog/add-login-and-payments/"])::after,
 .card:has(img[src*="/blog/progressive-build-tutorial/"])::after,
-.card:has(img[src*="/blog/better-prompts-better-products/"])::after {
+.card:has(img[src*="/blog/better-prompts-better-products/"])::after,
+.card:has(img[src*="/blog/design-user-flows/"])::after,
+.card:has(img[src*="/blog/nail-salon-website-google-maps/"])::after {
   content: "";
   position: absolute;
   top: 12px;
