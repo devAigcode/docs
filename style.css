@@ -284,6 +284,16 @@ img[src*="/blog/middle-layer-never-disappears/0"]:not([data-rmiz-modal-img]) {
 }
 img[src*="/blog/middle-layer-never-disappears/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
 
+/* Same fix for indie-developer-ai-portfolio — 01/04/05 are 1280x720, 02 is
+   1280x600, 03 is 1280x603. The "/0" matches 01–05 and excludes cover.PNG. */
+img[src*="/blog/indie-developer-ai-portfolio/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/indie-developer-ai-portfolio/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 600 !important; }
+img[src*="/blog/indie-developer-ai-portfolio/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 603 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
