@@ -294,6 +294,15 @@ img[src*="/blog/indie-developer-ai-portfolio/0"]:not([data-rmiz-modal-img]) {
 img[src*="/blog/indie-developer-ai-portfolio/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 600 !important; }
 img[src*="/blog/indie-developer-ai-portfolio/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 603 !important; }
 
+/* Same fix for online-booking-system-small-business — 01–03 are 1280x720,
+   04 is 1280x661. The "/0" matches 01–04 and excludes cover.png. */
+img[src*="/blog/online-booking-system-small-business/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/online-booking-system-small-business/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
