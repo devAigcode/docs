@@ -303,6 +303,26 @@ img[src*="/blog/online-booking-system-small-business/0"]:not([data-rmiz-modal-im
 }
 img[src*="/blog/online-booking-system-small-business/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
 
+/* Same fix for multimodal-ai-editing — 02/07/11/12 are 2940x1602 workspace
+   shots (the base rule); the rest vary, so each gets its exact ratio. Images
+   run 01–13, so "/0" and "/1" together match all of them and exclude
+   cover.png. */
+img[src*="/blog/multimodal-ai-editing/0"]:not([data-rmiz-modal-img]),
+img[src*="/blog/multimodal-ai-editing/1"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 2940 / 1602 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/multimodal-ai-editing/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 672 / 692 !important; }
+img[src*="/blog/multimodal-ai-editing/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 688 !important; }
+img[src*="/blog/multimodal-ai-editing/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 1039 !important; }
+img[src*="/blog/multimodal-ai-editing/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 697 !important; }
+img[src*="/blog/multimodal-ai-editing/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 767 / 1280 !important; }
+img[src*="/blog/multimodal-ai-editing/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1023 / 1537 !important; }
+img[src*="/blog/multimodal-ai-editing/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 638 / 754 !important; }
+img[src*="/blog/multimodal-ai-editing/10"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 697 !important; }
+img[src*="/blog/multimodal-ai-editing/13"]:not([data-rmiz-modal-img]) { aspect-ratio: 1054 / 630 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
