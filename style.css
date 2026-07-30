@@ -331,6 +331,14 @@ img[src*="/blog/vibe-slop-crisis/0"]:not([data-rmiz-modal-img]) {
   width: 100% !important;
 }
 
+/* Same fix for laid-off-to-launched — both images are 1280x720.
+   The "/0" matches 01–02 and excludes cover.png. */
+img[src*="/blog/laid-off-to-launched/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
