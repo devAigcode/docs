@@ -339,6 +339,17 @@ img[src*="/blog/laid-off-to-launched/0"]:not([data-rmiz-modal-img]) {
   width: 100% !important;
 }
 
+/* Same fix for restaurant-menu-google-maps-directions — 03–08 are 1280x800
+   screenshots (the base rule); 01 is the 1280x720 hero card and 02 is a
+   764x480 GIF. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/restaurant-menu-google-maps-directions/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 800 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/restaurant-menu-google-maps-directions/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/restaurant-menu-google-maps-directions/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 764 / 480 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
