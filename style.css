@@ -339,6 +339,29 @@ img[src*="/blog/laid-off-to-launched/0"]:not([data-rmiz-modal-img]) {
   width: 100% !important;
 }
 
+/* Same fix for restaurant-menu-google-maps-directions — 03–08 are 1280x800
+   screenshots (the base rule); 01 is the 1280x720 hero card and 02 is a
+   764x480 GIF. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/restaurant-menu-google-maps-directions/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 800 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/restaurant-menu-google-maps-directions/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/restaurant-menu-google-maps-directions/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 764 / 480 !important; }
+
+/* Same fix for clear-path-courage-to-call — image sizes vary, so each file
+   gets its exact ratio. The "/0" matches 01–05 and excludes cover.png. */
+img[src*="/blog/clear-path-courage-to-call/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/clear-path-courage-to-call/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/blog/clear-path-courage-to-call/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1677 / 938 !important; }
+img[src*="/blog/clear-path-courage-to-call/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 2047 / 1794 !important; }
+img[src*="/blog/clear-path-courage-to-call/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 2047 / 1019 !important; }
+img[src*="/blog/clear-path-courage-to-call/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 3144 / 1938 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
