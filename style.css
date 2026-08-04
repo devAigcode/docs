@@ -362,6 +362,14 @@ img[src*="/blog/clear-path-courage-to-call/03"]:not([data-rmiz-modal-img]) { asp
 img[src*="/blog/clear-path-courage-to-call/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 2047 / 1019 !important; }
 img[src*="/blog/clear-path-courage-to-call/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 3144 / 1938 !important; }
 
+/* Same fix for build-instead-of-buy — both images are 1280x720.
+   The "/0" matches 01–02 and excludes cover.png. */
+img[src*="/blog/build-instead-of-buy/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
