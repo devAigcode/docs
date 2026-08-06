@@ -1,6 +1,6 @@
 ---
 title: "Frequently Asked Questions About AutoCoder.cc"
-description: "Find answers to the questions builders ask most often about AutoCoder.cc — pricing and credits, how the AI dev platform works, deploying and hosting projects, billing, and what the platform can do today."
+description: "Find answers to the questions builders ask most often about AutoCoder.cc — pricing and credits, how the AI dev platform works, Progressive Build stages, Google Sign-In and payments, the Google Maps Website Generator, deploying and hosting projects, billing, and what the platform can do today."
 icon: "circle-question"
 canonical: "https://www.autocoder.cc/docs/faq"
 sidebarTitle: "FAQ"
@@ -10,7 +10,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
 
 ---
 
-## General & onboarding
+## General and onboarding
 
 <AccordionGroup>
   <Accordion title="Is AutoCoder.cc suitable for users with no coding experience?">
@@ -32,7 +32,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
 
 ---
 
-## Building & editing
+## Building and editing
 
 <AccordionGroup>
   <Accordion title="What if the initially generated page doesn't meet my expectations?">
@@ -53,9 +53,10 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
   </Accordion>
 </AccordionGroup>
 
+
 ---
 
-## Deployment & hosting
+## Deployment and hosting
 
 <AccordionGroup>
   <Accordion title="Can I publish projects on the Free plan?">
@@ -65,7 +66,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
   <Accordion title="How do I bind my project to a Custom Domain?">
     After upgrading to the **Standard** or **Pro** plan, select **Custom Domain** in the publish dialog, enter your domain name, and configure a CNAME record pointing to AutoCoder.cc through your domain registrar. Once DNS verification is complete, upload your SSL certificate to finish the setup.
 
-    For more details, refer to the [Deploy & Hosting](/deploy-and-hosting) guide.
+    For more details, refer to the [Deploy and Hosting](/deploy-and-hosting) guide.
   </Accordion>
 
   <Accordion title="Will I lose my project data if I click Unpublish?">
@@ -81,8 +82,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
 
 ---
 
-
-## Billing, credits & refunds
+## Billing, credits and refunds
 
 <Warning>
   If you have any questions regarding this section, please contact [**support@autocoder.cc**](mailto:support@autocoder.cc)!
@@ -121,7 +121,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
 
 ---
 
-## Source code export & ownership
+## Source code export and ownership
 
 <AccordionGroup>
   <Accordion title="What is included in the exported source code? What about its quality?">
@@ -139,7 +139,7 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
 
 ---
 
-## Data privacy & security
+## Data privacy and security
 
 <AccordionGroup>
   <Accordion title="Can I recover my data after deleting my account?">
@@ -157,6 +157,629 @@ Here are the answers to the most frequently asked questions about AutoCoder.cc. 
   </Accordion>
 
   <Accordion title="How does the platform manage my data?">
-    AutoCoder.cc strictly adheres to applicable data privacy laws and regulations. All your data is stored and protected securely under our [Security & Privacy Policy](/security-and-privacy).
+    AutoCoder.cc strictly adheres to applicable data privacy laws and regulations. All your data is stored and protected securely under our [Security and Privacy Policy](/security-and-privacy).
   </Accordion>
 </AccordionGroup>
+
+---
+
+## Progressive Build
+
+<Note>
+  Progressive Build splits project generation into three visible and editable stages: **Draft**, **Requirements**, and **Full Project**. You do not need to wait for the full build before you can confirm direction, review requirements, and fix issues before the final build.
+</Note>
+
+<Accordion title="Quick overview of the three stages" icon="layer-group">
+  | Stage | Reference time | What AutoCoder is doing | What you should do |
+  | --- | --- | --- | --- |
+  | **Draft** | ~2 minutes | Generates editable styles, layouts, and visual drafts | Confirm the page direction and directly modify the style, layout, and content |
+  | **Requirements** | ~5 minutes | Organizes pages, user flows, functions, business logic, and system architecture | Check for omissions, role permissions, core processes, and business rules |
+  | **Full Project** | ~15 minutes | Completes the front end, back end, database, API, and full business capabilities | Wait for the build to complete, then test the end‑to‑end business process following the real user path |
+  |  |  |  | ![Draft stage preview](/images/faq/progressive-build-01-draft.png)  |
+  |  |  |  | ![Requirements stage preview](/images/faq/progressive-build-02-requirements.png) |
+  |  |  |  | ![Full Project generating](/images/faq/progressive-build-03-generating.png)  |
+  |  |  |  | ![Completed project preview](/images/faq/progressive-build-04-completed.png) |
+
+  <Warning>
+    **The most effective modification sequence:** handle visuals and layout in the Draft stage, confirm functions and rules in the Requirements stage, and test real business processes after the Full Project is completed. Do not overturn the completed core structure in the final stage.
+  </Warning>
+
+</Accordion>
+
+**Frequently asked questions**
+
+<AccordionGroup>
+  <Accordion title="The page has loaded, but the buttons or forms are not working properly.">
+    It may currently still be in the **Draft** stage. In the Draft stage, styling, layout, and content are prioritized, while capabilities such as login, data persistence, permissions, APIs, and database are developed in the **Full Project** stage. Check the current stage displayed at the top first, then judge whether the function should be available yet.
+  </Accordion>
+
+  <Accordion title="Can modifications be made during the construction process?">
+    Yes. Once the Draft is generated, you can modify the page or supplement requirements via conversation. We recommend completing style and layout adjustments during the Draft stage. When modifying roles, processes, and business rules, check synchronously whether the Requirements have been updated.
+  </Accordion>
+
+  <Accordion title="Is the Draft a preview or a part of the project?">
+    The Draft is already an integral part of the project, not an independent preview that is discarded once the build completes. The layout, styles, and content confirmed in the Draft are carried over to subsequent builds.
+
+    <Frame>
+      ![Editing the Draft directly in the project](/images/faq/progressive-build-05-draft-stage.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="What do I need to do during the Requirements stage?">
+    Treat the Requirements as the project blueprint for inspection. The key points to confirm are whether all pages are complete, whether role permissions are correct, whether core processes are intact, and whether data ownership and business rules are clear. Supplement any identified omissions as early as possible, before the Full Project is completed.
+  </Accordion>
+
+  <Accordion title="Is it normal if the build time exceeds the reference time?">
+    The reference durations of approximately 2, 5, and 15 minutes are not fixed completion times. The more complex the page count, user personas, database structure, and business logic, the longer the actual construction time. As long as the stage, status text, or construction node is still changing, the task is usually still in progress.
+  </Accordion>
+
+  <Accordion title="Why is the final project not completely consistent with the Draft?">
+    The Full Project incorporates real data, form validation, login status, error prompts, permissions, and administration entries, so some pages may require further adjustment. Under normal circumstances, the confirmed core layout, visual direction, and content are retained.
+
+    <Note>
+      **Example**: 
+      
+      When changing the "direct user booking" setting to "submit booking after payment and subject to administrator review", you also need to check the payment status, booking status, administrator review entry, database fields, and notification logic.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+**Troubleshooting**
+
+<AccordionGroup>
+  <Accordion title="Changes made in the Draft do not appear in the Full Project">
+    This may show up as a color scheme reverting, deleted blocks reappearing, or copy not being retained. First, confirm that you are viewing the latest version of the Full Project. Then check whether instructions that overwrite the original modifications (such as "redesign the homepage") were sent in later conversations. Organize the missing modifications into a single clear instruction and resubmit it. If the issue still cannot be resolved, submit it through the **Feedback** entry.
+  </Accordion>
+
+  <Accordion title="The Full Project is complete, but core functions remain non-functional">
+    If the Full Project is shown as completed but operations such as login, submission, saving, permission configuration, or database operations still fail, this is no longer the normal incomplete state of the Draft stage. Test following the complete path (login → create data → submit → refresh and recheck), identify which category the issue falls into among page display, form submission, data saving, or permissions, and record the specific error prompt. Provide the project link, operation steps, and screenshots when giving feedback.
+  </Accordion>
+
+  <Accordion title="Inconsistent data between front end and back end after modifying core Requirements">
+    Adding payment, approval, multi‑role, inventory, or complex status‑transition functions is not a simple page modification — it simultaneously affects pages, APIs, databases, permissions, and the management backend. Do not split a single structural modification into multiple independent instructions. Instead, clearly specify the pages, processes, fields, and permissions that require synchronous updates within one instruction, then test the entire business link after completion.
+  </Accordion>
+
+  <Accordion title="Incorrect multi-role permissions or data scope">
+    Permission errors may not trigger obvious error prompts, but they can lead to regular users accessing admin pages and to cross‑role data exposure. Test separately as an unauthenticated user, a regular user, a staff member, and an administrator. When issues are detected, clearly specify the accessible pages, allowed operations, and data scope for each role, and synchronously update the front‑end entries, back‑end validation, and database query ranges.
+  </Accordion>
+
+  <Accordion title="The build progress remains unchanged for a long time">
+    First, distinguish between "slow processing for a complex project" and "a truly stalled build". If the stage name, status text, or nodes are still changing, keep waiting. After confirming that all statuses remain unchanged for an extended period, record the current stage to avoid repeatedly submitting the same build instruction, then re‑enter the project to check the status. If there is still no change, save the project link, current stage, time stayed, and screenshots, and submit them via the **Feedback** entry.
+  </Accordion>
+</AccordionGroup>
+
+**Continue modifying, or repurpose and rebuild?**
+
+<div className="decision-table">
+
+| Continue modifying the current project | Repurpose or rebuild |
+| --- | --- |
+| Visual style, color scheme, or copywriting needs adjustment | The project type or core user group has changed |
+| A small number of page or feature details are missing | Converting an informational website into a transactional or multi‑merchant platform |
+| A specific user persona only needs a few additional permissions | The core process was completely overturned, requiring extensive reconstruction of the data model and permission system |
+
+</div>
+
+<Note>
+  **When submitting an issue, we recommend providing the following:** project name or link, current stage and version, the page where the issue occurs and the user persona, and the complete steps to reproduce the issue.
+</Note>
+
+---
+
+## Google Login and Payments
+
+<Warning>
+  **First, keep this in mind:** payments in the preview environment are test transactions and will not result in actual charges. Before receiving real payments, you must complete payment‑platform verification and use the keys for the Live environment.
+</Warning>
+
+**Core features**
+
+- **Google Sign‑In**: add the "Sign in with Google" login entry to your project.
+- **Payment integration**: add a payment process for products, services, subscriptions, or reservation deposits.
+- **Test / Live environments**: verify login and payment flows in Test, then review production activity in Live.
+- **Analytics**: view Google Sign‑In activity and payment order data, with separate Test and Live views.
+
+<Note>
+  Some screenshots are for functional prototype reference only. Final button names and page positions may be adjusted with version updates.
+</Note>
+
+### Google Sign‑In
+
+<AccordionGroup>
+  <Accordion title="How do I add Google Sign-In to a project?">
+    Enter **Add Google Sign‑In** in the project conversation. AutoCoder uses platform‑managed OAuth credentials by default, so no Google Cloud configuration is required. If you want to manage OAuth through your own Google Cloud project, select **Your own credentials** and provide your Client ID and Client Secret.
+
+    <Frame>
+      ![Adding Google Sign-In to a project through the chat](/images/faq/google-login-01-add-sign-in.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Do I need to apply for a Google Client ID and Client Secret myself?">
+    No. AutoCoder uses platform‑managed OAuth credentials by default, so you can enable and test Google Sign‑In without applying for your own Client ID or Client Secret.
+
+    Only select **Your own credentials** if you want to manage OAuth through your own Google Cloud project. In that case, enter your Client ID and Client Secret, and use the Redirect URL provided by AutoCoder.
+  </Accordion>
+
+  <Accordion title='What should I do if "Sign in with Google" does not respond or a redirect error appears?'>
+    The error usually appears as `redirect_uri_mismatch`.
+
+    1. Confirm that Google Sign‑In is enabled and that the latest configuration has been saved.
+    2. Refresh the preview or republish the latest project version, then test again.
+    3. If you selected **Your own credentials**, verify that:
+       - The Authorized Redirect URI in Google Cloud exactly matches the Redirect URL provided by AutoCoder, including the protocol, domain, path, and trailing slash.
+       - The Client ID and Client Secret belong to the same Google Cloud project.
+       - Any custom domain has been added to the OAuth consent screen's authorized domains, and the corresponding Redirect URI has been added to the OAuth client's Authorized redirect URIs.
+    4. If the issue persists, submit it through the **Feedback** entry and include the project link, current access URL, exact error message, reproduction steps, and screenshots.
+  </Accordion>
+</AccordionGroup>
+
+### Payments
+
+<AccordionGroup>
+  <Accordion title="Which users are eligible to add the payment function?">
+    Payment integration is a paid feature. Free users will see an upgrade prompt when they try to add payments. After upgrading, return to the project and restart the payment setup.
+
+    <Frame>
+      ![Upgrade prompt shown when a Free user adds payments](/images/faq/google-login-02-upgrade-prompt.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How do I integrate payments into my project?">
+    Enter **Add payment functionality** in the project chat. AutoCoder will guide you through the setup, including selecting your country or region, choosing a supported payment provider, and confirming the products or services being sold, pricing, currency, and payment type.
+
+    After the required information is confirmed, AutoCoder configures the payment flow, order structure, and test environment. If pricing or other business rules are still incomplete, the final checkout flow will not be enabled until those details are provided.
+
+    <Frame>
+      ![Adding payment support through the project chat](/images/faq/google-login-03-add-payment.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Will payments made in Preview result in real charges?">
+    No. When the message "All payments in preview are in test mode" appears at the top of the preview page, you are in the test environment. Test transactions are only used to verify payment, redirection, and result pages, and are not credited to the official merchant balance.
+
+    <Frame>
+      ![Test-mode banner at the top of the preview](/images/faq/google-login-04-test-mode-banner.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How do I enable Live payments?">
+    1. Enable payment in the **Payment** settings, and fill in the official API key provided by the payment platform.
+    2. Release the project and proceed to the Go live process.
+    3. Complete the account profile setup, merchant verification, and automatic review for the payment platform.
+    4. Switch to the Live environment and conduct a complete test with a small‑value real transaction.
+
+    <Frame>
+      ![Payment settings with the live API key field](/images/faq/google-login-05-payment-settings.png)
+    </Frame>
+
+    <Frame>
+      ![Signing in to the payment provider dashboard to retrieve the key](/images/faq/google-login-06-stripe-dashboard.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="The payment button opens, but the payment fails. What should I check first?">
+    - Confirm that the configured key is a production payment key, not a test or sandbox key.
+    - Check that the complete key was copied, without extra spaces or line breaks.
+    - Confirm that the payment‑provider account has completed verification and can receive payments.
+    - Check that the amount, currency, and payment method are supported in the merchant's region.
+    - Save the key and republish the latest project version.
+  </Accordion>
+</AccordionGroup>
+
+### Analytics
+
+<AccordionGroup>
+  <Accordion title="How do I open Analytics for my project?">
+    Go to **Workspace** and select **Publish** from the left‑hand menu. Open the published project you want to review, click the three‑dot menu in the upper‑right corner of the project details page, and select **Analytics**.
+
+    <Frame>
+      ![Opening Analytics from the published project menu](/images/faq/google-login-07-open-analytics.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="What data can I view in Analytics?">
+    Analytics shows Google Sign‑In and payment data for the selected project.
+
+    - **Google Sign‑In** includes active users for today, the past 7 days, and the past 30 days, plus daily active‑user trends.
+    - **Payment** includes the Transaction ID, amount, currency, Buyer ID, status, order creation time, and payment time when available.
+
+    Select **Revenue Details** for more information. For settlement, fees, refunds, and disputes, check the payment provider's dashboard.
+
+    <Frame>
+      ![Analytics showing Google Sign-In and payment data](/images/faq/google-login-08-analytics-data.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="What is the difference between Test and Live data?">
+    Use the **Test** and **Live** tabs at the top of the Analytics page to switch between environments.
+
+    - **Test** displays Google Sign‑In activity and payment records generated while testing the project. Test payments do not create real charges.
+    - **Live** displays activity from the published production environment and real payment transactions.
+
+    Test and Live data are stored separately. A test transaction will not appear under Live, and a live transaction will not appear under Test. To retrieve live payment records, the project must be published and valid live payment credentials must be configured.
+
+    <Frame>
+      ![Test and Live tabs in Analytics](/images/faq/google-login-09-analytics-test-live.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Why is Analytics empty or missing data?">
+    Check the following:
+
+    1. Confirm that you opened Analytics for the correct published project.
+    2. Check whether you are viewing **Test** or **Live**. Activity generated in one environment will not appear in the other.
+    3. Verify that the selected date range includes the date when the login or payment occurred.
+    4. Confirm that Google Sign‑In or Payment has been added to the project. A section may be absent when the corresponding feature has not been integrated.
+    5. Complete at least one login or payment flow in the environment you are viewing.
+    6. For Live payment data, confirm that valid live payment credentials have been configured. If Analytics reports that payment keys are not configured, live orders cannot be retrieved.
+    7. Check the payment provider's dashboard to confirm whether the transaction was successfully created.
+
+    If the payment provider shows a successful transaction but Analytics does not display it, submit the issue through **Feedback** and include the project link, selected environment, Transaction ID, payment time, user account, and screenshots.
+  </Accordion>
+</AccordionGroup>
+
+### Difficult issues
+
+<AccordionGroup>
+  <Accordion title="Google Sign-In configuration error">
+    AutoCoder uses platform‑managed OAuth by default. If Google Sign‑In shows a blank page, a redirect loop, or `redirect_uri_mismatch`, confirm that Google Sign‑In is enabled and republish the latest version.
+
+    If using **Your own credentials**, ensure the Authorized Redirect URI exactly matches AutoCoder's Redirect URL.
+
+    If the issue continues, submit **Feedback** with the project link, current URL, full error message, reproduction steps, and screenshots.
+  </Accordion>
+
+  <Accordion title="Incorrect live payment key">
+    The Test environment uses AutoCoder's test configuration and requires no user‑provided key. For Live payments, verify that the key:
+
+    - Is a production key.
+    - Was copied completely, without extra spaces.
+    - Has been saved before republishing.
+    - Belongs to the project's payment account.
+  </Accordion>
+
+  <Accordion title="Payment provider verification is incomplete">
+    Live payments require identity, business, bank‑account, and merchant verification by the payment provider. Complete any pending verification or account restrictions in the provider's dashboard before testing.
+  </Accordion>
+
+  <Accordion title="Payment completed but the order was not updated">
+    Confirm the transaction succeeded in the payment provider's dashboard. Then verify the correct project, environment, and date range in Analytics.
+
+    If the order status or Analytics data is still missing, submit **Feedback** with the Transaction ID, payment time, user account, project link, and screenshots.
+  </Accordion>
+
+  <Accordion title="Remixed or duplicated projects">
+    Remixed projects retain payment code but not payment activation or Live credentials, so the copied flow may work only in the Test environment. To enable Live payments, reconnect the payment feature, add a production key, republish, and retest the full flow.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  **Quick troubleshooting tips:** for Google Sign‑In, check the OAuth configuration. For Live payments, verify the production key and provider account status. For missing data, confirm the project, environment, and date range.
+</Note>
+
+---
+
+## Google Maps Website Generator
+
+Turn a Google Maps business listing into an editable local‑business website. Paste a business Share link, review the available information, and generate the website.
+
+<Note>
+  **Direct access:** [https://www.autocoder.cc/en/google-maps-generator](https://www.autocoder.cc/en/google-maps-generator)
+</Note>
+
+**Core features**
+
+- **Dedicated entry**: open the generator from the **Solutions** section in the AutoCoder homepage footer.
+- **Google Maps import**: paste a specific business Share link to retrieve available business details, images, and reviews.
+- **Business preview**: review the imported listing before starting website generation.
+- **One‑click generation**: select **Generate Website** to create an editable business website.
+
+<AccordionGroup>
+  <Accordion title="Where can I find the Google Maps Website Generator?">
+    Scroll to the bottom of the AutoCoder homepage. Under **Solutions**, select **Google Maps Generator**. You can also open the generator directly from the link above.
+
+    <Frame caption="Google Maps Generator entry in the AutoCoder homepage footer.">
+      ![Google Maps Generator entry in the footer](/images/faq/google-maps-01-footer-entry.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How do I generate a website from a Google Maps business listing?">
+    1. Open the Google Maps Website Generator.
+    2. Paste the Share link for a specific Google Maps business listing.
+    3. Submit the link and review the imported business preview.
+    4. Select **Generate Website** to create the project.
+
+    <Frame caption="Paste the Google Maps business Share link into the generator.">
+      ![The Google Maps Website Generator input page](/images/faq/google-maps-02-generator-page.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How do I copy the correct business link from Google Maps?">
+    1. Open the specific business listing in Google Maps.
+    2. Select **Share**.
+    3. Select **Copy link**, then paste the link into AutoCoder.
+
+    Use a business Share link rather than a search‑results page, a directions link, or the general Google Maps homepage.
+
+    <Frame>
+      ![Copying the Share link from a Google Maps business listing](/images/faq/google-maps-03-share-link.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="What information appears before the website is generated?">
+    The preview may include the business name, address, rating, review count, categories, phone number, website, images, opening hours, and customer reviews, depending on what is available in Google Maps.
+
+    Review the preview and confirm that it shows the correct business before selecting **Generate Website**.
+
+    <Frame caption="Business-information preview before website generation.">
+      ![Business information preview with the Generate Website button](/images/faq/google-maps-04-business-preview.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Can I enter a custom prompt before generation?">
+    No. AutoCoder automatically creates the website‑generation input from the submitted business link. After the project is generated, you can edit its copy, images, layout, and business information.
+  </Accordion>
+
+  <Accordion title="Can I generate a website if the business has only a few reviews?">
+    Yes. However, a complete business profile with more useful images, details, and reviews gives AutoCoder more source material. Review and update the generated content before publishing.
+  </Accordion>
+</AccordionGroup>
+
+**Troubleshooting**
+
+<AccordionGroup>
+  <Accordion title="The business link is not recognized">
+    Confirm that the link opens a specific Google Maps business listing and was copied using **Share → Copy link**. Remove any extra text around the link and submit it again.
+  </Accordion>
+
+  <Accordion title="The preview shows the wrong business">
+    Close the preview, return to Google Maps, open the correct business listing, and copy a new Share link.
+  </Accordion>
+
+  <Accordion title="Some images, reviews, or business details are missing">
+    AutoCoder can only use information available from the submitted listing. Generate the website, then add or correct the missing content in the project.
+  </Accordion>
+</AccordionGroup>
+
+
+---
+
+## Images, files and voice input
+
+<Note>
+  Image and file upload is available in website **update** workflows: light‑line and heavy‑line are supported, and a requirement‑list workflow can use a function‑interaction flowchart to revise matching requirement entries. Image and file upload is not available in the manual‑edit AI panel. Voice input applies to website generation and update workflows — including light‑line, requirement‑list, and heavy‑line — and to manual‑edit AI workflows. Voice is transcribed into editable text before submission.
+</Note>
+
+**Core features**
+
+| Feature | What it supports | What users should specify |
+| --- | --- | --- |
+| **Image and file upload** | Attach supported images, screenshots, documents, spreadsheets, PDFs, and data files during website updates. Light‑line and heavy‑line are supported; a requirement‑list workflow can also use a function‑interaction flowchart. | Explain whether the material replaces content, guides design/layout, or supplies data. |
+| **Image‑based updates** | Replace assets; follow visual style or layout references; reproduce prototypes; use annotated screenshots. Interaction‑flow and architecture reconstruction is limited to the advanced/heavy‑line workflow. In a requirement‑list workflow, a flowchart can revise matching requirement entries rather than directly implement the system. | Name the page, target element, scope, and intended result. |
+| **File‑based updates** | Use documents and structured files to update website copy, company information, product details, and related data. | State whether to use the full file, selected sections, or selected records. |
+| **Voice input** | Dictate website generation, update, requirement‑list, heavy‑line, or manual‑edit AI requests. Speech is transcribed in real time. | Review names, numbers, URLs, prices, and field labels before submitting. |
+
+Some screenshots are functional prototypes. Button names, labels, and positions may change in later versions.
+
+### Uploading images and files
+
+<AccordionGroup>
+  <Accordion title="Where can I upload images or files?">
+    Use the file icon in the project input box during a supported website update workflow. After selection, attachments appear in a row above the input area before the request is submitted.
+
+    Light‑line and heavy‑line update workflows support image and file upload. A requirement‑list workflow can also use a function‑interaction flowchart to revise matching requirement entries. Image and file upload is not currently available in the manual‑edit AI panel.
+
+    <Frame caption="Prototype reference: file-upload entry in the update input area.">
+      ![The file-upload entry in the project input box](/images/faq/multimodal-01-upload-entry.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How can I add images or files?">
+    - Click the file icon and choose one or more files.
+    - Drag files into the upload area.
+    - Paste copied files into the conversation. This interaction is supported in the current test environment and may depend on the released browser and version.
+
+    Multiple files can upload in parallel up to the configured attachment limit. After upload, thumbnails or file cards are displayed in a horizontal row; the row can scroll when there are many attachments.
+  </Accordion>
+
+  <Accordion title="Which file formats are supported?">
+    - **Images**: JPG, JPEG, PNG, SVG, GIF, and WEBP.
+    - **Common documents and data**: DOC, DOCX, XLS, XLSX, PPT, PPTX, PDF, TXT, MD, CSV, and JSON.
+    - **HTML and ZIP** are accepted upload formats within their stated limits. HTML is sanitized before text or screenshots are extracted; it is not executed or treated as implementation source code. ZIP support is subject to both the archive‑size limit and the internal‑file‑count limit.
+
+    For reliable content updates, use common documents, spreadsheets, PDFs, text files, CSV, or JSON. Macro‑enabled Office files (DOCM, XLSM, and PPTM), executable files, engineering source files, and Figma design files are not supported for direct understanding. Figma and GitHub URLs are not read directly — export a screenshot, diagram, PDF, content table, or written requirement instead.
+  </Accordion>
+
+  <Accordion title="What are the attachment count and file-size limits?">
+    - **Maximum attachments per submission**: 10. A bare URL pasted into the instruction does not count as an attachment by default.
+    - **JPG, JPEG, PNG, GIF, and WEBP**: up to 50 MB per image.
+    - **SVG**: up to 5 MB per file.
+    - **HTML**: up to 5 MB. JavaScript, external links, and cookies are disabled before text or screenshots are extracted.
+    - **TXT, MD, CSV, and JSON**: up to 5 MB per file. **PDF, DOCX, XLSX, and PPTX**: up to 25 MB per file.
+    - **Legacy DOC, XLS, and PPT**: up to 25 MB per file. They are converted to a newer Office format or PDF first, and conversion may fail.
+    - **ZIP**: up to 25 MB, with no more than 10 files inside. DOCM, XLSM, PPTM, EXE, and other executable files are not supported. Figma and GitHub URLs are not read directly in the current update flow.
+  </Accordion>
+
+  <Accordion title="Can I submit only an image or file without typing anything?">
+    Yes. You can submit attachments without a text instruction. If AutoCoder cannot identify a clear update action from the material, it will ask a follow‑up question about the material's purpose and the required change.
+
+    For better results, add a short instruction such as "replace the homepage banner with this image," "use this screenshot as the visual‑style reference," or "update the Services page copy using this PDF."
+  </Accordion>
+
+  <Accordion title="Can I preview or remove uploaded material before sending?">
+    Uploaded images can be opened in a centered preview. Uploaded files are displayed as file cards and cannot currently be previewed; selecting a file shows that preview is not supported. To remove an attachment, use the delete control in the attachment's upper‑right corner before sending.
+
+    <Frame caption="Prototype reference: multiple uploaded attachments displayed above the input area.">
+      ![Several uploaded attachments shown above the input area](/images/faq/multimodal-02-multiple-attachments.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Why did the upload fail?">
+    Common causes include a file exceeding the size limit, network instability, an incompatible format, corrupted file content, or exceeding the maximum attachment count. The upload error appears in the lower‑right corner, disappears after approximately 10 seconds, and can also be dismissed manually.
+
+    Reduce the file size, upload fewer files at once, split a large document, verify the format, or retry on a stable network.
+
+    <Frame caption="Prototype reference: upload-failure notification.">
+      ![An upload-failure notification in the lower-right corner](/images/faq/multimodal-03-upload-failure.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Are uploaded files saved permanently?">
+    Unsubmitted attachments are temporary. Depending on the page, refreshing or closing the tab may clear them. Keep the original files locally and do not use the upload area as storage.
+  </Accordion>
+</AccordionGroup>
+
+### Image-based updates
+
+<AccordionGroup>
+  <Accordion title="What can AutoCoder do with uploaded images?">
+    Images can replace static or data‑driven website assets, banners, backgrounds, product images, and logos. They can also guide visual style, page layout, prototypes, or an exact annotated area that needs to change. Interaction‑flow, permission, data‑flow, and architecture reconstruction applies to the heavy‑line workflow, with the separate requirement‑list flowchart case described below.
+
+    State the image's role. A product photo, screenshot, logo, wireframe, annotated screenshot, flowchart, and architecture diagram each require different handling.
+  </Accordion>
+
+  <Accordion title="Can I replace a specific image, logo, or banner?">
+    Yes. Upload the replacement and identify the exact page and target area — for example, the homepage hero image, a product‑card image, the site logo, or a database‑backed image. If the position is unclear, AutoCoder will ask for clarification.
+
+    Only the specified asset should change. Unrelated layout, copy, images, and data should remain unchanged. For a database‑backed image, AutoCoder must also update the associated fields needed to keep the record consistent, such as the image name, description, or business copy.
+  </Accordion>
+
+  <Accordion title="Can I use a screenshot or design image as a visual reference?">
+    Yes. A reference image can guide color, typography, spacing, visual density, effects, component styling, and overall design direction. Specify whether the reference applies to one page or the whole site.
+
+    Only the requested visual characteristics should be applied. Unrelated content, business logic, data fields, and functionality should remain unchanged.
+
+    <Frame caption="Example: a website screenshot used as a visual-style or layout reference.">
+      ![A website screenshot used as a style reference](/images/faq/multimodal-04-style-reference.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Can AutoCoder follow a wireframe, sketch, component image, or prototype?">
+    Yes. These materials can guide section order, module structure, column proportions, information hierarchy, and the component placement shown in the reference. Label important blocks, especially in hand‑drawn or low‑fidelity references. If proportions, positions, or relationships are ambiguous, AutoCoder will ask for clarification.
+
+    A direct "make this page look like the target image" request may affect UI, interaction, and data. AutoCoder prioritizes the UI layer first, then interaction and data where applicable, while preserving existing core flows as far as possible. Business logic is reproduced only where its user‑visible effect requires it; API‑layer replication is not included in this release.
+  </Accordion>
+
+  <Accordion title="Can I upload a flowchart, business-process diagram, role-permission diagram, or architecture diagram?">
+    Yes. In the heavy‑line/advanced update workflow, AutoCoder can reconstruct interaction flows, business processes, role permissions, data flow, and system architecture. In a requirement‑list workflow, a function‑interaction flowchart can be used to revise the matching requirement‑list entries, but that action updates the requirements rather than directly implementing the interaction or architecture.
+
+    Heavy‑line changes can affect pages, navigation, branching logic, permissions, data transmission, and storage behavior. After completion, test the complete process — including branches, role access, data flow, and unaffected existing functions — not only the page appearance.
+
+    <Frame caption="Example: a flowchart used to describe interaction or business-process logic.">
+      ![A flowchart describing interaction and business-process logic](/images/faq/multimodal-05-flowchart.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Can I mark a screenshot and ask AutoCoder to fix only that area?">
+    Yes. Add arrows, boxes, circles, or text notes to a screenshot and upload it with a short instruction. Annotation recognition supports multilingual text. The change should be limited to the marked component, while unmarked UI, layout, interaction, and data remain unchanged.
+
+    When annotations are small, overlapping, or ambiguous, repeat the same instruction in the text prompt and name the page and component.
+
+    <Frame caption="Prototype reference: an annotated screenshot identifying the exact area to update.">
+      ![An annotated screenshot marking the exact area to change](/images/faq/multimodal-06-annotated-screenshot.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Why did AutoCoder ask a follow-up question after I uploaded an image or file?">
+    The attachment did not contain a clear action. AutoCoder may not know whether an image should replace an asset, guide the style, reproduce the layout, modify interaction logic, or describe a business process, or whether a file should be used in full, by selected section, table, record, or field. Answer with the target page, target element or data, intended result, and scope.
+  </Accordion>
+</AccordionGroup>
+
+### File-based updates
+
+<AccordionGroup>
+  <Accordion title="What can AutoCoder do with uploaded documents?">
+    Common documents can add or replace website copy, service descriptions, company information, product details, and other text‑based page content. The selected content should retain its heading and paragraph hierarchy while adapting to the website layout.
+
+    For a long document, state whether to use the full file, selected sections, or a specific table. Unselected content and unrelated pages should remain unchanged.
+  </Accordion>
+
+  <Accordion title="Can spreadsheets, CSV, or JSON files update project data?">
+    Yes, when the target relationship is clear. These files can update text fields, content records, titles, notes, descriptions, detail fields, and other structured business data. Only the specified records and fields should be changed.
+
+    After the update, verify both the backend data and the front‑end display. The same business item should be consistent across the project.
+  </Accordion>
+
+  <Accordion title="Can I upload Figma files, source-code files, macro-enabled files, executables, or archives for parsing?">
+    Figma design files, engineering source files, macro‑enabled Office files (DOCM, XLSM, and PPTM), and executable files are not supported for direct understanding in the current update flow. HTML is a special accepted format: it is sanitized, then used only for text or screenshot extraction rather than executed as source code. ZIP files can be uploaded only within the stated archive‑size and internal‑file‑count limits.
+
+    Figma and GitHub URLs are not read directly. Export the relevant design as a screenshot or PDF, or export requirements and data as DOCX, TXT, MD, CSV, or JSON before uploading. For legacy DOC, XLS, or PPT files, using DOCX, XLSX, PPTX, or PDF is more reliable because conversion may fail.
+  </Accordion>
+</AccordionGroup>
+
+### Voice input
+
+<AccordionGroup>
+  <Accordion title="Where can I use voice input?">
+    Voice input is available in full‑site generation and update workflows — including light‑line, requirement‑list, and heavy‑line paths — and in supported manual‑edit AI workflows. Use the microphone control to start recording. Speech is transcribed in real time and inserted into the input box for review before submission.
+
+    <Frame caption="Prototype reference: voice-recording state during an update task.">
+      ![The voice-recording state in the input box](/images/faq/multimodal-07-voice-recording.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Which languages and speaking styles are supported?">
+    Voice input is intended to support all languages, with priority support for Chinese, English, Spanish, and Arabic. Real‑time streaming recognition supports continuous and intermittent speech. Review the transcript before sending, especially when the instruction mixes languages.
+
+    Check names, URLs, numbers, prices, product names, brand terms, page names, and field labels carefully, because recognition errors in these details can change the result.
+  </Accordion>
+
+  <Accordion title="What are the voice-input limits?">
+    - **Maximum duration per recording**: 1 minute.
+    - **Free users**: up to 100 recording starts per day.
+    - **Paid users**: no daily start‑count limit.
+    - If a recording exceeds the maximum duration, it is automatically truncated and a message explains that the effective content was retained.
+
+    For a longer requirement, split it into several short instructions and submit them in order.
+  </Accordion>
+
+  <Accordion title="What should I do if voice input fails?">
+    - **Permission denied**: enable microphone permission in the browser and try again.
+    - **No voice detected**: after about 5 seconds without audio, the system prompts you to speak again.
+    - **Recognition failed because of network instability or timeout**: retry or use text input.
+    - **Transcript incomplete or inaccurate**: edit the text in the input box before submitting.
+  </Accordion>
+</AccordionGroup>
+
+### Pausing tasks
+
+<AccordionGroup>
+  <Accordion title="Can I pause a generation or update after sending it?">
+    Yes. While a generation or update task is running, the send button changes to a pause control. When the task finishes, fails, or is manually paused, the control immediately returns to the normal send state.
+
+    - **Generation pause**: all further output and resource processing stop. The current stage is shown as failed/interrupted, and the task can be regenerated. The paused request can still be referenced as conversation context.
+    - **Update pause**: the current update stops, the cancelled request remains in the conversation, and the preview keeps the most recent available version. The system may display "this message is cancelled." The paused request can still be referenced later.
+  </Accordion>
+</AccordionGroup>
+
+**Troubleshooting**
+
+<AccordionGroup>
+  <Accordion title="Uploaded material does not appear in the result">
+    Confirm that the attachment finished uploading before the request was sent, and that the prompt explained how to use it. For an image, state whether it is a replacement asset, style reference, layout reference, prototype, flowchart, or annotation. For a document, identify the full file, selected section, or table to use.
+  </Accordion>
+
+  <Accordion title="The wrong image or page area was changed">
+    The target was probably ambiguous. Provide the page name, section name, component name, and visual location, or upload an annotated screenshot. For a database‑driven image, verify that the image and its associated fields were updated consistently.
+  </Accordion>
+
+  <Accordion title="The style or layout reference was not followed closely enough">
+    Define the scope and the elements to reproduce: color system, font hierarchy, spacing, visual density, effects, component style, module order, column proportions, or the entire page layout. For a whole‑site update, check several pages; for a single‑page update, confirm that other pages were not altered.
+  </Accordion>
+
+  <Accordion title="Document content is incomplete or mixed with unrelated material">
+    Specify the exact section, table, records, or fields to use. Long files require a clearer extraction target. If the update affects structured data, verify the backend values and front‑end rendering together.
+  </Accordion>
+
+  <Accordion title="Voice recognition produced the wrong instruction">
+    Edit the transcript before submitting, especially page names, numbers, prices, product names, brand terms, URLs, and field labels. If recognition repeatedly fails, use text input or split the requirement into shorter recordings.
+  </Accordion>
+
+  <Accordion title="The update was paused but the preview still shows the previous version">
+    That is expected. Pausing stops the unfinished update and keeps the most recent completed version in the preview. To continue the update, submit a new instruction. Regeneration applies to a paused generation task, not to the cancelled update task.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  **Quick troubleshooting checklist** — **Upload issue**: check size, count, format, file integrity, and network. Long screenshots may be split into six segments; ZIP files may contain no more than 10 files. **Image update**: define the image's role and exact target. **File update**: specify full‑file or selected‑section use. **Voice input**: review and edit the transcript before submitting.
+</Note>
