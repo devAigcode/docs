@@ -466,6 +466,36 @@ img[src*="/images/faq/google-maps-02"]:not([data-rmiz-modal-img]) { aspect-ratio
 img[src*="/images/faq/google-maps-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1840 / 1128 !important; }
 img[src*="/images/faq/google-maps-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1148 / 1386 !important; }
 
+/* Opt-in: a table that wraps to the content column instead of scrolling
+   sideways. Wrap the markdown table in <div className="fit-table"> to use it
+   (currently only the "Quick overview of the three stages" table on the FAQ
+   page). Every other table on the site keeps Mintlify's default behavior.
+
+   Mintlify renders every markdown table inside [data-table-wrapper="true"]:
+   a full-bleed overflow-x:auto strip (negative page-gutter margins, width
+   calc(100% + 2 * --page-padding)) whose cells carry a 150px min-width. With
+   four columns that min-width alone forces a horizontal scrollbar on anything
+   narrower than ~600px of prose. Clamp the wrapper to the content width, drop
+   the x overflow, and let cells wrap. */
+.fit-table [data-table-wrapper="true"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  overflow-x: clip !important;
+}
+.fit-table [data-table-wrapper="true"] > * {
+  padding-inline: 0 !important;
+}
+.fit-table [data-table-wrapper="true"] table {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: auto !important;
+}
+.fit-table [data-table-wrapper="true"] :is(th, td) {
+  min-width: 0 !important;
+  overflow-wrap: break-word !important;
+}
+
 /* Two-outcome comparison tables: green "keep going" column, red "start over"
    column. Markdown has no per-cell color syntax, so the table is wrapped in
    .decision-table and its header cells are colored here.
