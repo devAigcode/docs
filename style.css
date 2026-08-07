@@ -436,3 +436,83 @@ img[src*="/blog/build-instead-of-buy/0"]:not([data-rmiz-modal-img]) {
   border: none!important;
 box-shadow: non! important;
 }
+
+/* Reserve height for the FAQ screenshots (Progressive Build, Google Login &
+   Payments, Google Maps Website Generator) so lazy-loading them after an
+   "On this page" anchor jump doesn't shift the target section. Sizes vary,
+   so each file gets its exact ratio. As with the blog rules above, every
+   selector carries :not([data-rmiz-modal-img]) so the image-zoom lightbox
+   clone keeps its own inline sizing. */
+img[src*="/images/faq/"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/images/faq/progressive-build-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/images/faq/progressive-build-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/images/faq/progressive-build-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/images/faq/progressive-build-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 642 !important; }
+img[src*="/images/faq/progressive-build-05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 641 !important; }
+img[src*="/images/faq/google-login-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 697 !important; }
+img[src*="/images/faq/google-login-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 634 / 1312 !important; }
+img[src*="/images/faq/google-login-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 701 !important; }
+img[src*="/images/faq/google-login-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 885 !important; }
+img[src*="/images/faq/google-login-05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 693 !important; }
+img[src*="/images/faq/google-login-06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 693 !important; }
+img[src*="/images/faq/google-login-07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 786 !important; }
+img[src*="/images/faq/google-login-08"]:not([data-rmiz-modal-img]) { aspect-ratio: 2048 / 1273 !important; }
+img[src*="/images/faq/google-login-09"]:not([data-rmiz-modal-img]) { aspect-ratio: 2048 / 1267 !important; }
+img[src*="/images/faq/google-maps-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 694 !important; }
+img[src*="/images/faq/google-maps-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 694 !important; }
+img[src*="/images/faq/google-maps-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1840 / 1128 !important; }
+img[src*="/images/faq/google-maps-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1148 / 1386 !important; }
+
+/* Two-outcome comparison tables: green "keep going" column, red "start over"
+   column. Markdown has no per-cell color syntax, so the table is wrapped in
+   .decision-table and its header cells are colored here.
+
+   Both the tint and the text flip with the theme, following the same language
+   as the Note/Warning callouts on this site: a pale wash behind saturated dark
+   text in light mode, inverting to a deep wash behind light text in dark mode.
+   The green is pulled from the brand accent (#07C983 / #15803D in docs.json);
+   the red is desaturated to the same muted weight so the pair reads as one set
+   rather than a stoplight. Text is always set explicitly per mode — leaving it
+   to `inherit` is what left the dark headers unreadably dark-on-dark. */
+.decision-table th:first-child {
+  background-color: #e4f6ee !important;
+  color: #0a6449 !important;
+}
+.decision-table th:last-child {
+  background-color: #fbe8e5 !important;
+  color: #97362a !important;
+}
+
+.dark .decision-table th:first-child {
+  background-color: rgba(7, 201, 131, 0.13) !important;
+  color: #6fdcb0 !important;
+}
+.dark .decision-table th:last-child {
+  background-color: rgba(226, 116, 98, 0.13) !important;
+  color: #eda294 !important;
+}
+
+/* google-login-02 is a portrait phone screenshot (634x1312). The blanket
+   width:100% on FAQ images stretched it to the full container, which at that
+   aspect ratio made it taller than the viewport. Cap it at phone-mockup size
+   and center it; the aspect-ratio rule above still reserves the right height.
+   width:100% with a max-width keeps it from overflowing narrow screens. */
+img[src*="/images/faq/google-login-02"]:not([data-rmiz-modal-img]) {
+  display: block !important;
+  width: 100% !important;
+  max-width: 320px !important;
+  margin-inline: auto !important;
+}
+
+/* Reserve height for the multimodal FAQ screenshots (images, files and voice
+   input section). Same rationale as the other /images/faq/ rules above. */
+img[src*="/images/faq/multimodal-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 756 !important; }
+img[src*="/images/faq/multimodal-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 747 !important; }
+img[src*="/images/faq/multimodal-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 750 !important; }
+img[src*="/images/faq/multimodal-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 610 !important; }
+img[src*="/images/faq/multimodal-05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 539 !important; }
+img[src*="/images/faq/multimodal-06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 645 !important; }
+img[src*="/images/faq/multimodal-07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 620 !important; }
