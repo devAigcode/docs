@@ -447,9 +447,9 @@ img[src*="/images/faq/"]:not([data-rmiz-modal-img]) {
   height: auto !important;
   width: 100% !important;
 }
-img[src*="/images/faq/progressive-build-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 652 !important; }
-img[src*="/images/faq/progressive-build-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 577 !important; }
-img[src*="/images/faq/progressive-build-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 652 !important; }
+img[src*="/images/faq/progressive-build-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/images/faq/progressive-build-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/images/faq/progressive-build-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
 img[src*="/images/faq/progressive-build-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 642 !important; }
 img[src*="/images/faq/progressive-build-05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 641 !important; }
 img[src*="/images/faq/google-login-01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 697 !important; }
@@ -465,21 +465,6 @@ img[src*="/images/faq/google-maps-01"]:not([data-rmiz-modal-img]) { aspect-ratio
 img[src*="/images/faq/google-maps-02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 694 !important; }
 img[src*="/images/faq/google-maps-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1840 / 1128 !important; }
 img[src*="/images/faq/google-maps-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1148 / 1386 !important; }
-
-/* Stage previews sit under the text in the "What you should do" column of the
-   "Quick overview of the three stages" table on the FAQ page. Break them onto
-   their own line and give them a width floor, since the rule above stretches
-   FAQ images to 100% and a table column is too narrow to read at; clicking one
-   opens the zoom lightbox at full size. Top-align the whole row so the other
-   columns line up with the start of the text rather than the thumbnail. */
-td img[src*="/images/faq/progressive-build-"]:not([data-rmiz-modal-img]) {
-  display: block !important;
-  min-width: 220px !important;
-  margin: 10px 0 2px !important;
-}
-tr:has(img[src*="/images/faq/progressive-build-"]) td {
-  vertical-align: top !important;
-}
 
 /* Two-outcome comparison tables: green "keep going" column, red "start over"
    column. Markdown has no per-cell color syntax, so the table is wrapped in
