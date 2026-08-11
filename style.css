@@ -378,6 +378,17 @@ img[src*="/blog/ai-answers-small-business-website/0"]:not([data-rmiz-modal-img])
   width: 100% !important;
 }
 
+/* Same fix for jewelry-moodboard-to-store — 01/03/05 are 1280x720 (the base
+   rule); 02 is an 840x472 animated GIF walkthrough and 04 is a 1280x614
+   backend panel. The "/0" matches 01–05 and excludes cover.png. */
+img[src*="/blog/jewelry-moodboard-to-store/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/jewelry-moodboard-to-store/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 840 / 472 !important; }
+img[src*="/blog/jewelry-moodboard-to-store/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 614 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
