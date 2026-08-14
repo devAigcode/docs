@@ -389,6 +389,17 @@ img[src*="/blog/jewelry-moodboard-to-store/0"]:not([data-rmiz-modal-img]) {
 img[src*="/blog/jewelry-moodboard-to-store/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 840 / 472 !important; }
 img[src*="/blog/jewelry-moodboard-to-store/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 614 !important; }
 
+/* Same fix for hybrid-nail-business-website — 01 (animated GIF, 1200x675), 02
+   and 03 are all 16:9 (the base rule); 04 and 05 are 1280x675 screenshots.
+   The "/0" matches 01–05 and excludes cover.png. */
+img[src*="/blog/hybrid-nail-business-website/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/hybrid-nail-business-website/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 675 !important; }
+img[src*="/blog/hybrid-nail-business-website/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 675 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
