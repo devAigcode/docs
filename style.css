@@ -189,6 +189,21 @@ img[src*="/blog/real-estate-team-one-platform/06"]:not([data-rmiz-modal-img]) { 
 img[src*="/blog/real-estate-team-one-platform/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 834 !important; }
 img[src*="/blog/real-estate-team-one-platform/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 828 !important; }
 
+/* Same fix for gamified-learning-platform-two-portals — image sizes vary, so
+   each file gets its exact ratio. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/gamified-learning-platform-two-portals/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/gamified-learning-platform-two-portals/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 360 / 202 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 360 / 202 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 360 / 203 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 360 / 260 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1129 / 1280 !important; }
+img[src*="/blog/gamified-learning-platform-two-portals/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 309 / 360 !important; }
+
 /* Same fix for 2026-world-cup-fan-hub — image sizes vary, so each file gets
    its exact ratio. The "/0" matches 01–08 and excludes cover.png. */
 img[src*="/blog/2026-world-cup-fan-hub/0"]:not([data-rmiz-modal-img]) {
@@ -399,6 +414,17 @@ img[src*="/blog/hybrid-nail-business-website/0"]:not([data-rmiz-modal-img]) {
 }
 img[src*="/blog/hybrid-nail-business-website/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 675 !important; }
 img[src*="/blog/hybrid-nail-business-website/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 675 !important; }
+
+/* Same fix for cross-border-ecommerce-checkout — 01, 04, 05, and 06 are all
+   1280x721 (the base rule); 02 and 03 are shorter storefront crops.
+   The "/0" matches 01–06 and excludes cover.png. */
+img[src*="/blog/cross-border-ecommerce-checkout/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 721 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/cross-border-ecommerce-checkout/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 670 !important; }
+img[src*="/blog/cross-border-ecommerce-checkout/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 642 !important; }
 
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
