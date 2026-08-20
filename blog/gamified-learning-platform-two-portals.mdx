@@ -1,0 +1,374 @@
+---
+title: "Build a Gamified Learning Platform With Two Portals"
+description: "How AutoCoder turned one project into a gamified student portal and a separate teacher analytics dashboard, plus the step-by-step build and test workflow."
+"og:description": "How one AutoCoder project became a gamified student learning game and a protected teacher analytics dashboard — with the full architecture-first build workflow."
+"twitter:description": "How one AutoCoder project became a gamified student learning game and a protected teacher analytics dashboard — with the full architecture-first build workflow."
+"og:image": "/images/blog/gamified-learning-platform-two-portals/cover.png"
+canonical: "https://www.autocoder.cc/docs/blog/gamified-learning-platform-two-portals"
+---
+
+## A Learning Experience Students Actually Want to Open
+
+<Frame caption="One codebase, two experiences: a playful student portal on the left, a protected teacher analytics portal on the right">
+  ![Gamified learning platform built with AutoCoder showing a brick-themed student portal with quizzes, XP, and a leaderboard beside a teacher portal with class overview, skill mastery heatmap, and frequent mistakes](/images/blog/gamified-learning-platform-two-portals/01.png "Gamified learning platform with student and teacher portals")
+</Frame>
+
+What if an online learning platform felt less like homework—and more like the next level of a game?
+
+That is the idea behind this **gamified learning platform built with [AutoCoder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=stories&utm_campaign=GamifiedLearning "Build full-stack apps with AutoCoder.cc")**: a colorful, brick-inspired student experience for answering questions, unlocking knowledge stages, tracking progress, and climbing a leaderboard—paired with a completely separate teacher portal for understanding how students learn.
+
+The compelling part is not only what the product does. It is how quickly a fairly sophisticated education product can take shape inside AutoCoder.
+
+From one project, AutoCoder created two role-specific experiences:
+
+- A lightweight **student portal** focused on play, momentum, and visible achievement.
+- A protected **teacher dashboard** focused on learning quality, frequent mistakes, weak knowledge areas, and classroom decisions.
+
+One shared codebase. Two clearly separated journeys. A much shorter path from product idea to working application.
+
+> **Project snapshot:** Explore the original [AutoCoder education project](https://www.autocoder.cc/en/projects/1742166031?PROJECTID=PROJ_67d7580f "Open the AutoCoder gamified education project").
+
+The real education problem is not access — it is momentum.
+
+Most students do not need another static list of assignments. They need a reason to begin, a clear signal that they are improving, and a next step that feels achievable.
+
+At the same time, educators rarely need "more data" in the abstract. They need answers to practical questions:
+
+- Which concepts create the most mistakes?
+- Is a student guessing, improving, or quietly falling behind?
+- Which topic should be reviewed next?
+- Is the current difficulty level helping—or blocking—progress?
+
+This product treats those needs as two sides of the same learning loop.
+
+```
+Student plays → the system captures learning signals → the teacher sees patterns
+     ↑                                                              ↓
+     └────────────── teaching adapts and the next challenge improves ┘
+```
+
+The result is more than an online quiz. It is a feedback system designed around motivation and action.
+
+---
+
+## The student portal: turn "practice" into "one more level"
+
+The student home page removes friction. Instead of opening on a dense course catalog, it brings the learner directly to fast, playable questions.
+
+<Frame caption="The student home screen opens straight into playable questions, with XP, level progress, and the leaderboard always in view">
+  ![Brick-themed student quiz screen showing four math questions with instant correct-answer feedback, an XP counter at 1,250, a level 7 progress bar, and a class leaderboard](/images/blog/gamified-learning-platform-two-portals/02.png "Student quiz screen with XP and leaderboard")
+</Frame>
+
+*A playful student experience turns quick practice, instant feedback, XP, and friendly competition into one continuous motivation loop.*
+
+### 1. Quick quizzes create an instant win
+
+Students can begin answering immediately. Short question cycles make practice feel lightweight, while points and visible feedback turn each response into a moment of progress.
+
+The interaction is intentionally simple:
+
+1. Read the question.
+2. Choose an answer.
+3. Receive immediate feedback.
+4. Earn progress and continue.
+
+This is the educational equivalent of a great product onboarding flow: value arrives before complexity.
+
+### 2. The leaderboard makes effort visible
+
+A leaderboard adds friendly social energy to the experience. Scores are no longer hidden in a private gradebook; achievement becomes visible, legible, and worth returning for.
+
+Used thoughtfully, rankings can celebrate consistency rather than punish mistakes. The design can reward accumulated XP, completed levels, streaks, or improvement—giving every learner more than one way to succeed.
+
+### 3. Level Map turns knowledge into a journey
+
+The **Level Map** is the visual heart of the student experience. Different knowledge areas become stages in a larger adventure. A learner does not simply "complete fractions." They clear a stage, see the next destination, and understand how today's work connects to a broader path.
+
+This map solves three common problems at once:
+
+- It makes curriculum structure understandable at a glance.
+- It creates anticipation for what comes next.
+- It transforms completion into a visible collection of achievements.
+
+The brick-inspired art direction reinforces the metaphor beautifully: knowledge is something students build, piece by piece.
+
+### 4. My Progress makes growth concrete
+
+The **My Progress** area translates answer history into visual feedback. Instead of expecting students to interpret rows of numbers, it presents performance as charts, completion states, trends, achievements, and areas to strengthen.
+
+Good progress visualization answers three questions in seconds:
+
+- Where am I now?
+- How far have I come?
+- What should I do next?
+
+That clarity helps students develop ownership of learning without exposing the complexity of the educator's analytics tools.
+
+<Frame caption="Knowledge areas become islands on a Level Map, while My Progress reports mastery, weekly activity, and earned badges">
+  ![Brick-built Level Map showing numbered stages across Fractions, Algebra, Geometry, and Word Problems islands with locked gates, beside a My Progress panel with 75% overall completion, weekly activity chart, topic mastery bars, and achievement badges](/images/blog/gamified-learning-platform-two-portals/03.png "Level Map and My Progress student dashboard")
+</Frame>
+
+*The Level Map makes the curriculum explorable, while My Progress translates every completed challenge into a clear picture of growth.*
+
+---
+
+## The teacher portal: turn activity into teaching intelligence
+
+The student side is playful by design. The teacher side is analytical by design.
+
+AutoCoder generated an independent educator workspace where the information architecture, permissions, and actions match a completely different job: diagnosing learning and deciding what to change.
+
+<Frame caption="The educator workspace trades play for diagnosis: score distribution, skill mastery, answer quality, and the question bank in one view">
+  ![Teacher Portal dashboard showing class overview with 28 students and 74% average score, a score distribution chart, a skill mastery heatmap, frequent mistakes ranked by percentage of students, answer quality gauges, and a question bank panel](/images/blog/gamified-learning-platform-two-portals/04.png "Teacher Portal analytics dashboard")
+</Frame>
+
+*Student activity becomes teaching intelligence: educators can move from a class-wide pattern to a targeted intervention without leaving the platform.*
+
+### 1. Frequent mistakes reveal where teaching should focus
+
+A high-frequency error view surfaces the questions and concepts students miss repeatedly. This is more useful than an average score alone. A class can appear healthy overall while still sharing one important misconception.
+
+By grouping repeated errors, teachers can move from vague concern to targeted action:
+
+- Re-teach a specific concept.
+- Assign a focused practice set.
+- Adjust the wording of a confusing question.
+- Compare individual and class-wide patterns.
+
+### 2. Content and difficulty remain under educator control
+
+The backend is not only a reporting surface. Teachers can manage the question bank, edit exercises, configure levels, control difficulty, and organize tasks.
+
+That closes the loop between insight and intervention. When the dashboard reveals a weak area, the educator can respond inside the same product instead of exporting data into a disconnected workflow.
+
+---
+
+## Tutorial: how I built this product in AutoCoder, step by step
+
+The finished product looks like a coordinated system, but I did not try to perfect every screen in one enormous prompt. I built it in layers: define the architecture, generate the first version, test the critical paths, and then refine one problem at a time.
+
+Here is the exact workflow I used—and a version you can adapt for your own education product.
+
+### Step 1: define the two users before describing the pages
+
+Before opening AutoCoder, I reduced the idea to a simple role matrix:
+
+| Role | Primary goal | Can access | Must not access |
+| --- | --- | --- | --- |
+| Student | Learn, answer, progress | Quizzes, Level Map, leaderboard, personal progress | Question editing, class analytics, teacher settings |
+| Educator | Diagnose and improve learning | Dashboard, mistake analysis, heatmaps, question bank, difficulty and level controls | Student-only game flow as an authenticated learner |
+
+This prevented a common prompting mistake: listing many features without explaining who owns each one.
+
+**What I wanted AutoCoder to understand:** this was not one dashboard with two menu states. It was one product foundation with two deliberately isolated experiences.
+
+### Step 2: send one architecture-first prompt
+
+My first prompt described the complete product loop, the permission model, and the minimum demonstrable content. The essential version looked like this:
+
+```
+Build a web-based dual-role sandbox learning platform for education.
+
+Create two completely separate portals from one project:
+
+1. Student portal
+- Quick online quizzes
+- Gamified level progression
+- A Level Map that turns knowledge topics into stages
+- A leaderboard
+- A My Progress page with scores, completion, achievements,
+  activity history, and weak-topic guidance
+- A lightweight interface suitable for young learners
+
+2. Educator portal
+- A dashboard for frequent mistakes and weak knowledge points
+- Practice-time statistics and student ability heatmaps
+- Answer-quality and class-performance analysis
+- Question-bank import and editing
+- Difficulty controls, level configuration, and task management
+
+Use one shared codebase but generate separate student and educator
+entry points. Isolate routes and permissions so a student cannot reach
+teacher pages by changing the URL. Include a sample math learning game.
+Use a frontend-first implementation with simple local or mock data so
+the complete experience can be previewed immediately.
+
+The final visible product should be in English.
+```
+
+Notice what this prompt does beyond naming features:
+
+- It defines the users and their jobs.
+- It explains which data must connect the two portals.
+- It states the security invariant: students cannot enter educator routes directly.
+- It supplies a demo domain—math—so AutoCoder has concrete content to generate.
+- It prioritizes a runnable preview instead of waiting for production infrastructure.
+
+**AutoCoder output:** an initial project plan and a staged build path covering the draft, requirement list, and complete project.
+
+### Step 3: use the Draft stage to judge structure, not polish
+
+AutoCoder first generated a draft focused on the homepage style and layout. At this stage, I checked whether the product had the correct bones:
+
+<Frame caption="AutoCoder's three-stage build path: Draft for style and layout, Requirements for specifications and logic, then the complete project">
+  ![AutoCoder panel describing three build stages — Draft at about two minutes for style and layout, Requirements at about five minutes for specifications and logic, and Complete project at about fifteen minutes for backend and database](/images/blog/gamified-learning-platform-two-portals/05.png "AutoCoder three-stage build path")
+</Frame>
+
+- Was the student's next action immediately obvious?
+- Did student and teacher navigation feel like two different products?
+- Were quizzes, Level Map, My Progress, and the teacher dashboard represented?
+- Was the learning loop understandable before adding more visual detail?
+
+I did not spend time polishing colors yet. A beautiful interface with the wrong role model would have been expensive to unwind later.
+
+**Checkpoint:** do not move forward because the first screen looks impressive. Move forward when the information architecture matches the real user journey.
+
+### Step 4: review the Requirement List as a product specification
+
+Next, I let AutoCoder expand the concept into a requirement list. This was where the idea became testable behavior rather than a collection of screens.
+
+I reviewed the requirements against five questions:
+
+1. What happens after a student submits an answer?
+2. How is progress saved and visualized?
+3. Which student signals appear in the teacher dashboard?
+4. Which controls can change future practice?
+5. What happens when the wrong role requests a protected route?
+
+I also made sure the project included realistic states: completed and locked levels, correct and incorrect answers, weak-topic indicators, empty states, and enough sample data for charts to communicate something meaningful.
+
+**Why this step matters:** UI generation is easy to admire, but requirements reveal whether the product will actually behave like a system.
+
+### Step 5: generate the complete project and test the two entry points
+
+After the requirements were aligned, I asked AutoCoder to build the complete project. It generated a working preview with role-specific access and sample accounts for student, educator, and administrator testing.
+
+I tested the product in this order:
+
+1. Open the student entry point and sign in with a student test account.
+2. Answer both correct and incorrect questions.
+3. Confirm that score, progress, and activity change.
+4. Open Level Map and verify locked, current, and completed stages.
+5. Open My Progress and check whether the previous actions appear.
+6. Sign out and enter through the educator portal.
+7. Confirm that frequent mistakes, mastery, and quality views reflect the learning model.
+8. Try to open an educator URL while authenticated as a student.
+
+The eighth test is critical. Hiding a teacher navigation item is not permission isolation; blocking the route is.
+
+**AutoCoder output:** a demonstrable end-to-end loop in which student actions produce signals that the educator experience can interpret.
+
+*This student screen was not treated as the finish line. I used it to test whether answering, feedback, scoring, and progression behaved as one continuous flow.*
+
+*I then tested the same data from the educator side to confirm that the two generated portals formed one product loop.*
+
+### Step 6: fix the real navigation failure with a narrow prompt
+
+During testing, I found that the student homepage could fail when the URL did not include a level parameter. Instead of rewriting the whole navigation flow, I used the Visual Edits tool:
+
+<Frame caption="Visual Edits scopes a prompt to one element — here the My Progress section — instead of the whole navigation flow">
+  ![AutoCoder Visual Edits interface with a My Progress div selected and highlighted in green, a red arrow pointing to the Visual edits button in the prompt bar](/images/blog/gamified-learning-platform-two-portals/06.png "AutoCoder Visual Edits tool")
+</Frame>
+
+Simply place your cursor over the section you want to modify, then enter your prompt.
+
+```
+Fix the issue that prevents the student homepage from opening.
+Keep all existing permission boundaries and learning logic unchanged.
+```
+
+<Frame caption="AutoCoder reports the fix and states explicitly that student permissions were not broadened">
+  ![AutoCoder response confirming the student homepage opening issue is fixed, explaining that visiting Home without a level parameter now auto-selects an accessible published level, that levelId deep links still work, and that the fix does not broaden student permissions](/images/blog/gamified-learning-platform-two-portals/07.png "AutoCoder navigation fix confirmation")
+</Frame>
+
+AutoCoder repaired the default learner entry so that opening `/` could select an available published level automatically, while links containing a specific `levelId` continued to open the requested level.
+
+This is a useful pattern for AI-assisted development: describe the observable failure, name what must remain unchanged, and let the agent trace the implementation.
+
+**Verification after the fix:**
+
+- Open the default student URL without parameters.
+- Open a deep link with a valid level ID.
+- Confirm that an invalid or missing parameter does not create a blank page.
+- Re-test the student-to-teacher route boundary.
+
+### Step 7: change the student visual system without changing the logic
+
+Once the core flow worked, I changed the emotional character of the student experience. My prompt was intentionally explicit about preserving functionality:
+
+```
+Keep all existing functionality and interaction logic unchanged.
+Replace the decorative styling of the student-facing frontend with
+a colorful interlocking-brick theme.
+```
+
+<Frame caption="AutoCoder pauses to confirm scope before restyling — whole project, or student-facing frontend only">
+  ![AutoCoder conversation where a restyle request is answered with a scope question asking whether the theme applies to all frontend and backend pages or only student-facing frontend pages, answered with student-facing frontend pages](/images/blog/gamified-learning-platform-two-portals/08.png "AutoCoder scope confirmation before restyle")
+</Frame>
+
+AutoCoder asked whether the theme should apply to the whole project or only part of it. I narrowed the scope to the **student-facing frontend only**.
+
+That clarification protected the teacher dashboard from becoming visually noisy. Students received bright colors, brick-like cards, playful decorations, and a more game-like atmosphere; educators kept a cleaner analytical environment.
+
+This iteration updated the shared student shell—including navigation, page backgrounds, login, registration, Level Map, and My Progress—while retaining the existing quiz, filtering, achievement, pagination, and data behavior.
+
+*The visual redesign came after the workflow worked. This sequencing let me compare the new presentation against unchanged progress behavior.*
+
+**Lesson:** when restyling a generated application, always state both the scope and the invariants. "Make it playful" is weaker than "restyle the student frontend only; preserve all logic, routes, state, and data interactions."
+
+### Step 8: run a final role-by-role acceptance test
+
+Before treating the project as complete, I repeated the entire experience as both users.
+
+**Student acceptance checklist**
+
+- The default homepage opens without a special URL parameter.
+- Quiz answers return clear feedback.
+- XP, scores, or completion update consistently.
+- The leaderboard is readable.
+- Level Map communicates locked, current, and completed stages.
+- My Progress contains English-only visible copy and no empty decoration.
+- No educator page is reachable through direct URL entry.
+
+**Educator acceptance checklist**
+
+- Class overview data is legible and internally consistent.
+- Frequent mistakes identify useful patterns rather than isolated noise.
+- Skill mastery and answer quality are scannable.
+- Question-bank, difficulty, task, and level controls are discoverable.
+- Student-facing style changes have not damaged the analytical interface.
+
+**Cross-role acceptance checklist**
+
+- Student activity and teacher insight describe the same learning model.
+- Signing out clears the previous role context.
+- Shared data does not imply shared permissions.
+- Both entry points can be demonstrated independently.
+
+---
+
+## Why AutoCoder is the force multiplier
+
+The standout lesson from this case is not that AI can draw a dashboard. It is that AutoCoder can carry a product idea across multiple layers of application development.
+
+### 1. It turns natural-language intent into product structure
+
+The original brief described roles, user journeys, dashboards, permissions, and a sample math game. AutoCoder translated that intent into routes, page groups, data relationships, and working interface logic.
+
+### 2. It supports iterative visual direction without discarding functionality
+
+The student experience was later restyled with a playful brick theme while keeping its quiz logic, progress states, routes, and data interactions intact. That is an important kind of iteration: changing the emotional character of a product without rebuilding its foundation.
+
+### 3. It makes complex prototypes demonstrable
+
+A dual-role system is difficult to explain with static mockups. A working prototype lets stakeholders experience the difference between the student and teacher journeys, test navigation, review data displays, and spot missing states much earlier.
+
+---
+
+## Ready to build the learning experience you wish existed?
+
+Your idea does not have to stay in a slide deck.
+
+With AutoCoder, you can describe the learners, the educator workflow, the data you want to see, and the feeling the product should create—then begin turning that vision into a working application.
+
+[Start building with AutoCoder.cc](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=stories&utm_campaign=GamifiedLearning "Build a gamified learning platform with AutoCoder.cc") and create an education product students want to explore and teachers can trust.
