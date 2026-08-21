@@ -426,6 +426,14 @@ img[src*="/blog/cross-border-ecommerce-checkout/0"]:not([data-rmiz-modal-img]) {
 img[src*="/blog/cross-border-ecommerce-checkout/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 670 !important; }
 img[src*="/blog/cross-border-ecommerce-checkout/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 642 !important; }
 
+/* Same fix for ai-product-video-generator — single 1280x720 hero image.
+   The "/0" matches 01 and excludes cover.png. */
+img[src*="/blog/ai-product-video-generator/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
