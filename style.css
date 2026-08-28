@@ -434,6 +434,14 @@ img[src*="/blog/ai-product-video-generator/0"]:not([data-rmiz-modal-img]) {
   width: 100% !important;
 }
 
+/* Same fix for one-autocoder-away-from-medvi — all four images are 1280x720.
+   The "/0" matches 01–04 and excludes cover.jpeg. */
+img[src*="/blog/one-autocoder-away-from-medvi/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
