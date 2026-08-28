@@ -457,6 +457,26 @@ img[src*="/blog/google-maps-russian-restaurant-case/06"]:not([data-rmiz-modal-im
 img[src*="/blog/google-maps-russian-restaurant-case/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 725 !important; }
 img[src*="/blog/google-maps-russian-restaurant-case/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 726 !important; }
 
+/* Same fix for ai-fullstack-engineer-2026 — 01 is the 1280x720 hero,
+   02–04 are 1280x661 screenshots. The "/0" matches 01–04 and excludes cover.png. */
+img[src*="/blog/ai-fullstack-engineer-2026/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 661 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/ai-fullstack-engineer-2026/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+
+/* Same fix for full-stack-vibe-coding-tools-2026 — image sizes vary, so each
+   file gets its exact ratio. The "/0" matches 01–04 and excludes cover.png. */
+img[src*="/blog/full-stack-vibe-coding-tools-2026/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/full-stack-vibe-coding-tools-2026/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/full-stack-vibe-coding-tools-2026/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 616 !important; }
+img[src*="/blog/full-stack-vibe-coding-tools-2026/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 899 !important; }
+img[src*="/blog/full-stack-vibe-coding-tools-2026/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 604 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
@@ -633,3 +653,13 @@ img[src*="/images/faq/multimodal-04"]:not([data-rmiz-modal-img]) { aspect-ratio:
 img[src*="/images/faq/multimodal-05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 539 !important; }
 img[src*="/images/faq/multimodal-06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 645 !important; }
 img[src*="/images/faq/multimodal-07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 620 !important; }
+
+/* Same fix for quiet-revolution-virtual-care — image sizes vary, so each
+   file gets its exact ratio. The "/0" matches 01–03 and excludes cover.png. */
+img[src*="/blog/quiet-revolution-virtual-care/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/quiet-revolution-virtual-care/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/quiet-revolution-virtual-care/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/quiet-revolution-virtual-care/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
