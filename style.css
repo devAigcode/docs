@@ -442,6 +442,21 @@ img[src*="/blog/one-autocoder-away-from-medvi/0"]:not([data-rmiz-modal-img]) {
   width: 100% !important;
 }
 
+/* Same fix for google-maps-russian-restaurant-case — image sizes vary, so each
+   file gets its exact ratio. The "/0" matches 01–08 and excludes cover.png. */
+img[src*="/blog/google-maps-russian-restaurant-case/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/google-maps-russian-restaurant-case/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 873 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 724 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 727 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 727 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 728 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 727 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 725 !important; }
+img[src*="/blog/google-maps-russian-restaurant-case/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 726 !important; }
+
 [data-page-href*="blog/latest"] .card-group h3,
 [data-page-href*="blog/updates"] .card-group h3,
 [data-page-href*="blog/tutorials"] .card-group h3,
