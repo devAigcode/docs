@@ -663,3 +663,11 @@ img[src*="/blog/quiet-revolution-virtual-care/0"]:not([data-rmiz-modal-img]) {
 img[src*="/blog/quiet-revolution-virtual-care/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
 img[src*="/blog/quiet-revolution-virtual-care/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
 img[src*="/blog/quiet-revolution-virtual-care/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
+
+/* Same fix for web-design-ai-coder — single 1620x971 hero image.
+   The "/0" matches 01 and excludes cover.png. */
+img[src*="/blog/web-design-ai-coder/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1620 / 971 !important;
+  height: auto !important;
+  width: 100% !important;
+}
