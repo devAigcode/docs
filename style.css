@@ -671,3 +671,19 @@ img[src*="/blog/web-design-ai-coder/0"]:not([data-rmiz-modal-img]) {
   height: auto !important;
   width: 100% !important;
 }
+
+/* Same fix for best-lovable-alternatives — image sizes vary, so each file
+   gets its exact ratio. The "/0" matches 01–09 and excludes cover.png. */
+img[src*="/blog/best-lovable-alternatives/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/best-lovable-alternatives/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 672 !important; }
+img[src*="/blog/best-lovable-alternatives/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 629 !important; }
+img[src*="/blog/best-lovable-alternatives/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 672 !important; }
+img[src*="/blog/best-lovable-alternatives/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 640 !important; }
+img[src*="/blog/best-lovable-alternatives/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 650 !important; }
+img[src*="/blog/best-lovable-alternatives/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 630 !important; }
+img[src*="/blog/best-lovable-alternatives/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 672 !important; }
+img[src*="/blog/best-lovable-alternatives/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 630 !important; }
+img[src*="/blog/best-lovable-alternatives/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 630 !important; }
