@@ -687,3 +687,61 @@ img[src*="/blog/best-lovable-alternatives/06"]:not([data-rmiz-modal-img]) { aspe
 img[src*="/blog/best-lovable-alternatives/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 672 !important; }
 img[src*="/blog/best-lovable-alternatives/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 630 !important; }
 img[src*="/blog/best-lovable-alternatives/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1200 / 630 !important; }
+
+/* Same fix for best-base44-alternatives-ru — image sizes vary, so each file
+   gets its exact ratio. The "/0" matches 01–09 and excludes cover.png. */
+img[src*="/blog/best-base44-alternatives-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/best-base44-alternatives-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/best-base44-alternatives-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 626 !important; }
+img[src*="/blog/best-base44-alternatives-ru/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives-ru/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 832 !important; }
+
+/* Same fix for best-base44-alternatives — image sizes vary, so each file
+   gets its exact ratio. The "/0" matches 01–09 and excludes cover.png. */
+img[src*="/blog/best-base44-alternatives/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/best-base44-alternatives/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/best-base44-alternatives/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 626 !important; }
+img[src*="/blog/best-base44-alternatives/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 661 !important; }
+img[src*="/blog/best-base44-alternatives/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 832 !important; }
+
+/* Same fix for base44-alternatives-friday-deadline-test — hero 01 is
+   1280x719, 02–05 are 1280x720. The "/0" matches 01–05 and excludes cover.png. */
+img[src*="/blog/base44-alternatives-friday-deadline-test/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/base44-alternatives-friday-deadline-test/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+
+/* Same fix for base44-alternatives-friday-deadline-test-ru (Russian edition,
+   same images) — hero 01 is 1280x719, 02–05 are 1280x720. */
+img[src*="/blog/base44-alternatives-friday-deadline-test-ru/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/base44-alternatives-friday-deadline-test-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+
+/* Same fix for vibe-coding-without-api-keys — all three images are 1280x720,
+   so one combined rule suffices. The "/0" matches 01–03 and excludes cover.png. */
+img[src*="/blog/vibe-coding-without-api-keys/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 720 !important;
+  height: auto !important;
+  width: 100% !important;
+}
