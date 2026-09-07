@@ -519,6 +519,8 @@ img[src*="/blog/full-stack-vibe-coding-tools-2026/04"]:not([data-rmiz-modal-img]
 .card:has(img[src*="/blog/progressive-build-tutorial/"])::after,
 .card:has(img[src*="/blog/better-prompts-better-products/"])::after,
 .card:has(img[src*="/blog/design-user-flows/"])::after,
+.card:has(img[src*="/blog/websites-from-images-files-voice/"])::after,
+.card:has(img[src*="/blog/ai-generation-to-deployment/"])::after,
 .card:has(img[src*="/blog/nail-salon-website-google-maps/"])::after {
   content: "";
   position: absolute;
