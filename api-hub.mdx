@@ -27,11 +27,11 @@ Google Authentication in API Hub can be configured in two ways:
 
 ## Payment
 
-Enable payment in your AutoCoder app using built-in payment integrations. AutoCoder supports subscriptions, one-time payments, and usage-based billing through Stripe or Clink.
+Enable payment in your AutoCoder app using built-in payment integrations. AutoCoder supports **subscriptions, one-time payments, usage-based billing, and cryptocurrency payments** through Stripe, Clink, or cryptocurrency payment integrations.
 
-AutoCoder handles the full payment lifecycle, including checkout Ul, webhook processing, entitlement management, and environment separation for testing and production.
+AutoCoder handles the payment lifecycle, including checkout UI, payment order creation, webhook processing, transaction verification, entitlement management, automated fulfillment, and environment separation for testing and production.
 
-AutoCoder supports two payment providers:
+AutoCoder supports three payment options:
 
 #### Stripe
 
@@ -55,13 +55,29 @@ A modern payment and billing platform built for AI-native and SaaS businesses.
 - Unified platform for payments, billing, subscription management, and customer portals
 - Ideal for SaaS founders and global digital businesses seeking lower operational complexity
 
-<Frame>
-  ![Image](/images/image-79.png)
-</Frame>
+#### Cryptocurrency Payments
 
-Payment function supports test and live environments.
+A complete cryptocurrency payment flow for generated websites and applications, from checkout and on-chain verification to automated fulfillment and transaction management.
 
-In the preview, all transactions are made using test cards and no real money is charged. After the project is published, users will generate real transactions in the live environment.
+- Supports **USDT, USDC, BTC, and ETH** payment options
+- Displays compatible networks, payment amounts, QR codes, receiving addresses, and expiry times
+- Tracks on-chain confirmation progress and payment status
+- Supports **Pending, Successful, Failed, and Expired** payment states
+- Automatically triggers business actions after successful payment
+- Supports use cases including content access, membership activation, booking confirmation, and order fulfillment
+- Provides transaction records, payment details, timestamps, and operational visibility from the admin side
+
+### Payment Lifecycle
+
+AutoCoder connects the payment process with your application's business logic:
+
+**Create Order → Customer Pays → Verify Payment → Confirm Transaction → Trigger Business Action**
+
+This allows successful payments to automatically unlock content, activate memberships, confirm bookings, fulfill orders, or trigger other application workflows.
+
+Payment functionality supports both **test and live environments**.
+
+In the preview environment, transactions use test payment methods and no real money is charged. After the project is published, transactions are processed in the live environment using the configured payment integration.
 
 ### **Testing**
 
