@@ -44,6 +44,12 @@
           "blog/stories",
           "blog/reports"
         ]
+      },
+      {
+        "tab": "Changelog",
+        "pages": [
+          "changelog"
+        ]
       }
     ]
   },
