@@ -803,6 +803,34 @@ img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/07"]:not([data-rmiz-modal-
 img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
 img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 851 !important; }
 
+/* Same fix for autocoder-vs-10web — twelve screenshots of varying size, so each
+   file gets its exact ratio. "/0" matches 01–09 and "/1" matches 10–12;
+   cover.png is excluded. */
+img[src*="/blog/autocoder-vs-10web/0"]:not([data-rmiz-modal-img]),
+img[src*="/blog/autocoder-vs-10web/1"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/autocoder-vs-10web/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 1066 !important; }
+img[src*="/blog/autocoder-vs-10web/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1440 / 1200 !important; }
+img[src*="/blog/autocoder-vs-10web/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1600 / 940 !important; }
+img[src*="/blog/autocoder-vs-10web/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1762 / 686 !important; }
+img[src*="/blog/autocoder-vs-10web/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 621 !important; }
+img[src*="/blog/autocoder-vs-10web/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 616 !important; }
+img[src*="/blog/autocoder-vs-10web/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/autocoder-vs-10web/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 620 !important; }
+img[src*="/blog/autocoder-vs-10web/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 651 !important; }
+img[src*="/blog/autocoder-vs-10web/10"]:not([data-rmiz-modal-img]) { aspect-ratio: 1910 / 1312 !important; }
+img[src*="/blog/autocoder-vs-10web/11"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 535 !important; }
+img[src*="/blog/autocoder-vs-10web/12"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1294 !important; }
+/* The cover (1672x941) is also the in-body hero, so reserve its height too;
+   card thumbnails keep the 488/274 card-group rule. */
+img[src*="/blog/autocoder-vs-10web/cover"]:not([data-rmiz-modal-img]):not(.card-group img) {
+  aspect-ratio: 1672 / 941 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
