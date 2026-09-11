@@ -758,3 +758,58 @@ img[src*="/blog/crypto-payments-update/01"]:not([data-rmiz-modal-img]) { aspect-
 img[src*="/blog/crypto-payments-update/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 1059 !important; }
 img[src*="/blog/crypto-payments-update/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 564 !important; }
 img[src*="/blog/crypto-payments-update/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 629 !important; }
+
+/* Same fix for prompt-to-payment-ai-saas — the single content image is 1280x728.
+   The "/0" matches 01 and excludes cover.png. */
+img[src*="/blog/prompt-to-payment-ai-saas/0"]:not([data-rmiz-modal-img]) {
+  aspect-ratio: 1280 / 728 !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+/* Same fix for lovable-base44-replit-vs-autocoder-es (Spanish edition) — image
+   sizes vary, so each file gets its exact ratio. "/0" matches 01–09 and "/1"
+   matches 10; cover.png is excluded. */
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/0"]:not([data-rmiz-modal-img]),
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/1"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 603 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 640 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 851 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-es/10"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+
+/* Same fix for lovable-base44-replit-vs-autocoder-ru (Russian edition) — same
+   nine screenshots as the Spanish edition, each with its exact ratio. "/0"
+   matches 01–09; cover.png is excluded. */
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 603 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 640 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 851 !important; }
+
+/* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
+   "Conclusion" headings sit so close to the end of the document that the page
+   cannot scroll them up to the header offset, so an "On this page" click lands
+   low and the sidebar highlights the wrong entry. Extra bottom padding gives
+   the last sections the same landing position as every other heading. Scoped
+   via :has() on the post's own images so no other page is affected. */
+.mdx-content:has(img[src*="/blog/lovable-base44-replit-vs-autocoder-es/"]),
+.mdx-content:has(img[src*="/blog/lovable-base44-replit-vs-autocoder-ru/"]) {
+  padding-bottom: 50vh !important;
+}
