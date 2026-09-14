@@ -1,0 +1,48 @@
+name: Blog quality
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "blog/**"
+      - "images/blog/**"
+      - "docs.json"
+      - "scripts/validate-blog.mjs"
+      - ".github/workflows/blog-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate changed blog content
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node scripts/validate-blog.mjs "$BASE_SHA" "$HEAD_SHA"
+
+      - name: Validate Mintlify build
+        run: npx --yes mint@latest validate
+
+      - name: Report broken links during rollout
+        continue-on-error: true
+        run: npx --yes mint@latest broken-links --check-anchors --check-redirects --check-snippets

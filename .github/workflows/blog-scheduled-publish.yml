@@ -1,0 +1,42 @@
+name: Publish scheduled blog posts
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Show due posts without merging them"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: blog-scheduled-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out publisher
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Merge approved posts whose publish time has arrived
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+        run: node scripts/publish-scheduled.mjs
