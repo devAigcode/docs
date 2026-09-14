@@ -26,14 +26,15 @@ jobs:
 
     steps:
       - name: Check out publisher
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           sparse-checkout: scripts
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
+          package-manager-cache: false
 
       - name: Merge approved posts whose publish time has arrived
         env:
