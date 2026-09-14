@@ -41,18 +41,21 @@ function changedFiles(base, head) {
   return git(["diff", "--name-status", "--diff-filter=AMR", base, head, "--", "blog", "images/blog", "docs.json"])
     .split("\n")
     .filter(Boolean)
-    .map((line) => line.split("\t").at(-1));
+    .map((line) => {
+      const parts = line.split("\t");
+      return { status: parts[0], file: parts.at(-1) };
+    });
 }
 
 const base = process.argv[2] || process.env.BASE_SHA;
 const head = process.argv[3] || process.env.HEAD_SHA || "HEAD";
 const changed = changedFiles(base, head);
-const articles = changed.filter((file) => {
+const articles = changed.filter(({ file }) => {
   if (!/^blog\/[a-z0-9][a-z0-9-]*\.mdx$/.test(file)) return false;
   return !INDEX_PAGES.has(path.basename(file, ".mdx"));
 });
 
-if (changed.includes("docs.json")) {
+if (changed.some(({ file }) => file === "docs.json")) {
   try {
     JSON.parse(fs.readFileSync("docs.json", "utf8"));
   } catch (error) {
@@ -65,7 +68,7 @@ const categories = Object.fromEntries(
   CATEGORY_PAGES.map((category) => [category, fs.readFileSync(`blog/${category}.mdx`, "utf8")]),
 );
 
-for (const file of articles) {
+for (const { file, status } of articles) {
   if (!fs.existsSync(file)) continue;
 
   const slug = path.basename(file, ".mdx");
@@ -78,12 +81,16 @@ for (const file of articles) {
     warnings.push(`${file}: description length is ${metadata.description.length}; 50-180 characters is recommended`);
   }
 
-  const href = `/blog/${slug}`;
-  if (!latest.includes(`href="${href}"`) && !latest.includes(`href='${href}'`)) {
-    errors.push(`${file}: missing card in blog/latest.mdx`);
-  }
-  if (!Object.values(categories).some((content) => content.includes(`href="${href}"`) || content.includes(`href='${href}'`))) {
-    errors.push(`${file}: missing card in a category page (${CATEGORY_PAGES.join(", ")})`);
+  // Existing posts naturally age out of Latest. Only newly added or renamed
+  // posts must be listed in Latest and a category as part of this change.
+  if (status.startsWith("A") || status.startsWith("R")) {
+    const href = `/blog/${slug}`;
+    if (!latest.includes(`href="${href}"`) && !latest.includes(`href='${href}'`)) {
+      errors.push(`${file}: missing card in blog/latest.mdx`);
+    }
+    if (!Object.values(categories).some((content) => content.includes(`href="${href}"`) || content.includes(`href='${href}'`))) {
+      errors.push(`${file}: missing card in a category page (${CATEGORY_PAGES.join(", ")})`);
+    }
   }
 
   const imageDirectory = path.join("images", "blog", slug);
