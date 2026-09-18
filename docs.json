@@ -26,6 +26,7 @@
         "tab": "Features",
         "pages": [
           "build",
+          "google-maps-generator",
           "sparkvibe",
           "workspace",
           "deploy-and-hosting",
