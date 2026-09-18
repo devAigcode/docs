@@ -831,6 +831,23 @@ img[src*="/blog/autocoder-vs-10web/cover"]:not([data-rmiz-modal-img]):not(.card-
   width: 100% !important;
 }
 
+/* Same fix for ai-portfolio-website-job-search — nine content images of
+   varying size, so each file gets its exact ratio. "/0" matches 01–09;
+   cover.png is excluded. */
+img[src*="/blog/ai-portfolio-website-job-search/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/ai-portfolio-website-job-search/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 1280 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 1280 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 721 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
+img[src*="/blog/ai-portfolio-website-job-search/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
