@@ -575,7 +575,7 @@ img[src*="/images/faq/google-maps-02"]:not([data-rmiz-modal-img]) { aspect-ratio
 img[src*="/images/faq/google-maps-03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1840 / 1128 !important; }
 img[src*="/images/faq/google-maps-04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1148 / 1386 !important; }
 
-/* Same fix for the Google Maps Website Generator feature page — six
+/* Same fix for the Google Maps Website Generator feature page — seven
    screenshots of slightly different heights, each with its exact ratio. */
 img[src*="/images/google-maps-generator/"]:not([data-rmiz-modal-img]) {
   height: auto !important;
@@ -585,7 +585,8 @@ img[src*="/images/google-maps-generator/01"]:not([data-rmiz-modal-img]) { aspect
 img[src*="/images/google-maps-generator/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 630 !important; }
 img[src*="/images/google-maps-generator/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 649 !important; }
 img[src*="/images/google-maps-generator/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 686 !important; }
-img[src*="/images/google-maps-generator/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 632 !important; }
+img[src*="/images/google-maps-generator/05."]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 632 !important; }
+img[src*="/images/google-maps-generator/05b"]:not([data-rmiz-modal-img]) { aspect-ratio: 914 / 1104 !important; }
 img[src*="/images/google-maps-generator/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 616 !important; }
 
 /* Opt-in: a table that wraps to the content column instead of scrolling
