@@ -1,0 +1,133 @@
+---
+title: "Agentic Coding Explained: How AI Agents Work in Software Development"
+description: "Learn how agentic coding works, where AI coding agents help, and why human review remains essential in software development."
+"og:image": "/images/blog/agentic-coding-explained-how-ai-agents-work-in-software-development/cover.png"
+---
+
+<Frame caption="Agentic coding is a supervised loop from requirement to plan, implementation, verification, and human review rather than one automatic action.">
+  ![Editorial illustration of a software task moving from a written requirement through planning, code changes, checks, and human review](/images/blog/agentic-coding-explained-how-ai-agents-work-in-software-development/cover.png)
+</Frame>
+
+**Agentic coding** is a way of using AI to carry out a software task through several connected steps rather than producing a single code suggestion. An agent may interpret a request, inspect an existing project, propose a plan, make changes across files, run available checks, and revise its output based on the results. The practical value is not that software work becomes automatic; it is that a well-scoped workflow can move from an intention to a reviewable implementation with less manual coordination.
+
+For founders, product professionals, and developers, the useful question is not whether an agent can write code. It is which parts of a development workflow can be delegated safely, what evidence is needed before accepting its work, and where a person must retain responsibility.
+
+## What agentic coding means in practice
+
+**Treat agentic coding as goal-directed assistance, not an independent engineering function.** The term describes an AI system that can work through a sequence of actions toward a defined software outcome. Instead of responding only to a prompt such as “write a login form,” it may be asked to implement a bounded feature, then use the project context and available tools to complete related work.
+
+A typical task might include several linked activities:
+
+- reading relevant files and conventions in a codebase;
+- translating a product request into smaller implementation tasks;
+- changing frontend, backend, or database-related code where appropriate;
+- checking for errors through available tests, builds, or linting; and
+- reporting the changes and unresolved assumptions for human review.
+
+That sequence is what distinguishes an agentic workflow from a one-off generated snippet. A code-completion tool generally predicts a small piece of code in the immediate editing context. An **AI programming agent** is oriented around a broader objective and may maintain a working plan across multiple files or actions.
+
+The distinction should not be overstated. Both approaches can be useful, and an agent still depends on the context, permissions, tools, and instructions it receives. It does not inherently understand a company’s product strategy, operational constraints, or security obligations.
+
+In practical terms, agentic AI development works best when the desired result is concrete. “Add an account settings page with editable profile fields and clear validation behavior” is more actionable than “make the product better.” The first request can be tied to screens, data fields, permissions, expected states, and acceptance criteria.
+
+## How an agentic coding workflow operates
+
+<Frame caption="A dependable agentic workflow creates explicit review points before and after implementation, rather than accepting a single broad generated change.">
+  ![Simple workflow diagram showing a bounded software request progressing through planning, implementation, checks, and reviewer feedback](/images/blog/agentic-coding-explained-how-ai-agents-work-in-software-development/inline-1.png)
+</Frame>
+
+**A reliable workflow turns a product request into an explicit plan, controlled changes, and verification.** The exact mechanics vary by tool and project, but the underlying loop is consistent: establish context, plan the work, implement changes, inspect results, and ask a person to decide whether the outcome is acceptable.
+
+### 1. Define the outcome and its boundaries
+
+Start with a short brief that states the user problem, the expected behavior, and what is out of scope. Include the relevant user roles, inputs, error states, and a definition of done. If a feature changes stored data or user access, state that plainly.
+
+For example, a request to add invite-based team access should clarify who can send invitations, whether an existing account can be invited, what happens after acceptance, and which pages should display membership. These details reduce avoidable guesses before code is written.
+
+### 2. Give the agent usable project context
+
+An agent needs access to the information required to work safely: repository structure, relevant files, coding conventions, development commands, and any restrictions on changing certain areas. Context can also include design notes, API contracts, schema descriptions, or issue requirements.
+
+More context is not automatically better. Unrelated material can distract from the task or conceal the important constraints. The goal is a focused packet of information that lets the agent identify affected components and recognize existing patterns.
+
+### 3. Ask for a plan before broad implementation
+
+Requesting a written plan creates a useful review point. The plan should identify likely files, dependencies, data changes, assumptions, and verification steps. A developer or product owner can then correct an incorrect interpretation before it spreads through the codebase.
+
+This is especially important when the task crosses layers. A user-facing change may require a form, validation logic, an API endpoint, a database update, authorization checks, and tests. Planning makes those connections visible instead of leaving them implicit in a generated patch.
+
+### 4. Implement in bounded increments
+
+Next, the agent can make proposed changes within the agreed scope. Small, coherent increments are easier to inspect than a large batch of unrelated modifications. A team might ask it to complete the data model and API first, then review that work before moving on to the interface.
+
+An **AI app generation** workflow can extend this pattern to a new project. A tool such as AutoCoder can turn natural-language product requirements into editable, deployable full-stack applications, including frontend, backend, and database components. That can provide a starting implementation for an MVP or functional prototype.
+
+### 5. Verify behavior, then revise
+
+The agent may run checks made available to it, such as a build, linting, or a test suite. Those checks are evidence, not proof that the feature is correct. A passing build does not confirm that the interface is understandable, that permissions match policy, or that a migration suits real operational conditions.
+
+Reviewers should inspect the diff, test the intended user path, and test meaningful failure conditions. If issues appear, feed the specific result back into the workflow: identify the failing case, state the expected behavior, and request a narrow correction. This feedback loop is central to agentic coding.
+
+## Where agentic coding is useful
+
+**Use AI coding agents for work with a clear target, observable result, and manageable impact.** They can reduce the effort of getting from a well-described requirement to an initial implementation, particularly when the work follows established patterns in a project.
+
+Scoped feature work is one suitable case. Examples include a settings view, an internal workflow screen, a form with defined validation rules, or an integration that follows an existing adapter pattern. The team still reviews the implementation, but the agent can help connect routine pieces that would otherwise require repetitive editing.
+
+Prototypes and MVPs are another practical use. Founders and product professionals often need a working artifact to evaluate a workflow, share with early users, or clarify requirements with developers. Full-stack generation can make that artifact more concrete when it includes the interface, application logic, and data model.
+
+Agents can also assist with repetitive implementation tasks. Once a team has chosen an approach, generating similar screens, adding consistent validation, documenting a component, or updating several related call sites may be reasonable candidates. The work is still software engineering, but the human contribution shifts toward specifying the pattern and checking that it was applied correctly.
+
+There are less suitable cases. Do not treat **autonomous software development** as a reason to delegate ambiguous product choices, high-impact architecture changes, access-control design, or release accountability to a model. These tasks involve trade-offs that depend on organizational knowledge and require an accountable decision-maker.
+
+## What still requires human oversight
+
+<Frame caption="AI coding agents fit clearly scoped implementation work, while architecture, security, product judgment, and release approval require accountable human oversight.">
+  ![Editorial comparison diagram separating suitable bounded tasks from decisions requiring human accountability](/images/blog/agentic-coding-explained-how-ai-agents-work-in-software-development/inline-2.png)
+</Frame>
+
+**Keep people accountable for requirements, architecture, security, and production decisions.** Agent output can look complete while containing assumptions that are wrong for the product or incomplete for the operating environment. Review is therefore part of the development process, not a final cosmetic pass.
+
+First, a person must verify that the feature solves the intended problem. Generated code may satisfy a literal instruction while missing the real user journey. Product owners should confirm language, edge cases, roles, and success criteria; developers should confirm that the implementation matches those decisions.
+
+Second, teams need architectural review. An agent can follow local conventions, but it may not know why those conventions exist or whether a proposed dependency creates an unacceptable maintenance cost. Reviewers should examine boundaries between components, data ownership, error handling, and how a change affects future work.
+
+Third, security and privacy decisions require deliberate scrutiny. Authentication, authorization, data handling, secrets, external integrations, and user-generated input deserve direct review. The correct process depends on the application and its obligations, but the basic principle is stable: generated code should not bypass a team’s normal security controls simply because it was produced quickly.
+
+Finally, release responsibility remains human. Before deployment, validate the application in a suitable environment, review configuration, and confirm that rollback or correction procedures are understood. Tests and automated checks help establish confidence, but they do not replace informed approval.
+
+A useful misconception is that supervision defeats the purpose of AI assistance. In reality, structured supervision is what makes the assistance usable. The aim is not to eliminate engineering judgment; it is to apply that judgment to the highest-value decisions while letting the system handle bounded execution work.
+
+## How to start responsibly with agentic AI development
+
+**Begin with a contained task and a review process you can repeat.** A small first project exposes how an agent interprets instructions, what context it needs, and where reviewers need stronger checks. It is a better learning exercise than attempting a broad rewrite or a business-critical release.
+
+Choose a workflow with limited permissions and a clear success condition. For instance, create a non-production feature branch, ask the agent to implement a single screen or endpoint, and specify the checks that should pass. Keep the work visible through version control or another reviewable record of changes.
+
+Write acceptance criteria before implementation. State what users can do, what they cannot do, how invalid input behaves, and how the change will be tested. These criteria give product and engineering reviewers a shared basis for evaluating the result rather than relying on a general impression that the feature appears finished.
+
+Preserve editability and ownership of the output. If a generated application will continue beyond a prototype, the team should be able to inspect and modify its source code, understand its structure, and maintain its deployment process.
+
+Then improve the workflow from observed gaps. If an agent repeatedly misses authorization rules, add those rules to the task template and require a dedicated review item. If it changes too many files at once, narrow the allowed scope.
+
+## FAQ
+
+### What is agentic coding?
+
+Agentic coding is the use of an AI system to work toward a software goal through multiple connected actions, such as planning, editing files, running available checks, and revising output. It is different from requesting a single isolated code snippet because it addresses a broader task and feedback loop.
+
+### Is agentic coding the same as AI code completion?
+
+No. Code completion usually helps write code at the point of editing. Agentic coding is designed to handle a multi-step objective across a workflow, potentially involving several files and verification steps. Both still require human judgment and review.
+
+### Can agentic coding create a complete application?
+
+It can help generate a working starting point for a full-stack application when requirements are sufficiently clear. A generated application still needs validation of its behavior, architecture, security, deployment configuration, and fit for the intended users before it should be treated as production-ready.
+
+### What are the risks of agentic coding?
+
+Key risks include incorrect assumptions, changes outside the intended scope, weak handling of edge cases, security mistakes, and overreliance on passing automated checks. Clear requirements, limited permissions, code review, testing, and accountable release decisions reduce those risks.
+
+## Conclusion
+
+**Agentic coding is most useful when it is treated as a supervised development workflow.** AI agents can help turn defined requirements into plans, code changes, and initial verification, making them useful for prototypes, scoped features, and repeatable implementation work. They do not replace the people who decide what to build, assess trade-offs, protect users and data, and approve a release. Start with a bounded task, make acceptance criteria explicit, preserve editable code, and use review findings to improve the process.
