@@ -862,6 +862,17 @@ img[src*="/blog/ai-portfolio-website-job-search/07"]:not([data-rmiz-modal-img]) 
 img[src*="/blog/ai-portfolio-website-job-search/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
 img[src*="/blog/ai-portfolio-website-job-search/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
 
+/* Same fix for how-to-build-a-website-with-chatgpt-a-practical-guide-ru (Russian
+   edition) — three content images of differing size, so each file gets its
+   exact ratio. "/0" matches 01–03; cover.png is excluded. */
+img[src*="/blog/how-to-build-a-website-with-chatgpt-a-practical-guide-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-build-a-website-with-chatgpt-a-practical-guide-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+img[src*="/blog/how-to-build-a-website-with-chatgpt-a-practical-guide-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 718 !important; }
+img[src*="/blog/how-to-build-a-website-with-chatgpt-a-practical-guide-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+
 /* Same fix for how-to-choose-an-ai-coding-assistant-ru (Russian edition) —
    three illustrations, each with its exact ratio. "/0" matches 01–03;
    cover.png is excluded. */
