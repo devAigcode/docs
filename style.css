@@ -906,6 +906,17 @@ img[src*="/blog/how-to-choose-a-no-code-ai-app-builder-ru/01"]:not([data-rmiz-mo
 img[src*="/blog/how-to-choose-a-no-code-ai-app-builder-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
 img[src*="/blog/how-to-choose-a-no-code-ai-app-builder-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1100 / 618 !important; }
 
+/* Same fix for how-to-build-an-app-without-coding-ru (Russian edition) —
+   01 is the 1280x719 hero, 02 and 03 are 1536x864. "/0" matches 01–03;
+   cover.png is excluded (card thumbnail only, not in the body). */
+img[src*="/blog/how-to-build-an-app-without-coding-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-build-an-app-without-coding-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+img[src*="/blog/how-to-build-an-app-without-coding-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-build-an-app-without-coding-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
