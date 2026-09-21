@@ -933,6 +933,17 @@ img[src*="/blog/how-to-build-an-app-with-a-no-code-ai-app-builder-ru/cover"]:not
   width: 100% !important;
 }
 
+/* Same fix for how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru
+   (Russian edition) — hero banner is 1280x719, the two diagrams are 1536x864.
+   "/0" matches 01–03; cover.png is excluded. */
+img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
