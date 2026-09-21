@@ -862,6 +862,17 @@ img[src*="/blog/ai-portfolio-website-job-search/07"]:not([data-rmiz-modal-img]) 
 img[src*="/blog/ai-portfolio-website-job-search/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 853 !important; }
 img[src*="/blog/ai-portfolio-website-job-search/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
 
+/* Same fix for how-to-choose-an-ai-coding-assistant-ru (Russian edition) —
+   three illustrations, each with its exact ratio. "/0" matches 01–03;
+   cover.png is excluded. */
+img[src*="/blog/how-to-choose-an-ai-coding-assistant-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-choose-an-ai-coding-assistant-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 718 !important; }
+img[src*="/blog/how-to-choose-an-ai-coding-assistant-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-choose-an-ai-coding-assistant-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 718 !important; }
+
 /* Same fix for how-to-use-ai-for-web-design-a-practical-guide-ru (Russian
    edition) — 01 and 02 are 1280x719, 03 is 1536x864. "/0" matches 01–03;
    cover.png is excluded (card thumbnail only, not in the body). */
