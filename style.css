@@ -944,6 +944,18 @@ img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/0
 img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
 img[src*="/blog/how-to-evaluate-the-best-ai-coding-agents-for-your-workflow-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
 
+/* Same fix for how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru
+   (Russian edition) — inline cover is 1672x941, the three illustrations are
+   1536x864. "/0" matches 01–04; cover.png is excluded. */
+img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1672 / 941 !important; }
+img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
