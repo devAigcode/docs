@@ -1,0 +1,116 @@
+---
+title: "AI Agent Evaluation for an MVP: A Guide"
+description: "Set up AI agent evaluation for an MVP with real workflows, failure cases, review criteria, and repeatable release checks."
+"og:title": "How to Run AI Agent Evaluation for an MVP"
+"twitter:title": "How to Run AI Agent Evaluation for an MVP"
+"og:image": "/images/blog/how-to-run-ai-agent-evaluation-for-an-mvp/cover.png"
+---
+
+<Frame caption="Agent evaluation examines the full workflow—request, decisions, tool use, review, and release—not only the final answer.">
+  ![Editorial illustration showing an AI agent evaluation workflow from user request through tool decision, reviewer check, and release decision](/images/blog/how-to-run-ai-agent-evaluation-for-an-mvp/cover.png)
+</Frame>
+
+**AI agent evaluation** is the practical process of checking whether an agent completes intended work reliably, stays within its permissions, and produces outputs a user can use. For an MVP, the objective is not to prove that the agent can handle every possible request. It is to establish where it works, where it needs human review, and which changes improve or weaken that boundary.
+
+A useful process combines offline test cases with observation after release. Offline checks make changes comparable; live review reveals requests and contexts that a small initial dataset missed. The steps below give product teams and developers a lightweight way to define, test, and maintain that process.
+
+## What AI agent evaluation should measure
+
+Start by measuring the work the agent is actually expected to do, rather than judging its responses only by whether they sound plausible. An agent may produce well-written text while selecting the wrong data, calling an unsuitable tool, or taking an action that should have required confirmation.
+
+For an MVP, separate evaluation into five related dimensions:
+
+- **Task completion:** Did the agent reach the requested outcome, or correctly explain why it could not?
+- **Output quality:** Is the response accurate enough for the task, complete, readable, and in the required format?
+- **Tool and data use:** Did it choose an appropriate tool, pass suitable inputs, interpret the result correctly, and avoid unnecessary actions?
+- **Boundary handling:** Did it refuse, escalate, or request clarification when the request exceeded its role or available information?
+- **User experience:** Did the interaction make the next step clear, including uncertainty, waiting states, or a handoff to a person?
+
+These dimensions prevent a common mistake in **AI agent testing**: treating a fluent final answer as a successful run. A workflow agent should be assessed across its sequence of decisions. For example, an agent that prepares a support reply may need to identify the account, retrieve relevant records, summarize the issue, and draft a response without making changes to the account. Each stage can be evaluated, even if the visible response is only the draft.
+
+Not every dimension needs the same level of precision at launch. A narrow agent may have a simple pass or fail check for task completion and a reviewer rubric for tone or completeness. A higher-consequence workflow may require explicit checks at each action point. The important part is to write down what is being assessed before reviewing results.
+
+## Define the intended workflow and its guardrails
+
+<Frame caption="A testable agent workflow specifies not only successful completion but also when the agent should clarify or escalate.">
+  ![Workflow diagram separating permitted agent actions from clarification and human escalation paths](/images/blog/how-to-run-ai-agent-evaluation-for-an-mvp/inline-1.png)
+</Frame>
+
+Begin with one bounded workflow and make its acceptable outcomes explicit. A broad statement such as “help users manage requests” is hard to test. A clearer scope is “collect the required details, retrieve allowed information, draft a response, and escalate requests that need account changes.”
+
+### Prerequisites
+
+Before running evaluations, prepare the following:
+
+- A short description of the agent’s user, job, available inputs, and permitted actions.
+- Access to a stable version of the prompt, application logic, tool configuration, and relevant data setup.
+- A place to record cases, expected outcomes, actual outcomes, reviewer notes, and the version tested.
+- At least one person who understands the workflow well enough to decide whether an output is usable.
+- A method for preventing test runs from causing unwanted external actions, where the agent can use tools.
+
+Then define the workflow in practical terms.
+
+1. **State the user goal.** Describe the job in a way a reviewer can recognize. For instance, “help a user find the status of an existing request” is a testable goal; “be helpful” is not.
+2. **List the inputs the agent may rely on.** Include the user message, account context, approved knowledge sources, and tool results. Note inputs that may be missing, stale, contradictory, or unavailable.
+3. **Map the permitted actions.** Identify which tools the agent may call, what each call is for, and what it must never do without confirmation or human approval. This turns vague safety expectations into observable behavior.
+4. **Define completion and escalation.** Specify what a successful result contains, when the agent should ask a clarifying question, and when it should stop and route the case to a person.
+5. **Set acceptable, unacceptable, and uncertain outcomes.** An acceptable result meets the core task requirements. An unacceptable result gives incorrect information, takes an improper action, or conceals uncertainty. An uncertain result may need a reviewer because the evidence is incomplete or the request has multiple reasonable interpretations.
+
+This workflow definition becomes the basis of an **agent evaluation framework**. It should be brief enough that the team can update it when the product changes, but concrete enough that two reviewers can explain why they reached different conclusions.
+
+A practical rubric might ask: Did the agent identify the request correctly? Did it use only allowed information? Did it take or propose the right next action? Did it explain limits honestly? Reviewers do not need to agree on every wording choice, but they should agree on what makes a result usable and safe for the MVP’s scope.
+
+## Build an evaluation set from real workflow variations
+
+<Frame caption="A useful evaluation set covers ordinary tasks, ambiguity, and deliberate failure cases rather than only easy examples.">
+  ![Evaluation case cards organized into normal requests, ambiguous requests, and known failure cases](/images/blog/how-to-run-ai-agent-evaluation-for-an-mvp/inline-2.png)
+</Frame>
+
+Create a small, labeled set that represents the decisions the agent must make. The set is more valuable when it reflects actual workflow variation than when it contains many near-duplicates of an easy request.
+
+1. **Collect representative requests.** Draw from product requirements, support scenarios, internal process documentation, prototypes, or carefully anonymized examples that the team is allowed to use. Preserve the context needed to judge the result, not just the user’s final sentence. 2. **Cover ordinary paths first.** Include requests where the needed information is present and the expected action is straightforward. These cases establish whether the basic workflow works at all. 3. **Add edge cases and ambiguity.** Test incomplete requests, conflicting instructions, unusual wording, unavailable information, and requests that could refer to more than one record or action. The desired outcome may be a clarification rather than a completed task. 4. **Add known failure modes.** Include cases that tempt the agent to invent details, use the wrong tool, continue after a failed tool call, reveal information outside the user’s scope, or perform an unapproved action. These are not peripheral tests; they define the operating boundary. 5. **Label the expected outcome.** For deterministic tasks, record a required answer, action, or structured field.
+
+A strong **LLM evaluation** set does not require a single perfect reference response for every case. In many agent workflows, the important question is whether the agent followed a sound process and reached an acceptable outcome. A reviewer rubric can capture that better than exact text matching.
+
+Keep test cases separate from examples that appear in agent instructions. If the same cases are embedded as demonstrations, passing them no longer provides a meaningful independent check. Also keep the test environment identifiable. Tool results, permissions, and source data can materially change the answer, so record the conditions used for a run.
+
+## Run evaluations, review failures, and make controlled changes
+
+Run the same cases against a defined version of the agent, then turn the results into specific fixes rather than broad impressions. This is where evaluation becomes a development loop rather than a one-time launch exercise.
+
+1. **Freeze the version under review.** Record the instructions, model configuration where relevant, application code, tools, and test environment. If several elements change at once, it becomes difficult to explain a different result. 2. **Execute the complete workflow.** Capture the user request, intermediate tool calls when available, tool outputs, final response, and whether an action was attempted. For action-taking agents, verify both the decision and the resulting state. 3. **Score against the predefined labels or rubric.** Use pass, fail, and needs-review categories where appropriate. Add short notes tied to the criteria, such as “asked for missing identifier” or “claimed a status without a supporting record.”
+4. **Group failures by likely cause.** Some failures arise from unclear instructions; others come from application logic, tool schemas, permissions, retrieval quality, source data, or a missing escalation path. Do not assume every problem is a prompt problem. 5. **Change one meaningful variable at a time.** Adjust the instruction, workflow rule, data handling, or integration behavior, then rerun the affected cases. A controlled change makes it easier to see whether the intervention addressed the failure. 6.
+
+This review loop is a practical form of **AI quality assurance**. It is not limited to scoring a model response: it checks the assembled product behavior. Where human review is needed, use it deliberately. Reviewers are most valuable for nuanced quality questions, disputed cases, and updates to the rubric; they should not be asked to compensate for an undefined workflow.
+
+## Connect evaluation to the MVP development cycle
+
+Treat evaluation assets as product requirements that evolve with the agent. A test case should be added when the team introduces a new tool, new user segment, new action, or newly observed failure pattern. That keeps the evaluation set aligned with what the product can now do.
+
+Before an MVP release, run the critical cases, verify escalation behavior, and document known limitations in the interface or internal operating guidance. After release, review a sample of real interactions where permitted, especially abandoned conversations, escalations, tool errors, and reports from users or operators. Convert recurring patterns into new cases only after removing or protecting sensitive details as required by the product’s data practices.
+
+This approach also helps teams decide what to build next. If the agent often lacks a required input, an interface change may be more useful than further instruction changes. If tool failures cause otherwise sound workflows to break, improve error handling and fallback behavior. If reviewers repeatedly disagree, clarify the intended policy before trying to automate its judgment.
+
+Teams building an MVP with [AutoCoder's AI app builder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=AIAgentEvaluation) can translate workflow requirements into an application structure, then retain editable code as the evaluation process grows. The same principle applies regardless of the build approach: the interface, backend rules, data flow, and human handoffs should be evaluated as one system, not as disconnected components.
+
+## FAQ
+
+### What is AI agent evaluation?
+
+AI agent evaluation is the structured assessment of whether an agent completes defined tasks, uses tools and information appropriately, respects limits, and handles uncertainty or escalation correctly. It typically combines repeatable test cases with review of real-world behavior after release.
+
+### How do you evaluate an AI agent?
+
+Define a specific workflow, create representative and failure-oriented test cases, state expected outcomes or review criteria, run the cases against a known version, and investigate failures by cause. Rerun relevant cases after each controlled change and retain critical cases as regression checks.
+
+### What should an AI agent evaluation dataset contain?
+
+It should contain ordinary user requests, contextual inputs, expected actions or outcomes, edge cases, ambiguous requests, known failure modes, and labels or rubrics. It should also identify which cases are critical for release and which conditions, tools, or data were used during testing.
+
+### How often should agent evaluations be run?
+
+Run them before a release and after changes to instructions, tools, application logic, data sources, permissions, or core workflows. After launch, review relevant live interactions on an ongoing basis and add recurring failures or newly supported use cases to the evaluation set.
+
+## Conclusion
+
+AI agent evaluation for an MVP works best when it is tied to a narrow user workflow, explicit action boundaries, and cases that include both routine work and predictable failures. Define what success and escalation mean, run repeatable checks against known versions, and use failure reviews to identify whether the issue is in the instruction, product logic, data, or integration. That discipline gives the team a clearer basis for release decisions and for extending the agent without losing sight of its intended role.
