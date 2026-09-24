@@ -1,0 +1,210 @@
+---
+title: "What Is Jev? How TypeSafe AI's System One Model Fits AI-Built Apps"
+description: "Learn what Jev is, how TypeSafe AI's System One model returns typed decisions, and how to use it in an AutoCoder-built application."
+date: "2026-09-24"
+"og:title": "What Is Jev? How TypeSafe AI's System One Model Fits AI-Built Apps"
+"twitter:title": "What Is Jev? How TypeSafe AI's System One Model Fits AI-Built Apps"
+"og:image": "/images/blog/what-is-jev-system-one-model/cover.png"
+---
+
+*Published September 24, 2026*
+
+Jev is TypeSafe AI's first **System One model**: an AI model designed to return typed decisions rather than generate prose. An application supplies a shared state, asks focused questions, and receives choices, scores, or yes/no probabilities that its code can inspect. That makes Jev relevant to builders who need AI judgment inside a workflow, not another chatbot inside a page.
+
+<Frame caption="Jev evaluates shared application state and returns bounded, typed decisions for a reviewable workflow.">
+  ![Editorial illustration of the Jev System One model turning application state into typed decisions](/images/blog/what-is-jev-system-one-model/cover.png)
+</Frame>
+
+The useful distinction is simple. Jev can suggest where a lead belongs or how urgent a request appears. Your application still decides what to do with that answer, when to request human review, and which actions the model is never allowed to trigger.
+
+## What does “System One” mean for app builders?
+
+TypeSafe borrows the name from the distinction between fast, intuitive System 1 thinking and slower, deliberate System 2 reasoning. In software terms, the important part is the interface: Jev handles narrow judgments with predefined output shapes.
+
+According to [TypeSafe's documentation](https://docs.typesafe.ai/introduction), Jev evaluates typed questions against a supplied state and returns structured values plus probability information. It does not write an explanation that your application must parse back into an enum.
+
+That makes it a possible fit for tasks such as:
+
+- routing a support request to one of several queues;
+- scoring a lead against a clearly defined qualification rubric;
+- checking whether submitted content appears to satisfy a specific condition;
+- selecting which document or record needs human attention first.
+
+These are decisions with boundaries. “Write a sales reply” is not. A generative model is still the appropriate tool when the output needs to be an email, a page, source code, or a long-form explanation.
+
+## From a website form to a bounded AI decision
+
+Imagine a service business uses an AutoCoder-built website to collect project inquiries. One visitor asks for a five-page marketing site, another reports a billing problem, and a third submits a vague partnership proposal. The business wants each submission to reach the right queue without forcing an operator to read every form first.
+
+The form submission is the **state**. The focused question is: “Which queue should review this request first?” The answer space might contain `sales`, `support`, `partnerships`, and `manual_review`.
+
+This is an editorial example, not a built-in AutoCoder or Jev workflow. The point is to separate three layers:
+
+1. AutoCoder can provide the form, backend workflow, database, and admin interface.
+2. Jev can evaluate the submission against a bounded question.
+3. Application code can route the record according to an explicit policy.
+
+Keeping those layers separate makes the workflow easier to test. It also prevents a classification answer from quietly gaining permission to email a customer, change an account, or approve a payment.
+
+## How to define state and possible answers
+
+A useful Jev request starts with enough context to support the decision, but not a pile of unrelated records. TypeSafe's API accepts a string, object, or array as shared state. Every question in the request is evaluated independently against that same state.
+
+For the inquiry-routing example, the state could include:
+
+```json
+{
+  "submittedAt": "2026-09-23T09:30:00Z",
+  "subject": "Need help with an invoice",
+  "message": "Our latest invoice includes two seats we did not add.",
+  "customerStatus": "existing"
+}
+```
+
+The timestamp matters because copied or delayed submissions can otherwise look current. The original message should remain intact because “this sounds like billing” is an interpretation, while the customer's wording is evidence.
+
+Answer definitions need the same care. `sales` and `support` are useful only if their criteria do not overlap. A practical set might define sales as new project or purchase inquiries, support as problems with an existing account or service, and manual review as requests that lack enough information.
+
+The review option is not wasted output. It preserves uncertainty instead of hiding it behind a forced answer.
+
+## What Choice, Score, and Noul return
+
+TypeSafe exposes three decision primitives. Vercel AI SDK presents the yes/no form as a boolean probability, while TypeSafe's native API calls it **Noul**.
+
+| Type | What it returns | Example question |
+|---|---|---|
+| Choice | One allowed option, probabilities, and confidence | Which queue should review this inquiry? |
+| Score | A rubric-based score, level probabilities, and confidence | How urgent is this request? |
+| Noul / Boolean | Probability that a statement is true | Does the message describe an existing-customer issue? |
+
+The questions should not substitute for one another. A request routed to support is not automatically urgent. A high urgency score does not prove the customer is correct. Each output answers one defined question, and the application combines those answers in code.
+
+TypeSafe says multiple questions can be evaluated in parallel and independently against one shared state. That is useful for latency, but it also means one question's answer does not become another question's evidence unless your application makes a second request with that result included.
+
+## How a Jev integration can look in an AI-built app
+
+Applications using Vercel AI SDK can call Jev through the experimental `evaluate` API. The following example keeps the decision on the server and gives the application an explicit fallback category:
+
+```ts
+import { experimental_evaluate as evaluate } from 'ai';
+
+const result = await evaluate({
+  model: 'typesafe-ai/jev',
+  state: {
+    subject: submission.subject,
+    message: submission.message,
+    customerStatus: submission.customerStatus,
+  },
+  questions: {
+    queue: {
+      type: 'choice',
+      instructions: 'Choose the first team that should review this request.',
+      criteria: {
+        sales: 'New projects, purchases, or pricing questions',
+        support: 'Problems with an existing account or service',
+        partnerships: 'Requests to collaborate or distribute the product',
+        manual_review: 'Insufficient or conflicting information',
+      },
+    },
+  },
+});
+
+const decision = result.answers.queue;
+
+if (decision.confidence < 0.75 || decision.choice === 'manual_review') {
+  await sendToHumanReview(submission.id);
+} else {
+  await assignQueue(submission.id, decision.choice);
+}
+```
+
+The model identifier and result shape above follow the current [Vercel AI SDK integration](https://vercel.com/i/jev-integrations). The evaluation API is marked experimental, so production teams should check the contract when upgrading dependencies.
+
+The threshold is application policy, not a universal Jev setting. A low-risk content queue may tolerate more automated routing than a financial, legal, or account-changing workflow. Teams should choose thresholds from evaluation results on their own historical cases, not from a copied example.
+
+## What an inspectable decision record should contain
+
+A typed answer becomes more useful when the evidence and the application outcome stay attached to it. Consider this hypothetical record:
+
+| Record field | Illustrative value | What a reviewer can inspect |
+|---|---|---|
+| State | Invoice mentions two unrequested seats | Original form submission and timestamp |
+| Question | Which queue should review first? | Whether the question asks for routing, not fault |
+| Allowed answers | Sales, support, partnerships, manual review | Whether categories are distinct and complete |
+| Proposed answer | Support | Whether the selection matches the definition |
+| Probability distribution | Invented for illustration | Whether the alternatives were close |
+| Application action | Place in support review queue | Whether policy permitted that action |
+
+The values are illustrative, not an observed Jev response. The important design choice is traceability. If a later review finds that the submission referred to a pre-sales invoice estimate, the team can identify the evidence and category definition that led to the wrong route.
+
+Without that context, a copied label such as `support` can start to look like a confirmed fact. It is only a model-assisted decision made from a particular state at a particular time.
+
+## How Jev differs from structured LLM output
+
+A general-purpose language model can also return JSON that matches a schema. That can be enough for extraction, classification, and many agent workflows. Jev's difference is that structured decisions are the model's primary interface rather than a formatting constraint placed around text generation.
+
+The matching shape does not prove matching behavior. Two models may both return `{ "queue": "support" }` while distributing uncertainty differently or disagreeing on ambiguous requests. If a team changes models but preserves the same TypeScript type, it still needs to rerun its evaluation set.
+
+This is also why typed output should not be confused with deterministic business logic. Code is still the right tool for exact permissions, calculations, limits, and hard rules. Jev is useful where the input is fuzzy but the decision space can be bounded.
+
+## Does type safety make the decision correct?
+
+No. Type safety guarantees that an answer fits the expected structure; it does not guarantee that the model interpreted the evidence correctly.
+
+If the allowed queues are sales, support, partnerships, and manual review, Jev should return one of those values rather than an unexpected sentence. It can still choose sales when the message belongs with support. The schema protects the application from malformed output, not from semantic error.
+
+Before automating a workflow, test the questions and category definitions against resolved examples. Include straightforward cases, ambiguous submissions, missing data, adversarial wording, and cases where human reviewers disagree. Then decide which outputs can be automated and which should remain recommendations.
+
+For sensitive actions, keep approval and authorization outside the model. A routing decision may place a request in a queue. It should not automatically issue a refund, delete a record, or change a user's permissions.
+
+## Where Jev fits in an AutoCoder workflow
+
+AutoCoder can turn a natural-language brief into a responsive website or full-stack web app, then let the builder refine pages, forms, workflows, and deployment from one workspace. That makes it useful for building the product around a decision model: the intake experience, database record, review queue, status history, and operator dashboard.
+
+Jev can sit behind one server-side endpoint in that product. A practical build sequence is:
+
+1. Build the form, data model, queue views, and manual assignment flow in AutoCoder.
+2. Add a server-side Jev call that proposes a route without taking privileged action.
+3. Store the state version, question definitions, answer, confidence, and final human outcome.
+4. Compare proposed routes with resolved cases before enabling automatic assignment.
+5. Keep a manual fallback for low-confidence, failed, or out-of-scope evaluations.
+
+This is an integration pattern, not a claim that AutoCoder includes a native Jev connector. The value of an AI app builder here is speed: it can help create the surrounding product and operational interface while the team keeps decision policy visible in code.
+
+You can [start an AutoCoder project](https://www.autocoder.cc/) with a prompt such as: “Build a lead-intake app with four review queues, an audit log, confidence fields, and a manual override.” Then add the model call only after the non-AI workflow works end to end.
+
+## Jev System One model boundaries to keep in mind
+
+Jev does not replace a generative model. It does not write customer replies, landing-page copy, or source code. Use a text-generation model for those outputs and supply approved decisions as separate context when needed.
+
+It also does not own application permissions. API keys belong on the server, routing thresholds belong in code, and account-changing actions need normal authentication and authorization checks. The [TypeSafe API](https://api.typesafe.ai/docs) returns typed answers and token usage; the rest of the workflow remains your responsibility.
+
+Finally, a narrow question is usually stronger than an overloaded one. “Which queue should review this?” is inspectable. “Understand this lead, decide its value, contact the customer, and move the deal forward” mixes classification, scoring, generation, and execution into one instruction.
+
+## Frequently asked questions
+
+### Is Jev a large language model?
+
+TypeSafe describes Jev as a System One model built for structured decisions rather than text generation. It consumes text or structured state, but its output is a typed choice, score, or probability instead of prose.
+
+### Can Jev generate website copy or code?
+
+No. Use a generative model or an AI app builder for text and code. Jev is intended for focused judgments that software can consume directly.
+
+### Can Jev be used with Vercel AI SDK?
+
+Yes. Vercel documents Jev support through AI SDK's experimental `evaluate` API and through AI Gateway. Because the API is experimental, verify the current interface before shipping or upgrading.
+
+### Does Jev's confidence mean the answer is correct?
+
+No. Confidence helps an application handle uncertainty, but correctness must be measured against representative, reviewed examples from the intended workflow.
+
+### Can an AutoCoder app use Jev?
+
+An AutoCoder-built full-stack app can implement the pattern by calling Jev from a server-side endpoint and using the result in its own routing logic. Treat this as a custom integration and keep credentials, thresholds, logging, and permissions under application control.
+
+## Conclusion
+
+The **Jev System One model** gives developers a different AI primitive: bounded questions in, typed probabilistic decisions out. Its value is clearest when the surrounding application defines the evidence, answer space, confidence policy, review path, and permitted action.
+
+For AutoCoder builders, the practical opportunity is not to hand an entire product over to a decision model. It is to build the workflow first, place Jev at one well-defined judgment point, and keep the final authority in code and human review.
