@@ -9,7 +9,7 @@ const MDX_COMPONENTS = [
         link:'home',
         description: [
             "👋 Welcome",
-            "AutoCoder – Your AI-Powered, End-to-End Software Development Platform.As the world's first truly end-to-end AI-powered development platform, AutoCoder transforms conceptual ideas into production-grade websites through natural language interaction. Whether building high-availability backend systems, developing dynamic websites, or implementing complex business logic, AutoCoder autonomously delivers frontend interfaces, backend services, and database architectures.",
+            "AutoCoder.cc is an AI-powered full-stack app and website builder that helps you turn ideas into complete, functional web and mobile applications without coding. Simply describe what you want to build, and AutoCoder.cc can generate the frontend, backend, database, authentication, business logic, and deployment for you.",
         ]
     },
 
@@ -22,7 +22,7 @@ const MDX_COMPONENTS = [
         title: "Product Capabilities",
         page: '/introduction',
         content: [
-         "AotuCoder is an all-in-one web development platform that lets you build and deploy production-grade websites, backend system, and full-stack applications directly from your browser — no installation needed. Built-in AI Agent, project collaboration, and one-click deployment streamline your workflow and boost productivity."
+         "AutoCoder.cc builds complete applications through Progressive Build — Draft, Requirements, and Full Project. Work from text, images, files, or voice; paste a Google Maps listing to generate an editable business website; and add payments, products, carts, and order management."
         ]
     },
     {
@@ -75,7 +75,7 @@ const MDX_COMPONENTS = [
         page: '/quickstart',
         content: [
             'What is AutoCoder?',
-            `AutoCoder is the world's first truly end-to-end AI product that automatically generates both the front-end and back-end of applications through AI conversations.`,
+            `AutoCoder.cc is an AI-powered full-stack app and website builder that generates frontend, backend, database, authentication, business logic, and deployment from your idea.`,
             `How is this different from other solutions?`,
             `Express your needs through AI conversations, and AutoCoder will generate a detailed requirements list based on your input.`,
             `Once the project is generated, you can manually edit and adjust it through multiple rounds of AI conversation, with no coding required. Simply use natural language to optimize your project.`,
