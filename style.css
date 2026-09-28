@@ -956,6 +956,31 @@ img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/0
 img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
 img[src*="/blog/how-to-evaluate-a-free-ai-website-builder-before-you-commit-ru/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
 
+/* Same fix for how-to-use-an-ai-app-generator-to-build-your-first-mvp-ru (Russian
+   edition) — 01 is the 1280x719 hero, 02 and 03 are 1536x864. "/0" matches
+   01–03; cover.png is excluded (card thumbnail only, not in the body). */
+img[src*="/blog/how-to-use-an-ai-app-generator-to-build-your-first-mvp-ru/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/how-to-use-an-ai-app-generator-to-build-your-first-mvp-ru/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 719 !important; }
+img[src*="/blog/how-to-use-an-ai-app-generator-to-build-your-first-mvp-ru/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+img[src*="/blog/how-to-use-an-ai-app-generator-to-build-your-first-mvp-ru/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1536 / 864 !important; }
+
+/* Same fix for product-to-weekly-content (AutoCoder + EasyMake guest workflow)
+   — 01 is the 1280x720 hero, 02 is the 1400x760 loop diagram, 03–05 are
+   AutoCoder screenshots (1280x806, 1280x800, 1280x801). "/0" matches 01–05;
+   cover.png is excluded (card thumbnail only, not in the body). */
+img[src*="/blog/product-to-weekly-content/0"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/product-to-weekly-content/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 720 !important; }
+img[src*="/blog/product-to-weekly-content/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1400 / 760 !important; }
+img[src*="/blog/product-to-weekly-content/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 806 !important; }
+img[src*="/blog/product-to-weekly-content/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 800 !important; }
+img[src*="/blog/product-to-weekly-content/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 801 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
