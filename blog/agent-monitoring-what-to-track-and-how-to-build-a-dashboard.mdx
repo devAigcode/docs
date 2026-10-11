@@ -1,0 +1,137 @@
+---
+title: "Agent Monitoring Dashboard: What to Track"
+description: "Learn what agent monitoring should measure and how to design a practical dashboard for AI-enabled workflow operations."
+date: "2026-10-11"
+"og:title": "Agent Monitoring: What to Track and How to Build a Dashboard"
+"twitter:title": "Agent Monitoring: What to Track and How to Build a Dashboard"
+"og:image": "/images/blog/agent-monitoring-what-to-track-and-how-to-build-a-dashboard/cover.png"
+---
+
+*Published October 11, 2026*
+
+<Frame caption="Agent monitoring connects a task’s workflow steps to operational status and outcome evidence, rather than showing only a final success or failure.">
+  ![Editorial illustration of an AI workflow run moving through visible stages into an operational monitoring dashboard](/images/blog/agent-monitoring-what-to-track-and-how-to-build-a-dashboard/cover.png)
+</Frame>
+
+Agent monitoring is the operational practice of recording what an AI-enabled workflow attempted, what happened during execution, and whether the resulting outcome was useful. For product teams and developers, the goal is not to collect every possible event. It is to make individual runs understandable, recurring problems visible, and operational responses clear.
+
+This matters because agent workflows often combine model calls, tools, retrieval, conditional logic, approvals, and handoffs. A workflow can appear available while still producing incomplete outputs, taking too long, repeating actions, or failing on a particular class of input. A focused monitoring design gives teams a way to distinguish those cases and decide what to fix.
+
+## Agent Monitoring: Definition and Scope
+
+The practical point is to monitor an agent as a sequence of observable work, not as a single black-box request. A useful record connects an incoming task to the decisions, tool actions, intermediate states, and final outcome that followed.
+
+An agent run is the core unit of observation. Depending on the workflow, a run may begin when a user submits a request, when a scheduled process starts, or when another system triggers an event. It may include one model response or many steps across several services.
+
+**AI agent monitoring** usually includes four related questions:
+
+- Did the run complete, fail, stop intentionally, or remain unfinished?
+- How long did the run and its important steps take?
+- Which tools, services, or workflow stages were involved?
+- Did the output satisfy the expected operational or user-visible outcome?
+
+These questions overlap with, but are not identical to, logging, application monitoring, and product analytics. Logs provide detailed event records that may help an engineer reconstruct an incident. Application monitoring commonly focuses on service health, error rates, infrastructure behavior, and request performance. Product analytics examines user behavior and product adoption patterns.
+
+That distinction prevents a common misconception: a collection of raw logs is not automatically an observability system. Logs may show that a tool call returned an error, but a monitoring view should also show which run was affected, whether the workflow retried, whether a fallback succeeded, and whether the user received a usable result.
+
+Another misconception is that monitoring only concerns failures. Successful runs need attention as well. A workflow that completes but consistently makes unnecessary calls, takes longer than its expected service level, or produces outputs requiring manual correction creates operational cost and product friction.
+
+Start with the decisions your team needs to make. If an on-call developer must determine whether a tool dependency is failing, capture dependency and error context. If a product owner needs to identify tasks that need review, capture outcome status and review disposition.
+
+## The Core Signals to Monitor
+
+The practical point is to capture a small set of signals that explain status, timing, failure, and outcome for every important run. Begin with fields that can support triage, then add more detail only when it has a defined use.
+
+First, record a run lifecycle. At minimum, store a run ID, workflow or agent name, start time, end time when available, and a status such as queued, running, completed, failed, cancelled, or awaiting review. Define these states carefully.
+
+Second, measure duration at both the run and step level. Total duration tells an operator which runs are slow. Step duration helps isolate whether time was spent waiting for a model response, a tool, a database operation, an approval, or a retry.
+
+Third, preserve error and retry information. A useful error record includes the affected step, an error category, a safe message or code, the time of occurrence, and whether the workflow retried or switched to a fallback. Error categories should be stable enough to group later.
+
+Fourth, capture action context. For each material step, record its type, such as model generation, retrieval, tool call, routing decision, or human review request. Record the target tool or dependency where appropriate, the sequence number, and a summarized result. This creates a timeline that explains how the workflow reached its terminal state.
+
+Fifth, define an outcome signal. The right measure depends on the job. It might be whether a requested document was produced, whether a downstream record was updated, whether the user accepted the result, or whether a reviewer approved it. Do not substitute a technical completion state for a product outcome.
+
+Context is necessary, but data minimization is equally necessary. Store references, classifications, redacted summaries, and controlled samples where those are sufficient for investigation. Set access rules and retention practices based on the sensitivity of inputs and outputs.
+
+A concise initial event model might include `run_id`, `workflow_name`, `status`, timestamps, `step_id`, `step_type`, `dependency`, `error_category`, retry count, and outcome or review state. Add correlation IDs if a run passes through existing services. This foundation supports agent performance tracking without making the first implementation dependent on a large telemetry schema.
+
+## Design an AI Agent Dashboard Around Decisions
+
+<Frame caption="A useful dashboard leads operators from a scan of recent runs to evidence for a specific triage decision.">
+  ![Workflow diagram showing a run list leading to a detail timeline and a triage decision](/images/blog/agent-monitoring-what-to-track-and-how-to-build-a-dashboard/inline-1.png)
+</Frame>
+
+The practical point is to make the first dashboard answer “what needs attention?” before attempting to summarize every operational detail. A dashboard should guide a user from a current problem to the specific run and evidence needed to act.
+
+Begin with a run list. Each row should make the basic operating state scannable: run ID or readable label, workflow, current status, start time, duration, outcome state, and a concise issue indicator where applicable. Default the list to recent activity, but provide filters for workflow, status, time range, error category, and review state.
+
+Next, provide a run detail view. The detail page should show the lifecycle, a chronological step timeline, errors and retries, relevant dependencies, and the available outcome evidence. Keep the summary near the top so an operator can quickly answer what happened, then allow deeper inspection when needed.
+
+Use aggregate views sparingly and purposefully. A status breakdown can indicate whether failures are concentrated. A duration trend can reveal whether an operational change needs investigation. A grouped error view can help route recurring issues to the right owner.
+
+Alerts deserve the same discipline. Create an alert only when it has an owner and an expected response. Examples include a sustained rise in failed runs for a critical workflow, a queue that is not draining, or a dependency error that prevents a required operation.
+
+A useful **AI agent dashboard** also distinguishes operational status from quality review. A completed run may still be pending evaluation. Displaying these separately avoids presenting operational completion as proof of usefulness. This separation is particularly important when agent output is reviewed by users, operators, or another validation process.
+
+## Build an Initial Monitoring Application
+
+<Frame caption="An initial monitoring application needs a durable event contract and separate records for runs, steps, and outcome review.">
+  ![Editorial illustration of structured workflow events being organized into run, step, and review records](/images/blog/agent-monitoring-what-to-track-and-how-to-build-a-dashboard/inline-2.png)
+</Frame>
+
+The practical point is to build the smallest full-stack application that supports run ingestion, investigation, and a repeatable response. Define the operational workflow first; the interface and schema should follow it.
+
+Start by documenting the event contract. Specify when a run begins, which system emits each event, which fields are required, how events are ordered, and how terminal status is set. Decide how to handle duplicate events and late-arriving updates.
+
+Then model the data around a few durable entities: runs, steps or events, and review records where outcome assessment is separate. Store relationships through the run ID, preserve event timestamps, and keep a version or source marker if multiple workflow implementations may report similar events.
+
+Build the operator experience in this order:
+
+1. Create a recent-run table with status and basic filters.
+2. Add a run detail screen with lifecycle and step chronology.
+3. Show failures, retries, and safe diagnostic context.
+4. Add outcome or review state where the workflow has one.
+5. Add only the aggregate views and alerts needed for defined operating decisions.
+
+For teams that need a starting point, an editable prototype can be generated from a written monitoring specification using [AutoCoder’s AI app builder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=AgentMonitoring). The useful input is not simply “make a dashboard.” Describe the run states, event fields, filters, roles, detail views, and review process so the generated frontend, backend, and database structure reflect the operating model. Review the result against the event contract before connecting production workflow data.
+
+Keep ingestion separate from presentation. The workflow should emit structured events through a controlled backend path, while the dashboard reads normalized records and applies access controls. This separation makes it easier to validate incoming events, redact unsuitable fields, and evolve the user interface without changing the agent’s execution logic.
+
+Finally, test the application with representative cases: a clean completion, a retried transient error, a terminal failure, a long-running task, a late event, and a run that completes but requires review. These cases expose whether statuses, timelines, and filters mean what operators expect them to mean.
+
+## Use Monitoring to Improve Agent Workflows
+
+The practical point is to turn observed runs into a routine for triage and targeted changes. A dashboard is useful only if its signals lead to investigation, ownership, and a measured follow-up.
+
+Establish a basic triage path. Identify whether the issue is isolated or recurring, determine the affected workflow and step, inspect retries and dependency context, and classify the impact on users or downstream work. Route infrastructure or integration problems differently from output-quality issues.
+
+Review representative runs, not only the most visible failures. Include successful runs, edge cases, manually corrected outputs, and tasks from the workflow categories that matter most to the product. This gives teams a more balanced view of reliability than a small set of demonstrations or a single aggregate success figure.
+
+When making changes, attach a clear hypothesis. A revised tool parameter, routing rule, prompt, validation step, or retry policy should address a documented failure mode. Compare the relevant operational and outcome signals before and after the change over comparable work where possible.
+
+Monitoring also helps define boundaries for automation. If a class of task repeatedly enters review, fails validation, or relies on manual correction, the appropriate action may be a narrower scope, an additional approval point, or a different workflow design rather than another attempt to hide the signal. The aim is dependable operation, not an artificially clean dashboard.
+
+## FAQ
+
+### What is agent monitoring?
+
+Agent monitoring is the practice of observing individual AI-enabled workflow runs, including their status, timing, steps, errors, retries, dependencies, and outcomes. It helps teams investigate operational problems and assess whether completed work was useful.
+
+### What should agent monitoring track?
+
+Track run lifecycle, total and step duration, errors, retry behavior, material tool or model steps, and an outcome or review signal. Add only the context needed to diagnose issues, with controls for sensitive information.
+
+### How is agent monitoring different from application monitoring?
+
+Application monitoring focuses on the health and performance of services and infrastructure. Agent monitoring connects that information to an agent run, its sequence of actions, and its user-visible or business outcome. Both are useful, but they answer different questions.
+
+### What is the minimum viable agent monitoring dashboard?
+
+A practical first version has a recent-run list, status and time filters, a run detail page with a step timeline, error and retry context, and an outcome or review state where relevant. Add alerts only when a team has a defined response.
+
+## Conclusion
+
+Effective agent monitoring starts with a narrow operational question: can the team understand a run, identify what failed or degraded, and take an appropriate next step? A run lifecycle, step-level timing, error and retry context, and a separate outcome signal provide a credible initial foundation.
+
+Build the dashboard around investigation rather than decoration, protect sensitive context, and connect every alert to an owner and response. With those basics in place, agent monitoring becomes a practical feedback loop for improving AI-enabled workflows without confusing technical completion with a successful outcome.
