@@ -24,16 +24,31 @@
       },
       {
         "tab": "Features",
-        "pages": [
-          "build",
-          "google-maps-generator",
-          "sparkvibe",
-          "workspace",
-          "deploy-and-hosting",
-		  "api-hub",
-          "earn-credits",
-          "profile",
-          "security-and-privacy"
+        "groups": [
+          {
+            "group": "Features",
+            "pages": [
+              "build",
+              "google-maps-generator",
+              "sparkvibe",
+              "workspace",
+              "deploy-and-hosting",
+              {
+                "group": "API Hub",
+                "icon": "code-branch",
+                "expanded": false,
+                "drilldown": false,
+                "pages": [
+                  "api-hub/ai-integration",
+                  "api-hub/google-signup",
+                  "api-hub/payment"
+                ]
+              },
+              "earn-credits",
+              "profile",
+              "security-and-privacy"
+            ]
+          }
         ]
       },
       {
@@ -74,6 +89,12 @@
     "excludeStopwords": false,
     "minTermLength": 1
     },
+	"redirects": [
+	  {
+	    "source": "/api-hub",
+	    "destination": "/api-hub/ai-integration"
+	  }
+	],
 	"seo": {
 		"metatags": {
 			"og:site_name": "AutoCoder"

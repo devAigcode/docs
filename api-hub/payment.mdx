@@ -1,31 +1,7 @@
 ---
-title: "API Hub"
-icon: "code-branch"
+title: "Payment"
+icon: "credit-card"
 ---
-
-AutoCoder supports integrating your project with third-party APIs. It currently includes Google Signup and third-party payment platforms, allowing you to quickly integrate these features into your project and manage them through the API Hub.
-
----
-
-## Google Signup
-
-Add Google Sign-In to your AutoCoder app and let users securely authenticate using their Google accounts.
-
-AutoCoder supports Google Authentication out of the box, making it easy to add a trusted and familiar login experience without building your own authentication flow.
-
-Google Authentication in API Hub can be configured in two ways:
-
-**Managed by AutoCoder:** AutoCoder manages the OAuth client, credentials, redirect handling, and ongoing security updates for you. This is the default and easiest way to get started.
-
-**Your own credentials:** Connect OAuth credentials from your own Google Cloud project, giving you full control over credential management, security policies, and key rotation.
-
-<Frame>
-  ![Image](/images/image-80.png)
-</Frame>
-
----
-
-## Payment
 
 Enable payment in your AutoCoder app using built-in payment integrations. AutoCoder supports **subscriptions, one-time payments, usage-based billing, and cryptocurrency payments** through Stripe, Clink, or cryptocurrency payment integrations.
 
@@ -33,7 +9,7 @@ AutoCoder handles the payment lifecycle, including checkout UI, payment order cr
 
 AutoCoder supports three payment options:
 
-#### Stripe
+### Stripe
 
 A flexible payment infrastructure for global businesses.
 
@@ -44,7 +20,7 @@ A flexible payment infrastructure for global businesses.
 - Pay-as-you-go pricing model
 - Merchants are responsible for tax, compliance, and billing management unless additional Stripe products are used
 
-#### Clink
+### Clink
 
 A modern payment and billing platform built for AI-native and SaaS businesses.
 
@@ -55,7 +31,7 @@ A modern payment and billing platform built for AI-native and SaaS businesses.
 - Unified platform for payments, billing, subscription management, and customer portals
 - Ideal for SaaS founders and global digital businesses seeking lower operational complexity
 
-#### Cryptocurrency Payments
+### Nowpayments
 
 A complete cryptocurrency payment flow for generated websites and applications, from checkout and on-chain verification to automated fulfillment and transaction management.
 
@@ -67,7 +43,7 @@ A complete cryptocurrency payment flow for generated websites and applications, 
 - Supports use cases including content access, membership activation, booking confirmation, and order fulfillment
 - Provides transaction records, payment details, timestamps, and operational visibility from the admin side
 
-### Payment Lifecycle
+## Payment Lifecycle
 
 AutoCoder connects the payment process with your application's business logic:
 
@@ -79,7 +55,7 @@ Payment functionality supports both **test and live environments**.
 
 In the preview environment, transactions use test payment methods and no real money is charged. After the project is published, transactions are processed in the live environment using the configured payment integration.
 
-### **Testing**
+## Testing
 
 AutoCoder provides a sandbox environment to test your payment flow before going live.
 
@@ -90,7 +66,7 @@ AutoCoder provides a sandbox environment to test your payment flow before going 
    - 4000 0000 0000 0002 — Declined payment
 3. Check transaction records
 
-### Go Live
+## Go Live
 
 1. Add payment logic and complete the test
 2. Fill in the API Key for the Live environment
