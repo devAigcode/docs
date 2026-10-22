@@ -1,0 +1,127 @@
+---
+title: "CloudFront Cache Keys, TTLs and Invalidation"
+description: "Understand CloudFront caching, cache keys, TTLs, Cache-Control headers, invalidation, asset versioning, and deployment troubleshooting."
+date: "2026-10-22"
+"og:title": "CloudFront Cache: How Caching, Invalidation, and Cache Keys Work"
+"twitter:title": "CloudFront Cache: How Caching, Invalidation, and Cache Keys Work"
+"og:image": "/images/blog/cloudfront-cache-how-caching-invalidation-and-cache-keys-work/cover.png"
+---
+
+*Published October 22, 2026*
+
+<Frame caption="CloudFront serves a stored response only when the request matches a fresh cached object; otherwise it retrieves content from the origin.">
+  ![Editorial diagram of a browser request passing through a CloudFront edge cache and reaching an origin only on a cache miss](/images/blog/cloudfront-cache-how-caching-invalidation-and-cache-keys-work/cover.png)
+</Frame>
+
+A **cloudfront cache** stores eligible responses close to viewers so later matching requests can be served without contacting the origin every time. For AWS application teams, the important question is not merely whether caching is enabled. It is whether each response is safe to reuse, what request details make it distinct, and how a deployment replaces older content without serving incompatible files.
+
+Caching decisions affect correctness as well as delivery efficiency. A stale HTML document can reference the wrong frontend bundle. A cache key that ignores a meaningful request input can combine different responses. Conversely, including irrelevant request values can create many variants that cannot be reused. This guide explains the core model and the operational choices behind it.
+
+## How cloudfront cache works at the edge
+
+The practical point is that CloudFront can reuse a response only when a request maps to the same cached object and that object remains fresh. Treat the edge cache as a controlled copy of origin content, not as an automatic fix for application delivery.
+
+When a viewer requests a URL through a distribution, CloudFront selects the cache behavior that matches the request path. It builds a cache key from the configured request information and checks for a usable stored response. A matching fresh object is a cache hit, so CloudFront can return it from the edge.
+
+An origin can be an application server, object storage, or another endpoint. It remains responsible for the content, application logic, and response headers it supplies. CloudFront does not make a user-specific or sensitive response safe for shared reuse. Teams must establish whether each route is public, personalized, time-sensitive, or dependent on request context.
+
+Freshness is controlled through CloudFront TTL settings and applicable origin directives. A TTL is the period during which a cached object can be considered fresh. Distribution configuration can set boundaries, while origin headers can express caching instructions for the response. Review both together, since a route's effective behavior depends on the active distribution settings as well as its headers.
+
+For example, a stylesheet named `app.8f3a.css` is often appropriate for a longer reuse period because its filename changes when its content changes. A route such as `/account` may depend on authentication, cookies, or current account state. It needs a separate policy and may not be appropriate for shared caching.
+
+## Define a CloudFront cache key around real response inputs
+
+<Frame caption="Only request inputs that change origin output should create distinct CloudFront cache-key variants.">
+  ![Diagram showing path, selected query parameters, headers, and cookies contributing to cache key variants](/images/blog/cloudfront-cache-how-caching-invalidation-and-cache-keys-work/inline-1.png)
+</Frame>
+
+The practical point is to include only request components that can change the response. A CloudFront cache key determines which requests can share one stored object. If two requests produce different output, they must not use the same key. If a request value does not affect output, making it part of the key creates needless variants.
+
+Depending on the cache policy, the key can include the requested path plus selected query strings, headers, and cookies. Each extra input can expand the set of separately stored objects. That may be necessary for a language selection or image-size parameter, but it reduces reuse when the value is irrelevant.
+
+Document how each route is rendered before changing a policy. Ask these questions:
+
+1. Does a query parameter alter the representation, such as `page`, `locale`, or image width?
+2. Does a request header affect output, such as a language preference or application-specific header?
+3. Does a cookie identify state that changes the result, including a user, experiment, or locale?
+4. Does the origin need the value even when it does not change the response body?
+
+The last question distinguishes the cache key from origin request forwarding. The cache key controls variation among stored objects. Forwarding controls what CloudFront sends to the origin. A value can be needed by the origin without becoming a key input.
+
+Consider a public listing route where `?page=2` changes the products returned. The page value should distinguish cached results. A tracking parameter used only for attribution generally should not create another page variant. Likewise, forwarding every cookie to an origin can make a public route behave as though each visitor is unique.
+
+The same principle applies to APIs. A public endpoint that varies by a `region` parameter needs deliberate variation. An authenticated endpoint returning current-user data requires a design that prevents one user's response from being shared with another. When behavior is uncertain, favor correctness and inspect origin logic before broadening caching.
+
+## Use CloudFront cache-control and TTL settings deliberately
+
+The practical point is to give versioned assets, HTML documents, and dynamic responses different policies. A single rule for an entire application rarely reflects how those responses change or the risk they carry.
+
+CloudFront cache-control directives in HTTP responses communicate cacheability and freshness expectations. They can indicate whether a response may be stored, how long it should be considered fresh, and whether it is intended for shared caches. CloudFront TTL settings provide configuration limits around that behavior. Validate the interaction in the active distribution, especially where minimum, default, or maximum TTL values are configured.
+
+A useful route classification is:
+
+- **Versioned static assets:** JavaScript, CSS, fonts, and images with content-based or release-specific names can usually have longer reuse because changed content receives a new URL. - **HTML entry documents:** HTML often references the current asset set. A shorter freshness policy can reduce the period during which viewers receive references from an earlier deployment.
+
+Headers should be generated consistently by the system that owns a response. A framework serving HTML should make header behavior visible in deployment configuration. Asset upload metadata deserves the same review. Otherwise, files that appear similar in a repository can have different delivery behavior after publishing.
+
+Include cache verification in release checks. Confirm the requested URL, status, relevant `Cache-Control` header, and configured request inputs that affect the route. Test the CloudFront URL, not only a direct origin request, because the two delivery paths can differ. A short route-to-policy record also helps an on-call engineer distinguish an intended TTL from a cache-key mismatch or origin deployment problem.
+
+## Choose CloudFront cache invalidation or asset versioning by content type
+
+<Frame caption="Versioned filenames support routine static asset updates, while invalidation removes cached content at an existing path before expiry.">
+  ![Release workflow contrasting versioned static files with targeted invalidation for unchanged paths](/images/blog/cloudfront-cache-how-caching-invalidation-and-cache-keys-work/inline-2.png)
+</Frame>
+
+The practical point is that versioned asset URLs are usually the cleaner mechanism for routine static releases, while CloudFront cache invalidation removes cached paths before normal expiry. The two techniques address different situations.
+
+CloudFront cache invalidation removes cached objects matching specified paths. It is useful when content at an existing URL must stop being served promptly: for example, a corrected document, an outdated entry page, or a file deployed under an unchanged name. It can also be part of an incident response when an unintended public response was cached.
+
+Invalidation does not update the origin. If the origin still provides the old content, a subsequent cache miss can retrieve it again. Before invalidating, verify that the intended artifact is present at the origin and that cache-key inputs will not select an unexpected variant. Use the narrowest path pattern that resolves the issue when the affected routes are known; unnecessarily broad removal also discards useful cached content.
+
+Asset versioning handles routine changes differently. When a build gives changed JavaScript, CSS, images, or fonts a new filename, the new URL naturally produces a different cache key. New HTML can reference the new files, while a viewer with older HTML can still load the asset names that document expects. This reduces the need to remove every older static object during a normal release.
+
+A practical release sequence is to publish new versioned assets, publish HTML that references them, and apply the defined policy for the HTML document. The deployment mechanism determines exact ordering, but HTML should not point to assets that are unavailable. For rollback, retain a way to restore a known-good HTML reference and know which prior asset files remain available.
+
+## Troubleshoot unexpected cached content methodically
+
+The practical point is to identify the requested object and its cache inputs before changing TTLs or issuing an invalidation. Comparing the viewer request, cache policy, origin response, and deployed artifact in that order makes incidents easier to isolate.
+
+Start with the exact URL that returned unexpected content, including meaningful query parameters. Find the matching cache behavior and inspect which query strings, headers, and cookies participate in the key. A missing input can cause intended variants to share a response. An irrelevant input can make a deployment appear inconsistent because separate requests populate separate objects.
+
+Next, compare the CloudFront response with the origin response where access permits. Check content, status, and cache-related headers. If the origin is old, the cache is not the primary problem. If the origin is current but CloudFront returns an older result, establish whether the object remains fresh under its policy or whether a different variant is being requested.
+
+Then verify the release artifacts. For a frontend, confirm that HTML references files that were published and that changed assets have their expected versioned names. For an API, confirm whether authentication or request context changes output. Do not attempt to solve a personalized-route problem by adding every cookie or header to a shared policy without understanding the access consequences.
+
+Choose the smallest corrective action: correct an origin header, adjust a route policy, deploy a newly versioned asset, invalidate the affected path, or restore a known-good release. Record the trigger and response so the next incident has a defined procedure rather than an improvised one.
+
+## Common misconceptions about CloudFront caching
+
+The practical point is that cache hits are not the sole measure of success. A useful cache returns the correct representation consistently; reuse matters only after that condition is met.
+
+One misconception is that all static-looking content should receive the same long TTL. HTML may be text, but it often determines which application assets a browser loads. Its release behavior can differ materially from a content-hashed script.
+
+Another is that invalidation refreshes an origin. It does not repair an origin object or application response. It removes matching cached objects so later requests can retrieve content again under the configured policy.
+
+Forwarding request data and varying by that data are also not interchangeable. Forwarding lets the origin see a value. Adding it to the cache key creates distinct stored variants. Both decisions should be deliberate. Finally, cache configuration is not authorization: private-response access controls must be correct at the origin and preserved through delivery configuration.
+
+## FAQ
+
+### What is a CloudFront cache?
+
+A CloudFront cache stores eligible origin responses that can be served again when a later request matches the relevant cache key and the object remains fresh.
+
+### How long does CloudFront cache content?
+
+Duration depends on CloudFront TTL configuration and applicable origin response headers, including Cache-Control directives. Review both for each route or asset type.
+
+### When should you invalidate a CloudFront cache?
+
+Use CloudFront cache invalidation when content at an existing URL must be removed before normal expiry, after confirming the origin has the intended replacement. Versioned filenames can reduce routine invalidations for static assets.
+
+### What is included in a CloudFront cache key?
+
+A cache key includes the requested object and can include configured query strings, headers, and cookies. Include only inputs that change the response.
+
+## Conclusion
+
+A reliable **cloudfront cache** starts with content classification rather than a blanket TTL. Define which responses are shareable, construct each cache key from genuine response inputs, and manage CloudFront cache-control headers alongside distribution settings as one policy. Use versioned names for routine asset releases, reserve invalidation for content that must be removed early, and investigate incidents by comparing viewer requests with origin behavior. Teams extending applications, including projects built with [AutoCoder's AI app builder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=CloudfrontCache), still benefit from making those caching decisions part of deployment design.
