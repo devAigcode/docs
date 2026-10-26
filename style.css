@@ -981,6 +981,37 @@ img[src*="/blog/product-to-weekly-content/03"]:not([data-rmiz-modal-img]) { aspe
 img[src*="/blog/product-to-weekly-content/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 800 !important; }
 img[src*="/blog/product-to-weekly-content/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 801 !important; }
 
+/* Same fix for autocoder-website-templates (20 template screenshots, one per
+   entry). 01–20 are JPEG/PNG previews extracted from the source PDF; the
+   "/0", "/1" and "/2" prefixes together match 01–20. cover.png is excluded
+   (card thumbnail only, not in the body). */
+img[src*="/blog/autocoder-website-templates/0"]:not([data-rmiz-modal-img]),
+img[src*="/blog/autocoder-website-templates/1"]:not([data-rmiz-modal-img]),
+img[src*="/blog/autocoder-website-templates/2"]:not([data-rmiz-modal-img]) {
+  height: auto !important;
+  width: 100% !important;
+}
+img[src*="/blog/autocoder-website-templates/01"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/02"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/03"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/04"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/05"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 888 !important; }
+img[src*="/blog/autocoder-website-templates/06"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/07"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/08"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/09"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/10"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/11"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/12"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/13"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/14"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/15"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/16"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+img[src*="/blog/autocoder-website-templates/17"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/18"]:not([data-rmiz-modal-img]) { aspect-ratio: 2160 / 1650 !important; }
+img[src*="/blog/autocoder-website-templates/19"]:not([data-rmiz-modal-img]) { aspect-ratio: 1440 / 1000 !important; }
+img[src*="/blog/autocoder-website-templates/20"]:not([data-rmiz-modal-img]) { aspect-ratio: 1280 / 977 !important; }
+
 /* End-of-page scroll room for the Lovable/Base44/Replit editions. The FAQ and
    "Conclusion" headings sit so close to the end of the document that the page
    cannot scroll them up to the header offset, so an "On this page" click lands
