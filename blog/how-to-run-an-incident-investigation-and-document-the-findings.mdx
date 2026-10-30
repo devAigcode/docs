@@ -1,0 +1,130 @@
+---
+title: "Incident Investigation Documentation Guide"
+description: "Learn how to run an incident investigation, preserve evidence, assign ownership, document findings, and track corrective actions."
+date: "2026-10-30"
+"og:title": "How to Run an Incident Investigation and Document the Findings"
+"twitter:title": "How to Run an Incident Investigation and Document the Findings"
+"og:image": "/images/blog/how-to-run-an-incident-investigation-and-document-the-findings/cover.png"
+---
+
+*Published October 30, 2026*
+
+<Frame caption="An investigation is a connected workflow from preserved evidence through findings to owned follow-up actions.">
+  ![Editorial illustration of an incident investigation record connecting a timeline, evidence notes, findings, and assigned corrective actions](/images/blog/how-to-run-an-incident-investigation-and-document-the-findings/cover.png)
+</Frame>
+
+An **incident investigation** turns a disruptive event into a documented record of what happened, what is known, what remains uncertain, and what should change. For operations, engineering, and security-adjacent teams, the goal is not to produce a perfect narrative immediately after an event. It is to create a repeatable process that preserves evidence, supports sound decisions, and assigns follow-up work clearly.
+
+A useful investigation separates urgent restoration work from later fact-finding. During an active incident, teams need to reduce harm, communicate status, and restore service or operations. Once immediate risk is controlled, the investigation can examine the timeline, contributing conditions, decisions, and corrective actions with more care. That separation helps teams avoid treating early assumptions as final conclusions.
+
+## Define the purpose and scope of an incident investigation
+
+**Start by setting a clear boundary for the investigation so the team can learn from the event without turning the review into an open-ended or blame-focused exercise.** The scope should explain what event is being examined, which systems or processes are relevant, the period under review, and the questions the investigation needs to answer.
+
+An investigation may cover a service interruption, security concern, failed operational handoff, data-quality issue, or policy exception. The same basic discipline applies: record facts, identify uncertainty, test explanations, and document what will happen next. Avoid defining the purpose as proving an individual error. Human decisions matter, but they are usually made within a technical, procedural, or organizational context that also deserves examination.
+
+Before beginning, establish a few prerequisites:
+
+- An incident owner who is accountable for moving the work forward.
+- Access to relevant records, such as alerts, logs, tickets, change records, status updates, and communications.
+- A shared location for evidence and working notes with appropriate access controls.
+- A decision on who may view sensitive details, especially where security, personnel, legal, or customer information is involved.
+- A defined review deadline or checkpoint, even if the final report will be updated later.
+
+The scope statement can be short. For example, it might identify the affected workflow, the start and end conditions being investigated, known impact, and exclusions. Exclusions are useful when a related issue exists but cannot be responsibly examined with the available evidence. They keep the report focused and make limits visible to later readers.
+
+It is also helpful to distinguish three kinds of statements from the beginning. A fact is supported by a source. An inference is a reasoned interpretation of facts. An open question is not yet resolved. Labeling these categories reduces the chance that a plausible explanation becomes accepted as evidence simply because it appears in an early draft.
+
+## Capture evidence before reconstructing the story
+
+<Frame caption="Teams should preserve original records and identify gaps before drawing conclusions about an incident.">
+  ![Workflow diagram showing evidence preservation and timeline reconstruction before conclusions](/images/blog/how-to-run-an-incident-investigation-and-document-the-findings/inline-1.png)
+</Frame>
+
+**Preserve source material first, then build the timeline from records rather than memory alone.** Memories are valuable for context, but they can be incomplete, especially when people were responding under time pressure. An evidence-first approach gives the investigation a more reliable foundation.
+
+Create an evidence register as soon as practical. It does not need to be complicated: each item should have a description, source or location, time relevance, person who added it, and any handling restriction. Evidence may include system logs, monitoring output, screenshots, configuration snapshots, deployment records, support reports, chat transcripts, meeting notes, audit trails, or relevant physical records.
+
+Follow these steps to capture and organize evidence:
+
+1. **Record the initial trigger.** Note how the issue was detected, who raised it, and what was observed at that time. Keep the original alert or report where possible rather than relying only on a paraphrase. 2. **Preserve time-sensitive material.** Some records rotate, expire, or change after remediation. Export or securely retain relevant logs, snapshots, and event histories according to internal policies. 3. **Create a normalized timeline.** Put events in chronological order using a consistent time zone and format. Include observations, alerts, changes, decisions, communications, mitigations, and recovery milestones. 4.
+
+The timeline should distinguish between events and interpretations. “A configuration change was recorded at this time” is an event statement. “The change caused the failure” is an interpretation that requires further support. This distinction is especially important when several changes or conditions occurred near the same time.
+
+Interviews or written recollections can fill in operational context that logs do not capture. Ask participants what they observed, what information they had, what actions they took, and what constraints they faced. Use open questions before asking about a specific hypothesis. Summarize the account for review when appropriate, and separate it from independently verifiable records.
+
+A basic incident report template should include an evidence index and a timeline, not merely a summary field. That design makes it easier for reviewers to trace significant findings back to the underlying material and makes future updates less dependent on one person’s memory.
+
+## Run a documented incident response process
+
+**Assign ownership early and use a simple sequence of review, hypothesis testing, findings, and action tracking.** A consistent incident response process helps teams avoid leaving the investigation unfinished after service has been restored or immediate pressure has passed.
+
+The incident owner coordinates the work, maintains the investigation record, and makes sure decisions and open questions have a home. That person does not need to perform every technical review. Contributors may include operators, engineers, security staff, service owners, compliance partners, or managers responsible for the affected process. Their roles should be explicit: contributor, reviewer, approver, or action owner.
+
+Use the following investigation workflow:
+
+1. **Confirm the investigation charter.** Revisit the scope, known impact, stakeholders, access restrictions, and target review date. Update the scope if new evidence materially changes what needs examination. 2. **Review the evidence and timeline.** Identify the earliest confirmed signal, key decision points, changes in system or process state, and the conditions that marked recovery or containment. 3. **Develop contributing-factor hypotheses.** Ask what conditions made the event possible, harder to detect, or harder to resolve. Consider technical controls, process design, documentation, access, training, alerting, dependencies, and handoffs. 4.
+
+Root cause analysis is useful when it examines the conditions and mechanisms behind an event rather than searching for one simple cause. Many incidents involve a chain: a change, an unrecognized dependency, incomplete detection, and a delayed escalation may all contribute. A report can name the most direct mechanism while still documenting the broader factors that shaped the outcome.
+
+Corrective actions generally fall into different categories. Some reduce the chance of recurrence, such as changing validation or access controls. Others improve detection, such as clarifying ownership of a monitoring signal. Still others reduce impact or recovery time, such as improving rollback guidance or contact procedures. The report should explain why each action is connected to the findings.
+
+## Build a lightweight incident tracking system
+
+<Frame caption="A lightweight tracking system is most useful when it connects each action and finding back to the incident record and evidence.">
+  ![Editorial illustration of a lightweight incident tracking system linking incident records to evidence, findings, and action owners](/images/blog/how-to-run-an-incident-investigation-and-document-the-findings/inline-2.png)
+</Frame>
+
+**Use a small, structured workflow when shared documents no longer provide enough visibility, ownership, or consistency.** A lightweight incident tracking system can make investigations easier to find, update, review, and audit without imposing a large process on every event.
+
+Start with the minimum record model. An incident record may include a title, status, owner, affected area, severity or internal classification, dates, summary, scope, and access level. Related records can hold timeline entries, evidence items, findings, contributors, corrective actions, and review comments. The value is in the relationships: an action should link to a finding, and a finding should link to relevant evidence.
+
+Design role-specific views around actual work. Investigators may need a detailed evidence and timeline view. Action owners may need a filtered list of assigned follow-ups. Leaders and stakeholders may need a concise status view that avoids exposing restricted evidence. Permissions should reflect the sensitivity of the content rather than assuming every participant needs full access.
+
+A custom internal workflow can be appropriate when the team needs fields, review stages, or permissions that do not fit existing tools. For example, a team could use [AutoCoder's AI app builder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=IncidentInvestigation) to describe an internal investigation workspace with incident records, evidence links, action ownership, and role-based views. The resulting workflow should still be designed around the team’s documented process, not around a generic set of screens.
+
+Keep the first version narrow. Build the intake record, timeline, evidence register, findings, and action tracker before adding dashboards or extensive automation. Test it on a small number of completed or low-risk investigations. Review whether people can enter information consistently, locate decisions later, and see overdue actions without exporting data into separate spreadsheets.
+
+An incident tracking system should support judgment, not replace it. Structured fields help standardize records, but they cannot determine whether evidence is sufficient or whether an action addresses a real contributing factor. Leave room for narrative explanation, uncertainty, and reviewer comments.
+
+## Use an incident report template that supports review
+
+**Make the report easy to scan while keeping enough detail for a reviewer to understand how conclusions were reached.** A useful incident report template is a working record throughout the investigation, not a document assembled only at the end.
+
+A practical structure includes the following sections:
+
+- Incident identifier, title, owner, status, and relevant dates.
+- Scope, affected services or processes, and known impact.
+- Executive summary written after the evidence has been reviewed.
+- Chronological timeline with links to source material.
+- Evidence register and any access or retention notes.
+- Findings, contributing factors, and unresolved questions.
+- Root cause analysis where the evidence supports it.
+- Corrective actions with owners, review dates, and completion criteria.
+- Review history, approvals, and closure conditions.
+
+Write the summary last or revise it after the review. Early summaries often reflect incomplete information and can anchor readers on a conclusion that later evidence does not support. In the final version, use direct language, identify limitations, and avoid overstating causation.
+
+The template should also make follow-up visible after the report is closed. A corrective action that disappears into a static document is difficult to manage. Link actions to the team’s normal work-management process or keep them in the same internal tool with clear status and ownership. If the organization builds its own workflow, [AutoCoder](https://www.autocoder.cc/platform?utm_source=blog&utm_medium=latest&utm_campaign=IncidentInvestigation) can be used to create an editable full-stack application from defined requirements, while the team retains responsibility for its process design, permissions, and review standards.
+
+## FAQ
+
+### What is incident investigation?
+
+Incident investigation is the structured examination of an event after immediate response or containment. It gathers evidence, reconstructs relevant events, identifies findings and contributing factors, and records corrective actions.
+
+### What is the difference between incident response and incident investigation?
+
+Incident response focuses on managing an active event: reducing harm, restoring operations, communicating status, and containing risk. Incident investigation is the later or parallel fact-finding work that documents what happened, why it happened, and what should be improved.
+
+### What should an incident investigation include?
+
+It should include a defined scope, evidence register, timeline, impact description, findings, contributing-factor analysis, unresolved questions, corrective actions, owners, and review or closure notes. The depth should match the event’s risk and complexity.
+
+### Can a small team use an internal incident tracking tool?
+
+Yes. A small team can begin with a minimal system that records incidents, evidence, timelines, findings, and actions. The tool should reduce duplicated work and clarify ownership; it does not need complex automation to be useful.
+
+## Conclusion
+
+A disciplined **incident investigation** creates a usable record of evidence, decisions, findings, and follow-up work. Begin with a defined scope, preserve source material before reconstructing events, assign an accountable owner, and test explanations against the available record. A lightweight template or internal tracking workflow can then make those habits consistent across incidents. The aim is not a faultless narrative, but a credible review that helps teams address known risks and retain what they learned.
